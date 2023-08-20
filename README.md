@@ -20,7 +20,7 @@ Uma aplicação de cursos online, onde disponibiliza páginas de cursos customiz
 
 ### Linguagens e Tecnologias
 **Front-end:** 
-[![My Skills](https://skillicons.dev/icons?i=vue,html,css,ps)](https://skillicons.dev)
+[![My Skills](https://skillicons.dev/icons?i=vue,html,css)](https://skillicons.dev)
 
 **Back-end:** 
-[![My Skills](https://skillicons.dev/icons?i=c#,mysql,css,ps)](https://skillicons.dev)
+[![My Skills](https://skillicons.dev/icons?i=cs)](https://skillicons.dev)
