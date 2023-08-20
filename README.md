@@ -12,10 +12,10 @@ Uma aplicação de cursos online, onde disponibiliza páginas de cursos customiz
 
 ## Integrantes
 
-Felipe Augusto Medici   - RA: 2458772           - git: femedici
-Felipe Roskosz Moran    - RA: 2482100           - git: feliperm17
-Felipe Martins Sanches  - RA:                   - git: mattokgit44
-Caio Ducati Castilho    - RA: 2482061           - git: Cast43
+<p>Felipe Augusto Medici   - RA: 2458772           - git: femedici</p>
+<p>Felipe Roskosz Moran    - RA: 2482100           - git: feliperm17</p>
+<p>Felipe Martins Sanches  - RA:                   - git: mattokgit44</p>
+<p>Caio Ducati Castilho    - RA: 2482061           - git: Cast43</p>
 
 
 ### Linguagens e Tecnologias
