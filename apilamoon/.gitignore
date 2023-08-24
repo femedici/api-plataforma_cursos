@@ -1,0 +1,47 @@
+# .NET
+## Ignore object and build files.
+*.obj
+*.dll
+*.exe
+*.pdb
+*.user
+*.iobj
+*.ipdb
+
+## Ignore Visual Studio files
+.vscode/
+.vs/
+
+## Ignore Rider specific files
+.idea/
+
+## Ignore build output
+/bin/
+/obj/
+
+# User-specific files
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+
+# User-specific files
+*.rsuser
+*.suo
+*.userosscache
+*.user
+
+# Mono Auto Generated Files
+mono_crash.*
+
+# Windows image file caches
+Thumbs.db
+
+# Folder config file
+Desktop.ini
+
+# Recycle Bin used on file shares
+$RECYCLE.BIN/
+
+# VS Code directories
+.vscode/
