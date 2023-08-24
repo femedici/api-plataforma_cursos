@@ -13,7 +13,7 @@ Uma aplicação de cursos online, onde disponibiliza páginas de cursos customiz
 ## Estrutura
 A aplicação está estrutura em front-end e back-end, sendo as duas aplicações presentes nesse repositório.
 
-A pasta '\apilamoon' representa o back-end, desenvolvido em dotNet, C#;
+A pasta '\apilamoon' representa o back-end, desenvolvido em dotNet 6.0, C# e NOSQL(MongoDB);
 A pasta '\weblamoon' representa o front-end, desenvolvido em vue.js, html, css, javascript;
 
 ## Integrantes
