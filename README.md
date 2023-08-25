@@ -18,10 +18,10 @@ A pasta '\weblamoon' representa o front-end, desenvolvido em vue.js, html, css, 
 
 ## Integrantes
 
-<p>Felipe Augusto Medici   - RA: 2458772           - git: femedici</p>
-<p>Felipe Roskosz Moran    - RA: 2482100           - git: feliperm17</p>
-<p>Felipe Martins Sanches  - RA: 2390809           - git: mattokgit44</p>
-<p>Caio Ducati Castilho    - RA: 2482061           - git: Cast43</p>
+<p>Felipe Augusto Medici   - RA: 2458772           - git: femedici -FullStack</p>
+<p>Felipe Roskosz Moran    - RA: 2482100           - git: feliperm17 -BackEnd</p>
+<p>Felipe Martins Sanches  - RA: 2390809           - git: mattokgit44 -FrontEnd</p>
+<p>Caio Ducati Castilho    - RA: 2482061           - git: Cast43 -BackEnd</p> 
 
 
 ### Linguagens e Tecnologias
