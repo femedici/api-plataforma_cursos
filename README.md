@@ -3,7 +3,7 @@
 
 ## Descrição
 Uma aplicação de cursos online, onde disponibiliza páginas de cursos customizaveis, anotações no decorrer das aulas/tópicos e no curso como um todo, junto com acompanhamento de dados do curso em questão. 
-alteração
+
 
 **Detalhamento:**
 
