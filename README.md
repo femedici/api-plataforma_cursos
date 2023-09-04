@@ -4,6 +4,7 @@
 ## Descrição
 Uma aplicação de cursos online, onde disponibiliza páginas de cursos customizaveis, anotações no decorrer das aulas/tópicos e no curso como um todo, junto com acompanhamento de dados do curso em questão. 
 
+
 **Detalhamento:**
 
 - Um usuário criador pode estabelecer páginas de cursos onde pode customizar com imagens, capa e os tópicos se assim desejar. Em cada tópico (uma nova pagina) ele pode fazer inserção de video, pdf's, texto e imagens. Junto com isso consegue acompanhar o progresso do seu curso com os dados de quantos usuários se inscreveram nele, quais tópicos estão sendo concluidos e quais partes são mais acessadas.
