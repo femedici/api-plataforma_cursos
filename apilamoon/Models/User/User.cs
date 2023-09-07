@@ -5,11 +5,11 @@ namespace MainProfiles.Models;
 
 public class User
 {
-    public int? id {get; set;}
+    public int Id {get; set;}
     [Required]
     public string? Name {get; set;}
      [Required]
-    public string? email {get; set;}
+    public string? Email {get; set;}
      [Required]
-    public string? password {get; set;}
+    public string? Password {get; set;}
 }
