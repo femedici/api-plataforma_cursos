@@ -1,3 +1,5 @@
+using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
 namespace MainProfiles.Models;
 
 public class Former
