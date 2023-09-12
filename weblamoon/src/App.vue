@@ -1,6 +1,13 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png">
-  <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <div class="container-pres">
+    <div class="presentation">
+      <div class="pres-text">
+        <img alt="LaMoon Logo" src="./assets/logo.png">
+        <h1 class="pres-text">LaMoon Cursos.</h1>
+      </div>
+    </div>
+    <HelloWorld />
+  </div>
 </template>
 
 <script>
@@ -15,12 +22,40 @@ export default {
 </script>
 
 <style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+.container-pres {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  flex-direction: row;
+  z-index: 1;
+
+}
+
+.presentation {
+  background-image: linear-gradient(to top, #218380 0%, #73D2DE 100%);
+  color: aliceblue;
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.pres-text {
+  width: 95%;
+  font-family: 'Dosis', sans-serif;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.pres-text>h1 {
+  font-family: 'Dosis', sans-serif;
+  text-transform: uppercase;
+  font-size: 250%;
+  margin: .5rem;
+  z-index: 2;
   text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
 }
 </style>
