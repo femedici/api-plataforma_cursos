@@ -1,0 +1,1 @@
+<!-- sera implementado a visualização da barra inferior do app -->
