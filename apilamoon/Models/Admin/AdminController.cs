@@ -35,14 +35,14 @@ public class AdminController : ControllerBase
     public IActionResult Create(Admin admin)
     {
         AdminService.Add(admin);
-        return CreatedAtAction(nameof(Get), new { id = admin.id }, admin);
+        return CreatedAtAction(nameof(Get), new { id = admin.Id }, admin);
     }
 
     // PUT action - Atualizar CRUD
     [HttpPut("{id}")]
     public IActionResult Update(int id, Admin admin)
     {
-        if (id != admin.id)
+        if (id != admin.Id)
             return BadRequest();
         var existingadmin = AdminService.Get(id);
 

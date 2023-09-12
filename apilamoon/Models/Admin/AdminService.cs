@@ -10,18 +10,18 @@ public static class AdminService
     {
         Admins = new List<Admin>
         {
-            new Admin { id = 1, email = "fe@gmail.com", password = "senha123"},
-            new Admin { id = 2, email = "tifu@gmail.com", password = "senha123"}
+            new Admin { Id = 1, Email = "fe@gmail.com", Password = "senha123"},
+            new Admin { Id = 2, Email = "tifu@gmail.com", Password = "senha123"}
         };
     }
 
     public static List<Admin> GetAll() => Admins;
 
-    public static Admin? Get(int id) => Admins.FirstOrDefault(p => p.id == id);
+    public static Admin? Get(int id) => Admins.FirstOrDefault(p => p.Id == id);
 
     public static void Add(Admin admin)
     {
-        admin.id = nextId;
+        admin.Id = nextId;
         nextId++;
         Admins.Add(admin);
     }
@@ -36,7 +36,7 @@ public static class AdminService
 
     public static void Update(Admin admin)
     {
-        var index = Admins.FindIndex(p => p.id == admin.id);
+        var index = Admins.FindIndex(p => p.Id == admin.Id);
         if (index == -1)
             return;
 

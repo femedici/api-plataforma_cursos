@@ -35,14 +35,14 @@ public class FormerController : ControllerBase
     public IActionResult Create(Former former)
     {
         FormerService.Add(former);
-        return CreatedAtAction(nameof(Get), new { id = former.id }, former);
+        return CreatedAtAction(nameof(Get), new { id = former.Id }, former);
     }
 
     // PUT action - Atualizar CRUD
     [HttpPut("{id}")]
     public IActionResult Update(int id, Former former)
     {
-        if (id != former.id)
+        if (id != former.Id)
             return BadRequest();
         var existingformer = FormerService.Get(id);
 

@@ -10,18 +10,18 @@ public static class FormerService
     {
         Formers = new List<Former>
         {
-            new Former { id = 1, Name = "abaco", email = "fe@gmail.com", password = "senha123"},
-            new Former { id = 2, Name = "fermeto", email = "tifu@gmail.com", password = "senha123"}
+            new Former { Id = 1, Name = "abaco", Email = "fe@gmail.com", Password = "senha123"},
+            new Former { Id = 2, Name = "fermeto", Email = "tifu@gmail.com", Password = "senha123"}
         };
     }
 
     public static List<Former> GetAll() => Formers;
 
-    public static Former? Get(int id) => Formers.FirstOrDefault(p => p.id == id);
+    public static Former? Get(int id) => Formers.FirstOrDefault(p => p.Id == id);
 
     public static void Add(Former Former)
     {
-        Former.id = nextId;
+        Former.Id = nextId;
         nextId++;
         Formers.Add(Former);
     }
@@ -36,7 +36,7 @@ public static class FormerService
 
     public static void Update(Former Former)
     {
-        var index = Formers.FindIndex(p => p.id == Former.id);
+        var index = Formers.FindIndex(p => p.Id == Former.Id);
         if (index == -1)
             return;
 
