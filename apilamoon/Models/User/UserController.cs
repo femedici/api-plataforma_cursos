@@ -17,12 +17,12 @@ public class UserController : ControllerBase
     public ActionResult<List<User>> GetAll() =>
         UserService.GetAll();
 
-    [HttpGet("{Id}")]
+    [HttpGet("{Cpf}")]
 
     //Faz a consulta de apenas 1 usuário, com o cpf
-    public ActionResult<User> Get(int Id)
+    public ActionResult<User> Get(string Cpf)
     {
-        var user = UserService.Get(Id);
+        var user = UserService.Get(Cpf);
 
         if (user == null)
             return NotFound();
@@ -39,12 +39,12 @@ public class UserController : ControllerBase
     }
 
     // PUT action - Atualizar CRUD
-    [HttpPut("{Id}")]
-    public IActionResult Update(int Id, User user)
+    [HttpPut("{Cpf}")]
+    public IActionResult Update(string Cpf, User user)
     {
-        if (Id != user.Id)
+        if (Cpf != user.Cpf)
             return BadRequest();
-        var existingUser = UserService.Get(Id);
+        var existingUser = UserService.Get(Cpf);
 
         if (existingUser is null)
             return NotFound();
@@ -55,15 +55,15 @@ public class UserController : ControllerBase
     }
 
     // DELETE action - Excluir CRUD
-    [HttpDelete("{Id}")]
-    public IActionResult Delete(int Id)
+    [HttpDelete("{Cpf}")]
+    public IActionResult Delete(string Cpf)
     {
-        var user = UserService.Get(Id);
+        var user = UserService.Get(Cpf);
 
         if (user is null)
             return NotFound();
 
-        UserService.Delete(Id);
+        UserService.Delete(Cpf);
 
         return NoContent();
     }
