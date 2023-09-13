@@ -17,12 +17,12 @@ public class FormerController : ControllerBase
     public ActionResult<List<Former>> GetAll() =>
         FormerService.GetAll();
 
-    [HttpGet("{id}")]
+    [HttpGet("{Cpf}")]
 
     //Faz a consulta de apenas 1 usuário, com o cpf
-    public ActionResult<Former> Get(int id)
+    public ActionResult<Former> Get(string Cpf)
     {
-        var former = FormerService.Get(id);
+        var former = FormerService.Get(Cpf);
 
         if (former == null)
             return NotFound();
@@ -39,12 +39,12 @@ public class FormerController : ControllerBase
     }
 
     // PUT action - Atualizar CRUD
-    [HttpPut("{id}")]
-    public IActionResult Update(int id, Former former)
+    [HttpPut("{Cpf}")]
+    public IActionResult Update(string Cpf, Former former)
     {
-        if (id != former.Id)
+        if (Cpf != former.Cpf)
             return BadRequest();
-        var existingformer = FormerService.Get(id);
+        var existingformer = FormerService.Get(Cpf);
 
         if (existingformer is null)
             return NotFound();
@@ -55,15 +55,15 @@ public class FormerController : ControllerBase
     }
 
     // DELETE action - Excluir CRUD
-    [HttpDelete("{id}")]
-    public IActionResult Delete(int id)
+    [HttpDelete("{Cpf}")]
+    public IActionResult Delete(string Cpf)
     {
-        var former = FormerService.Get(id);
+        var former = FormerService.Get(Cpf);
 
         if (former is null)
             return NotFound();
 
-        FormerService.Delete(id);
+        FormerService.Delete(Cpf);
 
         return NoContent();
     }
