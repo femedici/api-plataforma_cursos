@@ -1,7 +1,4 @@
 <template>
-    <div>
-        <!-- <img src="@/assets/home/test.jpg" alt="test" class="frame1" /> -->
-    </div>
     <!DOCTYPE html>
     <html lang="en">
 
