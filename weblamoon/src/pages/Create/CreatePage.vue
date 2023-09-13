@@ -8,6 +8,4 @@
 
 </script>
 
-<style scoped>
-
-</style>
+<style src="./style.css"></style>

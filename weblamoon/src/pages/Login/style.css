@@ -1,0 +1,83 @@
+h3 {
+    margin: 40px 0 0;
+}
+
+ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+li {
+    display: inline-block;
+    margin: 0 10px;
+}
+
+.login {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.container-login {
+  display: flex;
+  justify-content: center;
+  height: 100vh;
+}
+
+.login h2 {
+    font-family: 'BR Firma', sans-serif;
+    font-size: 2rem;
+    font-weight: bold;
+    color: #810b67;
+}
+
+.login-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#login-itens {
+    font-family: 'Dosis', sans-serif;
+    width: 200%;
+    margin: .5rem;
+    padding: .5rem;
+    border-width: 0 0 0 .4rem;
+    border-style: solid;
+    border-color: #810b67;
+    background-color: rgb(237, 236, 236);
+
+}
+
+.login-form button {
+    font-family: 'Dosis', sans-serif;
+    text-transform: uppercase;
+    width: 50%;
+    margin: 1rem;
+    padding: .6rem;
+    border-style: none;
+    border-radius: .3rem;
+    background-color: #810b67;
+    color: white;
+    cursor: pointer;
+}
+
+.keep-log {
+    width: 100%;
+    font-family: 'Dosis', sans-serif;
+    display: flex;
+    flex-direction: column; /* Alterado para colocar o checkbox abaixo das linhas de login */
+    align-items: center;
+    font-size: .8rem;
+    margin-top: .5rem; /* Alterado para adicionar um espaço entre as linhas de login e o checkbox */
+}
+
+label {
+    width: 100%;
+    position: relative;
+}
+
+.checkbox {
+    display: inline-block;
+    margin: 0.2rem 2; /* Espaçamento vertical entre o checkbox e o texto */
+}
