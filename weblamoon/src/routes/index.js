@@ -3,13 +3,23 @@ import { createRouter, createWebHistory} from "vue-router";
 const Home = () => import('../pages/Home/HomePage.vue');
 const About = () => import('../pages/About/AboutPage.vue');
 const Login = () => import('../pages/Login/LoginPage.vue');
-const Create = () => import('../pages/Create/CreatePage.vue');
+const CreateUser = () => import('../pages/User/Create/UserCreate.vue');
+const ListUsers = () => import('../pages/User/List/UserList.vue');
+const ViewUser = () => import('../pages/User/View/UserView.vue');
+const CreateCourse = () => import('../pages/Course/Create/CourseCreate.vue');
+const ListCourses = () => import('../pages/Course/List/CourseList.vue');
+const ViewCourse = () => import('../pages/Course/List/CourseView.vue');
 
 const routes = [
     { path: '/', component: Home},
     { path: '/about', component: About},
     { path: '/login', component: Login},
-    { path: '/create', component: Create},
+    { path: '/create-user', component: CreateUser},
+    { path: '/list-users', component: ListUsers},
+    { path: '/view-user', component: ViewUser},
+    { path: '/list-courses', component: ListCourses},
+    { path: '/create-course', component: CreateCourse},
+    { path: '/view-course', component: ViewCourse},
 ];
 
 const router = createRouter({

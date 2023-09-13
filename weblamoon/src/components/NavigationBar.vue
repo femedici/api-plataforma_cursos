@@ -9,6 +9,8 @@
       <div class="nav-links">
         <router-link to="/about" class="nav-link">Sobre</router-link>
         <router-link to="/create" class="nav-link">Cadastro</router-link>
+        <router-link to="/users" class="nav-link">Usuários</router-link>
+        <router-link to="/courses" class="nav-link">Cursos</router-link>
         <span class="divider"></span>
         <router-link to="/login" class="nav-link">Login</router-link>
       </div>
@@ -34,7 +36,7 @@
 }
 
 .logo img {
-  max-width: 100%;
+  max-width: 80%;
   /* Define a largura máxima como 100% da largura da tela */
   height: auto;
   /* Mantém a proporção da imagem */
