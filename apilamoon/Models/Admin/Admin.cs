@@ -1,10 +1,14 @@
-using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
-namespace MainProfiles.Models;
+using MongoDB.Bson.Serialization.Attributes;
 
+[BsonIgnoreExtraElements]
 public class Admin
 {
-    public int Id {get; set;}
+    [BsonElement("email")]
+    [Required]
     public string? Email {get; set;}
+
+    [BsonElement("password")]
+    [Required]
     public string? Password {get; set;}
 }
