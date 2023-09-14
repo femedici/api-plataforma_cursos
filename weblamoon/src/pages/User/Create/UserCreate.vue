@@ -1,6 +1,9 @@
 <template>
     <div>
         <form @submit="submitForm">
+            <label for="nome">Cpf:</label>
+            <input type="text" id="cpf" v-model="formData.cpf" required>
+
             <label for="nome">Nome:</label>
             <input type="text" id="nome" v-model="formData.name" required>
 

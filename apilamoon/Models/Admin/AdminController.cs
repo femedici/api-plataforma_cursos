@@ -1,6 +1,6 @@
 using MainProfiles.Models;
-using MainProfiles.Services;
 using Microsoft.AspNetCore.Mvc;
+using MongoDB.Driver;
 
 namespace MainProfiles.Controllers;
 
@@ -8,62 +8,51 @@ namespace MainProfiles.Controllers;
 [Route("[controller]")]
 public class AdminController : ControllerBase
 {
-    public AdminController()
+    IMongoCollection<Admin> _admins;
+    public AdminController(MeuMongo meuMongo)
     {
+        _admins = meuMongo.DB.GetCollection<Admin>("admins");
     }
 
     //Faz a consulta de todos os Usuarios cadastrados
     [HttpGet]
-    public ActionResult<List<Admin>> GetAll() =>
-        AdminService.GetAll();
-
-    [HttpGet("{id}")]
-
-    //Faz a consulta de apenas 1 usuário, com o cpf
-    public ActionResult<Admin> Get(int id)
+    public IActionResult Get()
     {
-        var admin = AdminService.Get(id);
-
-        if (admin == null)
-            return NotFound();
-
-        return admin;
+        var admins = _admins.AsQueryable().ToList();
+        return Ok(admins);
     }
 
-    // POST action - Criar CRUD
     [HttpPost]
-    public IActionResult Create(Admin admin)
+    public IActionResult Post(Admin admin)
     {
-        AdminService.Add(admin);
-        return CreatedAtAction(nameof(Get), new { id = admin.Id }, admin);
+        _admins.InsertOne(admin);
+        return Ok();
     }
 
-    // PUT action - Atualizar CRUD
-    [HttpPut("{id}")]
-    public IActionResult Update(int id, Admin admin)
+
+    [HttpGet("{email}")]
+    //Faz a consulta de apenas 1 usuário, com o cpf
+    public ActionResult<Admin> GetByEmail(string email)
     {
-        if (id != admin.Id)
-            return BadRequest();
-        var existingadmin = AdminService.Get(id);
-
-        if (existingadmin is null)
+        var admin = _admins.Find(Admin => Admin.Email == email).FirstOrDefault();
+        if (admin == null)
+        {
             return NotFound();
-
-        AdminService.Update(admin);
-
-        return NoContent();
+        }
+        return Ok(admin);
     }
 
-    // DELETE action - Excluir CRUD
-    [HttpDelete("{id}")]
-    public IActionResult Delete(int id)
+    // HTTP DELETE por CPF
+    [HttpDelete("{email}")]
+    public IActionResult DeleteByCpf(string email)
     {
-        var admin = AdminService.Get(id);
+        var filter = Builders<Admin>.Filter.Eq(u => u.Email, email);
+        var deleteResult = _admins.DeleteOne(filter);
 
-        if (admin is null)
+        if (deleteResult.DeletedCount == 0)
+        {
             return NotFound();
-
-        AdminService.Delete(id);
+        }
 
         return NoContent();
     }
