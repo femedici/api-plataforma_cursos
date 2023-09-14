@@ -10,8 +10,8 @@
             <label for="email">Email:</label>
             <input type="email" id="email" v-model="formData.email" required>
 
-            <label for="nome">Senha:</label>
-            <input type="text" id="nome" v-model="formData.password" required>
+            <label for="password">Senha:</label>
+            <input type="text" id="password" v-model="formData.password" required>
 
             <button type="submit">Enviar</button>
 
