@@ -6,6 +6,7 @@ const Login = () => import('../pages/Login/LoginPage.vue');
 const CreateUser = () => import('../pages/User/Create/UserCreate.vue');
 const ListUsers = () => import('../pages/User/List/UserList.vue');
 const ViewUser = () => import('../pages/User/View/UserView.vue');
+const AlterUser = () => import('../pages/User/Alter/UserAlter.vue');
 const CreateCourse = () => import('../pages/Courses/Create/CoursesCreate.vue');
 const ListCourses = () => import('../pages/Courses/List/CoursesList.vue');
 const ViewCourse = () => import('../pages/Courses/View/CoursesView.vue');
@@ -17,6 +18,7 @@ const routes = [
     { path: '/create-user', component: CreateUser},
     { path: '/list-users', component: ListUsers},
     { path: '/view-user', component: ViewUser},
+    { path: '/alter-user', component: AlterUser},
     { path: '/list-courses', component: ListCourses},
     { path: '/create-course', component: CreateCourse},
     { path: '/view-course', component: ViewCourse},
