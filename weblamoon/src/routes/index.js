@@ -6,9 +6,9 @@ const Login = () => import('../pages/Login/LoginPage.vue');
 const CreateUser = () => import('../pages/User/Create/UserCreate.vue');
 const ListUsers = () => import('../pages/User/List/UserList.vue');
 const ViewUser = () => import('../pages/User/View/UserView.vue');
-const CreateCourse = () => import('../pages/Course/Create/CourseCreate.vue');
-const ListCourses = () => import('../pages/Course/List/CourseList.vue');
-const ViewCourse = () => import('../pages/Course/List/CourseView.vue');
+const CreateCourse = () => import('../pages/Courses/Create/CoursesCreate.vue');
+const ListCourses = () => import('../pages/Courses/List/CoursesList.vue');
+const ViewCourse = () => import('../pages/Courses/View/CoursesView.vue');
 
 const routes = [
     { path: '/', component: Home},
