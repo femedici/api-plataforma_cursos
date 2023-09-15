@@ -13,6 +13,8 @@
         <router-link to="/list-courses" class="nav-link">Cursos</router-link>
         <span class="divider"></span>
         <router-link to="/login" class="nav-link">Login</router-link>
+        <router-link to="/view-user" class="nav-link">Perfil</router-link>
+        <router-link to="/alter-user" class="nav-link">Alterar</router-link>
       </div>
     </div>
   </nav>

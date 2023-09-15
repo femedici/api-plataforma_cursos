@@ -1,4 +1,4 @@
-import axios from '@/../src/axios'; 
+import axios from '@/../src/axios';
 
 export default {
     data() {
@@ -15,9 +15,9 @@ export default {
 
 
     methods: {
-        submitForm() {
+        alterForm() {
             try {
-                const response = axios.post('/User', this.formData);
+                const response = axios.put(`/User/${this.cpf}`, this.formData);
                 // Lide com a resposta aqui, por exemplo, exiba uma mensagem de sucesso
                 console.log('Dados enviados com sucesso:', response.data);
                 // Limpe o formulário após o envio
