@@ -14,7 +14,6 @@ public class TopicController : ControllerBase
         _topic = meuMongo.DB.GetCollection<Topic>("topics");
     }
 
-    //Faz a consulta de todos os Usuarios cadastrados
     [HttpGet]
     public IActionResult Get()
     {
@@ -30,7 +29,6 @@ public class TopicController : ControllerBase
     }
 
     [HttpGet("referencecourse/{referencecourse}")]
-    //Faz a consulta de apenas 1 usuário, com o cpf
     public ActionResult<Topic> GetByReferenceCourse(string referencecourse)
     {
         var topic = _topic.Find(Topic => Topic.ReferenceCourse == referencecourse).FirstOrDefault();
@@ -42,7 +40,6 @@ public class TopicController : ControllerBase
     }
 
     [HttpGet("title/{title}")]
-    //Faz a consulta de apenas 1 usuário, com o cpf
     public ActionResult<Topic> GetByTitle(string title)
     {
         var topic = _topic.Find(Topic => Topic.Title == title).FirstOrDefault();
@@ -72,7 +69,6 @@ public class TopicController : ControllerBase
         return Ok();
     }
 
-    // HTTP DELETE por CPF
     [HttpDelete("{title}")]
     public IActionResult DeleteByTitle(string title)
     {
