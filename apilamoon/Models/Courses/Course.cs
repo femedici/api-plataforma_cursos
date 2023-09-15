@@ -35,7 +35,7 @@ public class Course
 
     [BsonElement("topic")]
     [Required]
-    public string? Topic { get; set; }
+    public Topic? Topic { get; set; }
 
     [BsonElement("comments")]
     [Required]
