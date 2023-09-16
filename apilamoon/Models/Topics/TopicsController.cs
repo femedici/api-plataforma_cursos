@@ -29,7 +29,7 @@ public class TopicController : ControllerBase
     }
 
     [HttpGet("referencecourse/{referencecourse}")]
-    public ActionResult<Topic> GetByReferenceCourse(string referencecourse)
+    public ActionResult<Topic> GetByReferenceCourse(Course referencecourse)
     {
         var topic = _topic.Find(Topic => Topic.ReferenceCourse == referencecourse).FirstOrDefault();
         if (topic == null)

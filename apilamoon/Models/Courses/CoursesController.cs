@@ -12,7 +12,6 @@ public class CoursesController : ControllerBase
     public CoursesController(MeuMongo meuMongo)
     {
         _courses = meuMongo.DB.GetCollection<Course>("courses");
-        _courses = meuMongo.DB.GetCollection<Course>("courses");
     }
 
     //Faz a consulta de todos os Usuarios cadastrados

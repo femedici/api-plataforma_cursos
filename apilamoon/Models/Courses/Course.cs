@@ -33,7 +33,7 @@ public class Course
     [Required]
     public string? Password { get; set; }
 
-    [BsonElement("topic")]
+    [BsonElement("Topic")]
     [Required]
     public Topic? Topic { get; set; }
 
