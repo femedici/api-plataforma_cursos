@@ -66,7 +66,6 @@ public class CoursesController : ControllerBase
             .Set(c => c.body, updatedCourse.body)
             .Set(c => c.Attachments, updatedCourse.Attachments)
             .Set(c => c.Password, updatedCourse.Password)
-            .Set(c => c.Topic, updatedCourse.Topic)
             .Set(c => c.Comments, updatedCourse.Comments)
 
             .Set(c => c.General_Progression, updatedCourse.General_Progression)

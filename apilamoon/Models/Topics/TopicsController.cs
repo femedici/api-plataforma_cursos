@@ -29,14 +29,14 @@ public class TopicController : ControllerBase
     }
 
     [HttpGet("referencecourse/{referencecourse}")]
-    public ActionResult<Topic> GetByReferenceCourse(Course referencecourse)
+    public ActionResult<Topic> GetByReferenceCourse(int referencecourse)
     {
-        var topic = _topic.Find(Topic => Topic.ReferenceCourse == referencecourse).FirstOrDefault();
-        if (topic == null)
+        var topics = _topic.Find(topic => topic.ReferenceCourse == referencecourse).ToList();
+        if (topics == null)
         {
             return NotFound();
         }
-        return Ok(topic);
+        return Ok(topics);
     }
 
     [HttpGet("title/{title}")]

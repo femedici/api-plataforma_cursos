@@ -7,7 +7,7 @@ public class Topic
 {
     [Required]
     [BsonElement("Referencecourse")]
-    public Course? ReferenceCourse { get; set; }
+    public int? ReferenceCourse { get; set; }
 
     [BsonElement("title")]
     [Required]
