@@ -1,10 +1,10 @@
 <script setup>
-  import NavigationBar from './components/NavigationBar.vue';
+import NavigationBar from './components/NavigationBar.vue';
 </script>
 
 
 <template>
-    <div class="app">
+  <div class="app">
     <NavigationBar />
     <router-view />
   </div>
@@ -20,7 +20,7 @@
 
 .container-pres {
   width: 100%;
-  height: 100vh;  
+  height: 100vh;
   display: flex;
   flex-direction: row;
   z-index: 1;
