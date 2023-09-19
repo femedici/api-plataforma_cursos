@@ -23,7 +23,7 @@
       <tbody>
         <tr v-for="(item, index) in data" :key="index">
           <td>{{ item.title }}</td>
-          <router-link :to="'/view-course/' + item.id" class="nav-link1">VER</router-link>
+          <router-link :to="'/view-course/' + item.id" class="nav-link1 centralize-text">VER</router-link>
         </tr>
       </tbody>
     </table>
