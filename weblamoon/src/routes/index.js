@@ -10,6 +10,8 @@ const AlterUser = () => import('../pages/User/Alter/UserAlter.vue');
 const CreateCourse = () => import('../pages/Courses/Create/CoursesCreate.vue');
 const ListCourses = () => import('../pages/Courses/List/CoursesList.vue');
 const ViewCourse = () => import('../pages/Courses/View/CoursesView.vue');
+const CreateTopics = () => import('../pages/Topics/Create/TopicsCreate.vue');
+const ViewTopic = () => import('../pages/Topics/View/TopicView.vue');
 
 const routes = [
     { path: '/', component: Home},
@@ -21,7 +23,9 @@ const routes = [
     { path: '/alter-user', component: AlterUser},
     { path: '/list-courses', component: ListCourses},
     { path: '/create-course', component: CreateCourse},
-    { path: '/view-course', component: ViewCourse},
+    { path: '/view-course/:id', component: ViewCourse},
+    { path: '/create-topic/:id', component: CreateTopics},
+    { path: '/view-topic/:title', component: ViewTopic},
 ];
 
 const router = createRouter({
