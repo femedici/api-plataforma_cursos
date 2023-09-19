@@ -1,10 +1,7 @@
 <template>
     <div>
         <form @submit="submitForm">
-            <label for="id">Código de identificação</label>
-            <input type="text" id="title" v-model="formData.id" required>
-            
-            <label for="title">Titulo do Curso:</label>
+            <label for="title">Titulo do Tópico:</label>
             <input type="text" id="title" v-model="formData.title" required>
 
             <label for="body">Conteúdo:</label>
@@ -13,13 +10,10 @@
             <label for="attachments">Anexos:</label>
             <input type="text" id="text" v-model="formData.attachments" required>
 
-            <label for="password">Senha de Acesso:</label>
-            <input type="text" id="text" v-model="formData.password" required>
-
             <button type="submit">Enviar</button>
 
             <div v-if="error === false">
-                <p>Sucesso ao criar curso</p>
+                <p>Sucesso ao criar tópico</p>
             </div>
             <div v-if="error">
                 <p>Ocorreu um erro ao criar: {{ error }}</p>
@@ -28,6 +22,6 @@
     </div>
 </template>
   
-<script src="./CoursesCreate.js"></script>
+<script src="./TopicsCreate.js"></script>
 
 <style src="./style.css"></style>

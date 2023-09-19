@@ -3,20 +3,39 @@ import axios from '@/../src/axios';
 export default {
     data() {
         return {
-            email: "",
-            usuario: null
+            user: {
+                cpf: '',
+            }
         };
     },
+    created() {
+        const userEmail = this.$route.params.email;
+
+        // Busque os detalhes do curso
+        axios.get(`/User/email/${userEmail}`)
+            .then(response => {
+                this.user = response.data;
+            })
+            .catch(error => {
+                console.error("Erro ao buscar detalhes do curso:", error);
+            });
+    },
     methods: {
-        buscarDados() {
-            axios.get(`/User/email/${this.email}`)
+        deleteUser(cpf) {
+            axios.delete(`/User/${cpf}`)
                 .then(response => {
-                    this.usuario = response.data;
+                    this.user = response.data;
                 })
                 .catch(error => {
-                    console.error("Erro ao buscar dados:", error);
+                    console.error("Erro ao buscar detalhes do curso:", error);
                 });
-        }
-    }
-};
+        },
+        confirmDeleteUser() {
+            const shouldDelete = window.confirm("Tem certeza de que deseja deletar este usuário?");
 
+            if (shouldDelete) {
+                this.deleteUser(this.user.cpf);
+            }
+        },
+    },
+};
