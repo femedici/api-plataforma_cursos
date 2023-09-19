@@ -3,7 +3,9 @@ import axios from '@/../src/axios';
 export default {
   data() {
     return {
-      topic: null,
+      topic: {
+        title: '',
+      },
       error: null,
     };
   },

@@ -17,6 +17,10 @@
         </div>
         <br><br>
         <router-link :to="'/create-topic/' + course.id" class="nav-link">Criar Tópico</router-link>
+        <br><br>
+        <router-link :to="'/alter-course/' + course.id" class="nav-link">Alterar Curso</router-link>
+        <br><br>
+        <button type="button" @click="confirmDeleteCourse">Deletar Curso</button>
     </div>
 </template>
 

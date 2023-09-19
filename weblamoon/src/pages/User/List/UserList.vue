@@ -15,6 +15,7 @@
             <tr v-for="(item, index) in data" :key="index">
               <td>{{ item.name }}</td>
               <td>{{ item.email }}</td>
+              <router-link :to="'/view-user/' + item.email" class="nav-link">VER</router-link>
             </tr>
           </tbody>
         </table>

@@ -1,14 +1,15 @@
 <template>
     <div>
-        <input v-model="email" placeholder="Digite o email" />
-        <button @click="buscarDados">Buscar</button>
-        <div v-if="usuario">
-            <h2>Usuário Encontrado:</h2>
-            <p>Nome: {{ usuario.name }}</p>
-            <p>Email: {{ usuario.email }}</p>
+        <div v-if="user">
+            <h2>Informações do Usuário: {{ user.name }}</h2>
+            <p>Cpf: {{ user.cpf }}</p>
+            <p>Email: {{ user.email }}</p>
             <!-- Adicione outras informações que desejar mostrar aqui -->
         </div>
     </div>
+    <router-link :to="'/alter-user/' + user.cpf" class="nav-link">Alterar Usuário</router-link>
+    <br><br>
+    <button type="button"  @click="confirmDeleteUser">Deletar Usuário</button>
 </template>
 
 <script src="./UserView.js"></script>
