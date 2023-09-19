@@ -2,18 +2,14 @@ import axios from '@/../src/axios';
 
 export default {
     data() {
+        const courseId = this.$route.params.id;
         return {
             formData: {
-                id: '',
+                referenceCourse: courseId,
                 title: '',
-                icon: 'xxxxx',
-                cover: 'xxxxx',
                 body: '',
-                attachments: '',
-                password: '',
-                comments: "XXXX",
-                general_Progression: 0,
-                user_Progression: 0,
+                atachments: '',
+                user_comments: 'xxxxx',
             },
             error: null,
         };
@@ -22,15 +18,13 @@ export default {
     methods: {
         submitForm() {
             try {
-                const response = axios.post('/Courses', this.formData);
+                const response = axios.post('/Topic', this.formData);
                 // Lide com a resposta aqui, por exemplo, exiba uma mensagem de sucesso
                 console.log('Dados enviados com sucesso:', response.data);
                 // Limpe o formulário após o envio~
                 this.formData.title = '';
-                this.formData.id = '';
                 this.formData.body = '';
-                this.formData.attachments = '';
-                this.formData.password = '';
+                this.formData.atachments = '';
                 this.error = false;
 
                 //

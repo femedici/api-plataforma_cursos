@@ -18,6 +18,9 @@
                 Organize seus cursos e tenha informações do andamento, tópicos mais relevantes e dados relevantes para
                 otimização.
             </p>
+            <p class="texts">
+                Se cadastre clicando aqui:  <router-link to="/create-user" class="nav-link">Cadastro</router-link>
+            </p>
         </div>
     </body>
 

@@ -43,11 +43,22 @@ body {
 }
 
 .texts {
-  text-align: left; /* Alinha o texto à esquerda */
-  margin-left: 0; /* Remove qualquer margem à esquerda que pode existir */
-  font-family: 'BR Firma', sans-serif;
+    text-align: left;
+    /* Alinha o texto à esquerda */
+    margin-left: 0;
+    /* Remove qualquer margem à esquerda que pode existir */
+    font-family: 'BR Firma', sans-serif;
 }
 
+
+.nav-links a {
+    color: #fff;
+    /* Cor do texto dos links */
+    margin: 0 15px;
+    font-family: 'BR Firma', sans-serif;
+    text-transform: uppercase;
+    font-size: 100%;
+}
 
 /* Define a animação "fade-in" */
 @keyframes fade-in {
