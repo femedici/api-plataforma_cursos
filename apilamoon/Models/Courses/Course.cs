@@ -33,17 +33,18 @@ public class Course
     [Required]
     public string? Password { get; set; }
 
-    [BsonElement("topic")]
-    [Required]
-    public Topic? Topic { get; set; }
+    // [BsonElement("Topic")]
+    // [Required]
+    // public Topic? Topic { get; set; }
 
     [BsonElement("comments")]
     [Required]
     public string? Comments { get; set; }
 
-    [BsonElement("joined_users")]
-    [Required]
-    public User? joined_users { get; set; }
+    // Isso vai ser uma Lista de usuários inscritos - List<User> 
+    // [BsonElement("joined_users")]
+    // [Required]
+    // public User? joined_users { get; set; }
 
     [BsonElement("former")]
     [Required]
