@@ -31,8 +31,10 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  max-width: 1200px; /* Defina a largura máxima desejada */
-  margin: 0 auto; /* Centraliza horizontalmente */
+  max-width: 1200px;
+  /* Defina a largura máxima desejada */
+  margin: 0 auto;
+  /* Centraliza horizontalmente */
   padding: 10px 20px;
 }
 
@@ -55,7 +57,8 @@
 .nav-links .nav-link {
   text-decoration: none;
   margin: 0 15px;
-  transition: text-decoration 0.5s; /* Adicione uma transição suave para a animação do sublinhado */
+  transition: text-decoration 0.5s;
+  /* Adicione uma transição suave para a animação do sublinhado */
 }
 
 .nav-links .nav-link:hover {
@@ -63,7 +66,8 @@
 }
 
 .divider {
-  height: 20px; /* Aumente a altura para tornar o divisor visível */
-  margin: 0 15px; /* Espaçamento à esquerda e à direita do divisor */
-}
-</style>
+  height: 20px;
+  /* Aumente a altura para tornar o divisor visível */
+  margin: 0 15px;
+  /* Espaçamento à esquerda e à direita do divisor */
+}</style>

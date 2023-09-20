@@ -1,0 +1,75 @@
+.container1 {
+  font-family: 'BR Firma', sans-serif;
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #810b67;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+
+}
+
+.centralize {
+  margin-top: 1rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.nav-link1 {
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  margin: 75px;
+}
+
+#create-course-link1 {
+  font-family: 'Dosis', sans-serif;
+  text-transform: uppercase;
+  margin: 3rem;
+  padding: .6rem;
+  border-style: none;
+  border-radius: .3rem;
+  background-color: #810b67;
+  color: white;
+  cursor: pointer;
+}
+
+.scroll-fade1 {
+  font-family: 'BR Firma', sans-serif;
+  font-size: 200%;
+  font-weight: bold;
+  opacity: 0;
+  /* Inicialmente, o elemento está invisível */
+  transform: translateY(20px);
+  /* Deslocamento inicial */
+  animation: fade-in 1s ease-out forwards;
+  /* Inicia a animação "fade-in" */
+}
+
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+.centralize button {
+  font-family: 'Dosis', sans-serif;
+  text-transform: uppercase;
+  width: 7%;
+  margin: 1rem;
+  padding: .6rem;
+  border-style: none;
+  border-radius: .3rem;
+  background-color: #810b67;
+  color: white;
+  cursor: pointer;
+  text-align: center;
+}
+
+.centralize-text {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

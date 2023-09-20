@@ -1,0 +1,10 @@
+.container1 {
+  font-family: 'BR Firma', sans-serif;
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #810b67;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+
+}
