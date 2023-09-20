@@ -1,0 +1,23 @@
+.button2 {
+    font-family: 'BR Firma', sans-serif;
+    text-transform: uppercase;
+    width: flex;
+    padding: .4rem;
+    border-radius: .3rem;
+    background-color: #EF6C00;
+    color: white;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+.button-container {
+    display: flex;
+    gap: 20px;
+    /* Espaço horizontal entre os botões */
+    align-items: center;
+    /* Alinha os botões verticalmente ao centro */
+    justify-content: center;
+    /* Centraliza horizontalmente */
+    margin-top: 20px;
+    /* Espaço superior opcional para afastar os botões do conteúdo acima */
+}

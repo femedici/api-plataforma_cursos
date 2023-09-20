@@ -10,15 +10,14 @@
   align-items: center;
 }
 
-.user-form button {
-  font-family: 'Dosis', sans-serif;
+.button1 {
+  font-family: 'BR Firma', sans-serif;
   text-transform: uppercase;
-  width: 20%;
-  margin: 1rem;
-  padding: .6rem;
-  border-style: none;
+  width: flex;
+  padding: .4rem;
   border-radius: .3rem;
   background-color: #810b67;
   color: white;
   cursor: pointer;
+  text-decoration: none;
 }

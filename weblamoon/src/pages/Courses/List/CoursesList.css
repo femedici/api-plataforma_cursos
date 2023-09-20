@@ -73,3 +73,41 @@ body {
   justify-content: center;
   align-items: center;
 }
+
+
+
+/* Estilo para o contêiner de cada curso */
+.course-container {
+  size: flex;
+  background-color: #ffffff; /* Cor de fundo do contêiner */
+  padding: 20px; /* Espaçamento interno do contêiner */
+  margin-bottom: 20px; /* Espaçamento inferior entre cursos */
+  border-radius: .5rem;
+  margin: 1rem;
+  padding: .6rem;
+}
+
+/* Estilo para o título do curso */
+.course-title {
+  font-size: 24px; /* Tamanho do título */
+  margin-bottom: 10px; /* Espaçamento inferior abaixo do título */
+}
+
+/* Estilo para a descrição do curso */
+.course-description {
+  font-size: 16px; /* Tamanho da descrição */
+  margin-bottom: 10px; /* Espaçamento inferior abaixo da descrição */
+}
+
+/* Estilo para o botão "Acessar Curso" */
+.access-button {
+  font-size: 18px; /* Tamanho do texto do botão */
+  padding: 10px 20px; /* Espaçamento interno do botão */
+  background-color: #810b67; /* Cor de fundo do botão */
+  color: white; /* Cor do texto do botão */
+  border: none; /* Remover borda */
+  border-radius: 3px; /* Arredondar cantos do botão */
+  cursor: pointer;
+  text-decoration: none; /* Remover sublinhado */
+  display: inline-block;
+}

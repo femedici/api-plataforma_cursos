@@ -7,8 +7,6 @@
 .user-form button {
   font-family: 'Dosis', sans-serif;
   text-transform: uppercase;
-  width: 30%;
-  margin: 1rem;
   padding: .6rem;
   border-style: none;
   border-radius: .3rem;
@@ -16,9 +14,10 @@
   color: white;
   cursor: pointer;
   text-align: center;
+  width: auto;
 }
 
-.labels {
+.label {
   font-family: 'BR Firma', sans-serif;
   font-size: 1rem;
   color: #810b67;
@@ -37,8 +36,11 @@
   text-align: left;
 }
 
-
-
+.Title {
+  font-family: 'BR Firma', sans-serif;
+  font-size: 200%;
+  font-weight: bold;
+}
 
 #search-bars {
   font-family: 'Dosis', sans-serif;

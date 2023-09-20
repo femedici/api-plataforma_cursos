@@ -5,25 +5,24 @@
   <body>
     <div class="container1">
       <div class="scroll-fade1">
-        Lista de Cursos Disponiveis
+        Cursos Disponíveis
       </div>
     </div>
-    <div class="centralize">
-      <button @click="fetchData">Buscar Dados</button>
-    </div>
+
     <table class="centralize">
-
-
-      <thead>
-        <tr>
-          <th>Cursos: </th>
-        </tr>
-      </thead>
-
       <tbody>
         <tr v-for="(item, index) in data" :key="index">
-          <td>{{ item.title }}</td>
-          <router-link :to="'/view-course/' + item.id" class="centralize-text">VER</router-link>
+          <td>
+            <!-- Contêiner do curso -->
+            <div class="course-container">
+              <!-- Título do curso -->
+              <div class="course-title">{{ item.title }}</div>
+              <!-- Descrição do curso -->
+              <div class="course-description">{{ item.description }}</div>
+              <!-- Botão "Acessar Curso" -->
+              <router-link :to="'/view-course/' + item.id" class="access-button">Acessar Curso</router-link>
+            </div>
+          </td>
         </tr>
       </tbody>
     </table>
@@ -37,4 +36,4 @@
 
 <script src="./CoursesList.js"></script>
 
-<style src="./style.css"></style>
+<style src="./CoursesList.css"></style>

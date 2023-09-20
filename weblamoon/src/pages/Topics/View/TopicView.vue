@@ -7,9 +7,11 @@
             <p>{{ topic.user_comments }}</p>
         </div>
     </div>
-    <router-link :to="'/alter-topic/' + topic.referenceCourse + '/' + topic.title" class="nav-link">Alterar Tópico</router-link>
-    <br><br>
-    <button type="button" @click="confirmDeleteTopic">Deletar Topico</button>
+    <div class="button-container">
+        <router-link :to="'/alter-topic/' + topic.referenceCourse + '/' + topic.title" class="button2">Alterar
+            Tópico</router-link>
+        <button type="button" @click="confirmDeleteTopic" class="button2">Deletar Topico</button>
+    </div>
 </template>
 
 <script src="./TopicView.js"></script>

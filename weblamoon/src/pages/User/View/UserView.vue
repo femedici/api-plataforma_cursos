@@ -7,9 +7,10 @@
             <!-- Adicione outras informações que desejar mostrar aqui -->
         </div>
     </div>
-    <router-link :to="'/alter-user/' + user.cpf" class="nav-link">Alterar Usuário</router-link>
-    <br><br>
-    <button type="button"  @click="confirmDeleteUser">Deletar Usuário</button>
+    <div class="button-container">
+        <router-link :to="'/alter-user/' + user.cpf" class="button2">Alterar Usuário</router-link>
+        <button type="button" @click="confirmDeleteUser" class="button2">Deletar Usuário</button>~
+    </div>
 </template>
 
 <script src="./UserView.js"></script>

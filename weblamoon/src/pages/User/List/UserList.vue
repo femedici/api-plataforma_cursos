@@ -1,9 +1,7 @@
 <template>
   <div class="user-form">
-    <button @click="fetchData">Buscar Dados</button>
-
     <div v-if="data.length > 0">
-      <h2>Dados do Backend:</h2>
+      <h2>Usuários Cadastrados:</h2>
       <table>
         <thead>
           <tr>
@@ -15,7 +13,10 @@
           <tr v-for="(item, index) in data" :key="index">
             <td>{{ item.name }}</td>
             <td>{{ item.email }}</td>
-            <router-link :to="'/view-user/' + item.email" class="nav-link">VER</router-link>
+            <br>
+            <td></td>
+            <router-link :to="'/view-user/' + item.email" class="button1">Ver Perfil</router-link>
+            <br><br>
           </tr>
         </tbody>
       </table>
