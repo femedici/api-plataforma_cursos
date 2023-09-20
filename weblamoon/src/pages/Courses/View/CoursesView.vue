@@ -1,5 +1,5 @@
 <template>
-    <div class="container">
+    <div class="container1">
         <h1>Detalhes do Curso</h1>
         <div v-if="course">
             <h2>{{ course.title }}</h2>
