@@ -1,4 +1,5 @@
 import axios from '@/../src/axios';
+import router from '@/routes';
 
 export default {
     data() {
@@ -39,6 +40,8 @@ export default {
             axios.delete(`/Courses/${id}`)
                 .then(response => {
                     this.course = response.data;
+                    window.alert('Curso deletado com sucesso!');
+                    router.push(`/list-courses`);
                 })
                 .catch(error => {
                     console.error("Erro ao deletar curso:", error);

@@ -1,4 +1,5 @@
 import axios from '@/../src/axios';
+import router from '@/routes';
 
 export default {
     data() {
@@ -25,6 +26,8 @@ export default {
             axios.delete(`/User/${cpf}`)
                 .then(response => {
                     this.user = response.data;
+                    window.alert('Usuário deletado com sucesso!');
+                    router.push(`/list-users`);
                 })
                 .catch(error => {
                     console.error("Erro ao buscar detalhes do curso:", error);

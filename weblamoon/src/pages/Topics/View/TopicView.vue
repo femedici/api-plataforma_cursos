@@ -12,6 +12,8 @@
             Tópico</router-link>
         <button type="button" @click="confirmDeleteTopic" class="button2">Deletar Topico</button>
     </div>
+    <br><br>
+    <router-link :to="'/view-course/' + topic.referenceCourse" class="button1">Retornar ao Curso</router-link>
 </template>
 
 <script src="./TopicView.js"></script>

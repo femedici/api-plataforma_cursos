@@ -38,6 +38,11 @@
 }
 
 
+.Title {
+  font-family: 'BR Firma', sans-serif;
+  font-size: 200%;
+  font-weight: bold;
+}
 
 
 #search-bars {

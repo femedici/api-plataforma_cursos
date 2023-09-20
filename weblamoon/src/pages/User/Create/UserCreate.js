@@ -1,4 +1,4 @@
-import axios from '@/../src/axios'; 
+import axios from '@/../src/axios';
 
 export default {
     data() {
@@ -13,12 +13,11 @@ export default {
         };
     },
 
-
     methods: {
         submitForm() {
             try {
                 const response = axios.post('/User', this.formData);
-            
+
                 console.log('Dados enviados com sucesso:', response.data);
                 // Limpe o formulário após o envio
                 this.formData.cpf = '';

@@ -11,14 +11,14 @@
         <h3>Tópicos:</h3>
         <!-- Use topics em vez de data para iterar sobre os tópicos -->
         <div v-for="(item, index) in topics" :key="index">
-            <p>{{ item.title }}</p>
+            <p class="text-bold">{{ item.title }}</p>
             <p>{{ item.body }}</p>
             <router-link :to="'/view-topic/' + item.title" class="button1">Acessar</router-link>
             <h3>-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
             </h3>
         </div>
+        <router-link :to="'/create-topic/' + course.id" class="button2">Criar Tópico</router-link>
         <div class="button-container">
-            <router-link :to="'/create-topic/' + course.id" class="button2">Criar Tópico</router-link>
             <router-link :to="'/alter-course/' + course.id" class="button2">Alterar Curso</router-link>
             <button type="button" @click="confirmDeleteCourse" class="button2">Deletar Curso</button>
         </div>

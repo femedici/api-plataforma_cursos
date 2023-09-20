@@ -40,3 +40,8 @@
   justify-content: center; /* Centraliza horizontalmente */
   margin-top: 20px; /* Espaço superior opcional para afastar os botões do conteúdo acima */
 }
+
+.text-bold {
+  font-size: 18px;
+  font-weight: bold;
+}

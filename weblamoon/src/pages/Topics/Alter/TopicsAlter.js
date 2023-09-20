@@ -1,4 +1,5 @@
 import axios from '@/../src/axios';
+import router from '@/routes';
 
 export default {
     data() {
@@ -22,16 +23,19 @@ export default {
         this.formData.referenceCourse = courseid;
     },
     methods: {
-        async alterForm() {
+         alterForm() {
             try {
-                const response = await axios.put(`/Topic/${this.formData.title}`, this.formData);
+                const response =  axios.put(`/Topic/${this.formData.title}`, this.formData);
                 // Lide com a resposta aqui, por exemplo, exiba uma mensagem de sucesso
                 console.log('Dados enviados com sucesso:', response.data);
                 // Limpe o formulário após o envio
-                this.formData.title = '';
-                this.formData.body = '';
-                this.formData.attachments = '';
+                // this.formData.title = '';
+                // this.formData.body = '';
+                // this.formData.attachments = '';
                 this.error = false;
+
+                window.alert('Topico alterado com sucesso!');
+                router.push(`/view-topic/${this.formData.title}`);
             } catch (error) {
                 // Lide com erros aqui, por exemplo, exiba uma mensagem de erro
                 console.error('Erro ao enviar dados:', error);

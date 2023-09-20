@@ -1,4 +1,5 @@
 import axios from '@/../src/axios';
+import router from '@/routes';
 
 export default {
     data() {
@@ -34,9 +35,12 @@ export default {
                 this.error = false;
 
                 //
+                window.alert('Curso criado com sucesso!');
+                router.push(`/list-courses`);
             } catch (error) {
                 // Lide com erros aqui, por exemplo, exiba uma mensagem de erro
                 console.error('Erro ao enviar dados:', error);
+                window.alert('Erro ao criar o curso. Por favor, tente novamente.');
             }
         },
     },
