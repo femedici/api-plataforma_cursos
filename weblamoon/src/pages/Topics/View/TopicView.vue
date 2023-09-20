@@ -8,7 +8,7 @@
         </div>
     </div>
     <div class="button-container">
-        <router-link :to="'/alter-topic/' + topic.referenceCourse + '/' + topic.title" class="button2">Alterar
+        <router-link :to="'/alter-topic/' + topic.referenceCourse + '/' + topic.id" class="button2">Alterar
             Tópico</router-link>
         <button type="button" @click="confirmDeleteTopic" class="button2">Deletar Topico</button>
     </div>

@@ -28,7 +28,7 @@ const routes = [
     { path: '/view-course/:id', component: ViewCourse},
     { path: '/create-topic/:id', component: CreateTopics},
     { path: '/view-topic/:title', component: ViewTopic},
-    { path: '/alter-topic/:courseid/:title', component: AlterTopic},
+    { path: '/alter-topic/:courseid/:id', component: AlterTopic},
     { path: '/alter-course/:id', component: AlterCourse},
 ];
 

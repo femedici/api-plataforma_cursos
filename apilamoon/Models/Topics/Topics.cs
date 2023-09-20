@@ -6,6 +6,10 @@ namespace MainProfiles.Models;
 public class Topic
 {
     [Required]
+    [BsonElement("id")]
+    public int Id { get; set; }
+    
+    [Required]
     [BsonElement("referencecourse")]
     public int? ReferenceCourse { get; set; }
 

@@ -5,6 +5,7 @@ export default {
     data() {
         return {
             formData: {
+                id:'',
                 referenceCourse: '',
                 title: '',
                 body: '',
@@ -17,15 +18,15 @@ export default {
     mounted() {
         // Use $route.params.cpf para acessar o CPF passado na rota
         const courseid = this.$route.params.courseid;
-        const title = this.$route.params.title;
+        const id = this.$route.params.id;
         // Defina o valor inicial do campo cpf com o valor do parâmetro da rota
-        this.formData.title = title;
+        this.formData.id = id;
         this.formData.referenceCourse = courseid;
     },
     methods: {
          alterForm() {
             try {
-                const response =  axios.put(`/Topic/${this.formData.title}`, this.formData);
+                const response =  axios.put(`/Topic/${this.formData.id}`, this.formData);
                 // Lide com a resposta aqui, por exemplo, exiba uma mensagem de sucesso
                 console.log('Dados enviados com sucesso:', response.data);
                 // Limpe o formulário após o envio

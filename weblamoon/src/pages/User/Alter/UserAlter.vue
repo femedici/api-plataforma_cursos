@@ -1,8 +1,6 @@
 <template>
     <div>
         <form @submit="alterForm">
-            <label for="cpf">Cpf:</label>
-            <input type="text" id="cpf" v-model="formData.cpf" required>
 
             <label for="name">Nome:</label>
             <input type="text" id="name" v-model="formData.name" required>
@@ -14,13 +12,6 @@
             <input type="text" id="password" v-model="formData.password" required>
 
             <button type="submit">Enviar</button>
-
-            <div v-if="error === false">
-                <p>Sucesso ao alterar usuário</p>
-            </div>
-            <div v-if="error">
-                <p>Ocorreu um erro ao buscar os dados: {{ error }}</p>
-            </div>
         </form>
     </div>
 </template>

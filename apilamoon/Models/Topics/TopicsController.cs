@@ -50,10 +50,10 @@ public class TopicController : ControllerBase
         return Ok(topic);
     }
 
-    [HttpPut("{title}")]
-    public IActionResult PutByTitle(string title, Topic updatedTopic)
+    [HttpPut("{id}")]
+    public IActionResult PutByTitle(int id, Topic updatedTopic)
     {
-        var filter = Builders<Topic>.Filter.Eq(u => u.Title, title);
+        var filter = Builders<Topic>.Filter.Eq(u => u.Id, id);
         var update = Builders<Topic>.Update
             .Set(u => u.Title, updatedTopic.Title)
             .Set(u => u.Body, updatedTopic.Body)

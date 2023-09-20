@@ -3,10 +3,9 @@
         <h1>Detalhes do Curso</h1>
         <div v-if="course">
             <h2>{{ course.title }}</h2>
-            <p>{{ course.id }}</p>
-            <p>{{ course.body }}</p>
-            <p>{{ course.former }}</p>
-            <p>{{ course.comments }}</p>
+            <p>Código de referencia: {{ course.id }}</p>
+            <p>Sobre o curso: {{ course.body }}</p>
+            <p>Anexos: {{ course.attachments }}</p>
         </div>
         <h3>Tópicos:</h3>
         <!-- Use topics em vez de data para iterar sobre os tópicos -->

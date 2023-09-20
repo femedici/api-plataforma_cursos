@@ -6,6 +6,7 @@ export default {
         const courseId = this.$route.params.id;
         return {
             formData: {
+                id: '',
                 referenceCourse: courseId,
                 title: '',
                 body: '',

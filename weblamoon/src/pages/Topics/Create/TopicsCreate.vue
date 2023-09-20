@@ -1,8 +1,12 @@
 <template>
     <div>
         <form @submit="submitForm">
+
             <label for="title">Titulo do Tópico:</label>
             <input type="text" id="title" v-model="formData.title" required>
+
+            <label for="id">Código de identificação (2 Numeros)</label>
+            <input type="text" id="text" v-model="formData.id" required>
 
             <label for="body">Conteúdo:</label>
             <input type="text" id="text" v-model="formData.body" required>

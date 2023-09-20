@@ -9,7 +9,7 @@
     </div>
     <div class="button-container">
         <router-link :to="'/alter-user/' + user.cpf" class="button2">Alterar Usuário</router-link>
-        <button type="button" @click="confirmDeleteUser" class="button2">Deletar Usuário</button>~
+        <button type="button" @click="confirmDeleteUser" class="button2">Deletar Usuário</button>
     </div>
 </template>
 
