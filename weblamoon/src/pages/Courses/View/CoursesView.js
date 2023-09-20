@@ -34,4 +34,22 @@ export default {
                 console.error("Erro ao buscar tópicos:", error);
             });
     },
+    methods: {
+        deleteCourse(id) {
+            axios.delete(`/Courses/${id}`)
+                .then(response => {
+                    this.course = response.data;
+                })
+                .catch(error => {
+                    console.error("Erro ao deletar curso:", error);
+                });
+        },
+        confirmDeleteCourse() {
+            const shouldDelete = window.confirm("Tem certeza de que deseja deletar este curso?");
+
+            if (shouldDelete) {
+                this.deleteCourse(this.course.id);
+            }
+        },
+    },
 };
