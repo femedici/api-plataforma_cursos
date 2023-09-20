@@ -1,15 +1,18 @@
 <template>
-    <div>
+    <div class="user-form">
         <form @submit="alterForm">
+            <div class="Title">
+                Alterar Usuário
+            </div>
+            <br><br>
+            <label for="name" class="label">Nome:</label>
+            <input type="text" id="search-bars" v-model="formData.name" required>
 
-            <label for="name">Nome:</label>
-            <input type="text" id="name" v-model="formData.name" required>
+            <label for="email" class="label">Email:</label>
+            <input type="email" id="search-bars" v-model="formData.email" required>
 
-            <label for="email">Email:</label>
-            <input type="email" id="email" v-model="formData.email" required>
-
-            <label for="password">Senha:</label>
-            <input type="text" id="password" v-model="formData.password" required>
+            <label for="password" class="label">Senha:</label>
+            <input type="text" id="search-bars" v-model="formData.password" required>
 
             <button type="submit">Enviar</button>
         </form>

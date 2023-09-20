@@ -8,6 +8,8 @@
             <p>Anexos: {{ course.attachments }}</p>
         </div>
         <h3>Tópicos:</h3>
+        <h3>-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+        </h3>
         <!-- Use topics em vez de data para iterar sobre os tópicos -->
         <div v-for="(item, index) in topics" :key="index">
             <p class="text-bold">{{ item.title }}</p>

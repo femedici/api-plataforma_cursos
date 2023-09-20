@@ -1,23 +1,20 @@
 <template>
-    <div>
+    <div class="user-form">
+        <div class="Title">
+            Alterar tópico
+        </div>
+        <br><br>
         <form @submit="alterForm">
-            <label for="title">Titulo do Tópico:</label>
-            <input type="text" id="title" v-model="formData.title" required>
+            <label for="title" class="label">Titulo do Tópico:</label>
+            <input type="text" id="search-bars" v-model="formData.title" required>
 
-            <label for="body">Conteúdo:</label>
-            <input type="text" id="text" v-model="formData.body" required>
+            <label for="body" class="label">Conteúdo:</label>
+            <input type="text" id="search-bars" v-model="formData.body" required>
 
-            <label for="attachments">Anexos:</label>
-            <input type="text" id="text" v-model="formData.attachments" required>
+            <label for="attachments" class="label">Anexos:</label>
+            <input type="text" id="search-bars" v-model="formData.attachments" required>
 
             <button type="submit">Enviar</button>
-
-            <div v-if="error === false">
-                <p>Sucesso ao alterar tópico</p>
-            </div>
-            <div v-if="error">
-                <p>Ocorreu um erro ao alterar: {{ error }}</p>
-            </div>
         </form>
     </div>
 </template>
