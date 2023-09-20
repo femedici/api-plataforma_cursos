@@ -4,6 +4,7 @@ export default {
   data() {
     return {
       topic: {
+        referenceCourse: '',
         title: '',
       },
       error: null,
@@ -20,6 +21,7 @@ export default {
       .catch(error => {
         console.error("Erro ao buscar detalhes do curso:", error);
       });
+      
   },
   methods: {
     deleteTopic(title) {

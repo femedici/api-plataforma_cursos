@@ -6,7 +6,7 @@ namespace MainProfiles.Models;
 public class Topic
 {
     [Required]
-    [BsonElement("Referencecourse")]
+    [BsonElement("referencecourse")]
     public int? ReferenceCourse { get; set; }
 
     [BsonElement("title")]
