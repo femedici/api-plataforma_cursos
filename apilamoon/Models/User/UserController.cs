@@ -25,15 +25,16 @@ public class UserController : ControllerBase
     [HttpPost]
     public IActionResult Post(User user)
     {
+
         _users.InsertOne(user);
         return Ok();
     }
 
-    [HttpGet("cpf/{cpf}")]
-    //Faz a consulta de apenas 1 usuário, com o cpf
-    public ActionResult<User> GetByCpf(string cpf)
+    //Faz a consulta de apenas 1 usuário, com o id
+    [HttpGet("id/{id}")]
+    public ActionResult<User> GetById(int id)
     {
-        var user = _users.Find(User => User.Cpf == cpf).FirstOrDefault();
+        var user = _users.Find(User => User.Id == id).FirstOrDefault();
         if (user == null)
         {
             return NotFound();
@@ -41,8 +42,9 @@ public class UserController : ControllerBase
         return Ok(user);
     }
 
+
+    //Faz a consulta de apenas 1 usuário, com o email
     [HttpGet("email/{email}")]
-    //Faz a consulta de apenas 1 usuário, com o cpf
     public ActionResult<User> GetByEmail(string email)
     {
         var user = _users.Find(User => User.Email == email).FirstOrDefault();
@@ -53,14 +55,23 @@ public class UserController : ControllerBase
         return Ok(user);
     }
 
-    [HttpPut("{cpf}")]
-    public IActionResult PutByCpf(string cpf, User updatedUser)
+
+    //Altera a senha do usuario pelo Id
+    [HttpPut("{id}")]
+    public IActionResult ChangePasswordById(int id, [FromBody] string newPassword)
     {
-        var filter = Builders<User>.Filter.Eq(u => u.Cpf, cpf);
+        // Verifique se o usuário com o id especificado existe
+        var filter = Builders<User>.Filter.Eq(u => u.Id, id);
+        var user = _users.Find(filter).FirstOrDefault();
+
+        if (user == null)
+        {
+            return NotFound();
+        }
+
+        // Atualize a senha do usuário
         var update = Builders<User>.Update
-            .Set(u => u.Name, updatedUser.Name)
-            .Set(u => u.Email, updatedUser.Email)
-            .Set(u => u.Password, updatedUser.Password);
+            .Set(u => u.Password, newPassword);
 
         var updateResult = _users.UpdateOne(filter, update);
 
@@ -72,11 +83,11 @@ public class UserController : ControllerBase
         return Ok();
     }
 
-    // HTTP DELETE por CPF
-    [HttpDelete("{cpf}")]
-    public IActionResult DeleteByCpf(string cpf)
+    // Deleta por id
+    [HttpDelete("{id}")]
+    public IActionResult DeleteByCpf(int id)
     {
-        var filter = Builders<User>.Filter.Eq(u => u.Cpf, cpf);
+        var filter = Builders<User>.Filter.Eq(u => u.Id, id);
         var deleteResult = _users.DeleteOne(filter);
 
         if (deleteResult.DeletedCount == 0)
