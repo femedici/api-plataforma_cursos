@@ -1,11 +1,9 @@
 <template>
     <div>
-        <h1>About</h1>
+        <h1>THIS IS HOME PAGE</h1>
     </div>
 </template>
 
 <script>
 
 </script>
-
-<style src="./style.css"></style>
