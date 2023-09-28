@@ -30,6 +30,27 @@
   
   
 
-<script src="./UserList.js"></script>
+<script>
+  import axios from '@/../src/axios';
 
-<style src="./style.css"></style>
+  export default {
+    data() {
+      return {
+        data: [],
+        error: null,
+      };
+    },
+    created() {
+      axios.get('/User')
+        .then(response => {
+          this.data = response.data;
+          this.error = null;
+        })
+        .catch(error => {
+          this.data = [];
+          this.error = error.message;
+        });
+    },
+  };
+</script>
+
