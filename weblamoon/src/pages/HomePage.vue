@@ -1,34 +1,33 @@
 <template>
-    <div class="flex flex-col items-center">
-        <!-- Carousel -->
-        <v-carousel :show-arrows="false" class="w-full">
-            <v-carousel-item v-for="(item, i) in items" :key="i" :src="item.src" cover></v-carousel-item>
-        </v-carousel>
-
-        <!-- Button -->
-        <v-btn to="/list-courses" @click="navigateTo('/list-courses')" class="ml-2 mr-6">Cursos</v-btn>
-    </div>
+    <v-parallax class="object-cover"
+        src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2072&q=80">
+        <div class="d-flex flex-column fill-height justify-center align-center text-white">
+            <h1 class="text-h4 font-weight-thin mb-4">
+                LaMoon
+            </h1>
+            <h4 class="subheading">
+                Build your application today!
+            </h4>
+            <h4 class="subheading">
+                Build your application today!
+            </h4>
+            <h4 class="subheading">
+                Build your application today!
+            </h4>
+            <h4 class="subheading">
+                Build your application today!
+            </h4>
+            <h4 class="subheading">
+                Build your application today!
+            </h4>
+        </div>
+    </v-parallax>
+    <h1 class="text-h4 font-weight-thin mb-4">
+        LaMoon
+    </h1>
 </template>
   
 <script>
 export default {
-    data() {
-        return {
-            items: [
-                {
-                    src: 'https://cdn.vuetifyjs.com/images/carousel/squirrel.jpg',
-                },
-                {
-                    src: 'https://cdn.vuetifyjs.com/images/carousel/sky.jpg',
-                },
-                {
-                    src: 'https://cdn.vuetifyjs.com/images/carousel/bird.jpg',
-                },
-                {
-                    src: 'https://cdn.vuetifyjs.com/images/carousel/planet.jpg',
-                },
-            ],
-        }
-    },
 }
 </script>

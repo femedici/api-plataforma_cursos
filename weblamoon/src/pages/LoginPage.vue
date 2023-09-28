@@ -1,13 +1,12 @@
 <template>
     <div class="flex flex-wrap">
         <div class="w-full md:w-1/2 p-4">
-            <v-img :width="1400" aspect-ratio="1/1" cover
-                src="https://cdn.vuetifyjs.com/images/parallax/material.jpg"></v-img>
+            <v-img :width="600" cover class=""
+                src="https://images.unsplash.com/photo-1526657782461-9fe13402a841?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1984&q=80"></v-img>
         </div>
-
         <div class="w-full md:w-1/2 p-4">
             <v-card class="mx-auto pa-12 pb-8" elevation="8" max-width="448" rounded="lg">
-
+                <v-img src="../assets/newlogo.png" class="object-cover h-48 w-96"></v-img>
                 <div class="text-subtitle-1 text-medium-emphasis">Account</div>
 
                 <v-text-field density="compact" placeholder="Email address" prepend-inner-icon="mdi-email-outline"
