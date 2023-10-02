@@ -1,13 +1,14 @@
 using System.ComponentModel.DataAnnotations;
+using MongoDB.Bson;
 using MongoDB.Bson.Serialization.Attributes;
 
 namespace MainProfiles.Models;
 [BsonIgnoreExtraElements]
+
 public class User
 {
-    [Required]
-    [BsonElement("id")]
-    public int Id { get; set; } 
+    [BsonId, BsonElement("id"), BsonRepresentation(BsonType.ObjectId)]
+    public ObjectId Id { get; set; } 
 
     [BsonElement("name")]
     [Required]
@@ -27,4 +28,8 @@ public class User
     [BsonElement("creationDate")]
     public string? CreationDate {get; set;}
 
+    public User()
+    {
+        Id = ObjectId.GenerateNewId();
+    }
 }

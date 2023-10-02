@@ -1,5 +1,6 @@
 using MainProfiles.Models;
 using Microsoft.AspNetCore.Mvc;
+using MongoDB.Bson;
 using MongoDB.Driver;
 
 namespace MainProfiles.Controllers;
@@ -23,24 +24,52 @@ public class UserController : ControllerBase
     }
 
     [HttpPost]
-    public IActionResult Post(User user)
+public ActionResult<User> CreateUser([FromBody] User newUser)
+{
+    try
     {
-
-        _users.InsertOne(user);
-        return Ok();
-    }
-
-    //Faz a consulta de apenas 1 usuário, com o id
-    [HttpGet("id/{id}")]
-    public ActionResult<User> GetById(int id)
-    {
-        var user = _users.Find(User => User.Id == id).FirstOrDefault();
-        if (user == null)
+        // Validate the incoming user data
+        if (!ModelState.IsValid)
         {
-            return NotFound();
+            return BadRequest(ModelState);
         }
-        return Ok(user);
+
+        // You may want to add more validation logic for the user data
+
+        // Set the creation date
+        newUser.CreationDate = DateTime.Now.ToString();
+
+        // Insert the new user document into MongoDB
+        _users.InsertOne(newUser);
+
+        // Return a 201 Created response with the newly created user
+        return CreatedAtAction("GetById", new { id = newUser.Id }, newUser);
     }
+    catch (Exception ex)
+    {
+        // Handle any exceptions, log them, and return an error response
+        return StatusCode(500, $"Internal server error: {ex.Message}");
+    }
+}
+    [HttpGet("id/{id}")]
+    
+    public async Task<ActionResult<User>> GetById(string id)
+{
+    if (!ObjectId.TryParse(id, out ObjectId objectId))
+    {
+        return BadRequest("Invalid ObjectId format");
+    }
+
+    var filterDefinition = Builders<User>.Filter.Eq(user => user.Id, objectId);
+    var user = await _users.Find(filterDefinition).SingleOrDefaultAsync();
+
+    if (user == null)
+    {
+        return NotFound();
+    }
+
+    return Ok(user);
+}
 
 
     //Faz a consulta de apenas 1 usuário, com o email
@@ -58,22 +87,27 @@ public class UserController : ControllerBase
 
     //Altera a senha do usuario pelo Id
     [HttpPut("{id}")]
-    public IActionResult ChangePasswordById(int id, [FromBody] string newPassword)
+    public async Task<IActionResult> ChangePasswordById(string id, [FromBody] string newPassword)
+{
+    if (!ObjectId.TryParse(id, out ObjectId objectId))
     {
-        // Verifique se o usuário com o id especificado existe
-        var filter = Builders<User>.Filter.Eq(u => u.Id, id);
-        var user = _users.Find(filter).FirstOrDefault();
+        return BadRequest("Invalid ObjectId format");
+    }
 
-        if (user == null)
-        {
-            return NotFound();
-        }
+    var filterDefinition = Builders<User>.Filter.Eq(user => user.Id, objectId);
+    var user = await _users.Find(filterDefinition).SingleOrDefaultAsync();
 
-        // Atualize a senha do usuário
-        var update = Builders<User>.Update
-            .Set(u => u.Password, newPassword);
+    if (user == null)
+    {
+        return NotFound();
+    }
 
-        var updateResult = _users.UpdateOne(filter, update);
+    try
+    {
+        // Update the user's password
+        var updateDefinition = Builders<User>.Update.Set(u => u.Password, newPassword);
+
+        var updateResult = await _users.UpdateOneAsync(filterDefinition, updateDefinition);
 
         if (updateResult.ModifiedCount == 0)
         {
@@ -82,20 +116,30 @@ public class UserController : ControllerBase
 
         return Ok();
     }
-
+    catch (Exception ex)
+    {
+        // Handle any exceptions, log them, and return an error response
+        return StatusCode(500, $"Internal server error: {ex.Message}");
+    }
+}
     // Deleta por id
     [HttpDelete("{id}")]
-    public IActionResult DeleteByCpf(int id)
+    public async Task<IActionResult> DeleteById(string id)
+{
+    if (!ObjectId.TryParse(id, out ObjectId objectId))
     {
-        var filter = Builders<User>.Filter.Eq(u => u.Id, id);
-        var deleteResult = _users.DeleteOne(filter);
-
-        if (deleteResult.DeletedCount == 0)
-        {
-            return NotFound();
-        }
-
-        return NoContent();
+        return BadRequest("Invalid ObjectId format");
     }
+
+    var filterDefinition = Builders<User>.Filter.Eq(user => user.Id, objectId);
+    var deleteResult = await _users.DeleteOneAsync(filterDefinition);
+
+    if (deleteResult.DeletedCount == 0)
+    {
+        return NotFound();
+    }
+
+    return NoContent();
+}
 
 }
