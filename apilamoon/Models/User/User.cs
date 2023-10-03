@@ -5,12 +5,11 @@ namespace MainProfiles.Models;
 [BsonIgnoreExtraElements]
 public class User
 {
-    [Required]
+    
     [BsonElement("id")]
     public int Id { get; set; } 
 
     [BsonElement("name")]
-    [Required]
     public string? Name { get; set; }
 
     [BsonElement("email")]

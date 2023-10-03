@@ -9,7 +9,7 @@ public class MeuMongo
         try
         {
             var client = new MongoClient(configuration["ConnectionStrings:MeuMongo"]);
-            DB = client.GetDatabase("meuDB");
+            DB = client.GetDatabase("laMoon");
         }
         catch (Exception ex)
         {
