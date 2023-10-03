@@ -9,7 +9,7 @@
                 <v-card class="mx-auto pa-12 pb-8" elevation="8" max-width="448" rounded="lg">
                     <h2 class="text-base font-semibold leading-7 text-indigo-600 lg:text-center">Login</h2>
                     <p class="mt-2 text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl lg:text-center">La Moon</p>
-                    <v-img src="../assets/newlogo.png" class="object-cover h-48 w-96"></v-img>
+                    <v-img src="@/assets/newlogo.png" class="object-cover h-48 w-96"></v-img>
                     <div class="text-subtitle-1 text-medium-emphasis">Account</div>
 
                     <v-text-field density="compact" placeholder="Email address" prepend-inner-icon="mdi-email-outline"
@@ -25,7 +25,7 @@
                         @click:append-inner="visible = !visible"></v-text-field>
 
                     <v-card-text class="text-center">
-                        <a
+                        <a @click="submit"
                             class="size relative inline-flex items-center justify-start py-4 pl-10 pr-12 overflow-hidden font-semibold text-indigo-600 transition-all duration-150 ease-in-out rounded hover:pl-10 hover:pr-6 bg-gray-50 group">
                             <span
                                 class="absolute bottom-0 left-0 w-full h-1 transition-all duration-150 ease-in-out bg-indigo-600 group-hover:h-full"></span>
@@ -45,7 +45,7 @@
                                 </svg>
                             </span>
                             <span
-                            type="submit" class="relative w-full text-left transition-colors duration-200 ease-in-out group-hover:text-white">Login</span>
+                                class="relative w-full text-left transition-colors duration-200 ease-in-out group-hover:text-white">Login</span>
                         </a>
                     </v-card-text>
 
@@ -82,7 +82,7 @@
 
 <script>
 import axios from '@/../src/axios';
-
+import { mapActions } from "vuex";
 
 export default {
     data: () => ({
@@ -94,6 +94,8 @@ export default {
         loggedInUser: null // Para armazenar o usuário logado
     }),
     methods: {
+        ...mapActions('user', ['setUser']), // Mapeie a ação setUser do módulo "user"
+
         submit() {
             const user = this.form;
             console.log('Dados do formulário:', user);
@@ -106,6 +108,10 @@ export default {
             })
                 .then(response => {
                     this.loggedInUser = response.data;
+                    window.alert('Usuário logado: ' + this.loggedInUser.name);
+
+                    // Use a ação setUser para definir o usuário no Vuex
+                    this.setUser(this.loggedInUser);
                     window.alert('Usuário logado: ' + this.loggedInUser.name);
                 })
                 .catch(error => {
