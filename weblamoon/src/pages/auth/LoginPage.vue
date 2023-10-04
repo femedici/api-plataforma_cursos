@@ -82,7 +82,7 @@
 
 <script>
 import axios from '@/../src/axios';
-import { mapActions } from "vuex";
+import { mapActions } from 'vuex';
 
 export default {
     data: () => ({
@@ -94,8 +94,7 @@ export default {
         loggedInUser: null // Para armazenar o usuário logado
     }),
     methods: {
-        ...mapActions('user', ['setUser']), // Mapeie a ação setUser do módulo "user"
-
+        ...mapActions('user', ['setUser']), // Mapeando a action setUser do módulo 'user'
         submit() {
             const user = this.form;
             console.log('Dados do formulário:', user);
@@ -107,12 +106,8 @@ export default {
                 }
             })
                 .then(response => {
-                    this.loggedInUser = response.data;
-                    window.alert('Usuário logado: ' + this.loggedInUser.name);
-
-                    // Use a ação setUser para definir o usuário no Vuex
-                    this.setUser(this.loggedInUser);
-                    window.alert('Usuário logado: ' + this.loggedInUser.name);
+                    this.$store.dispatch('user/setUser', response.data);
+                    window.alert('Usuário logado: ' + response.data.name); // Use response.data.name diretamente
                 })
                 .catch(error => {
                     console.error('Erro ao fazer a solicitação:', error);

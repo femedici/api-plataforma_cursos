@@ -12,18 +12,19 @@ const mutations = {
 
 const actions = {
     setUser({ commit }, user) {
-        commit("SET_USER", user);
+        commit('SET_USER', user);
     },
 };
 
 const getters = {
     getUser: (state) => state.user,
-    getUserName: (state) => (state.user ? state.user.name : null), // Getter para o nome do usuário
-    getUserEmail: (state) => (state.user ? state.user.email : null), // Getter para o email do usuário
+    getUserName: (state) => (state.user ? state.user.name : null),
+    getUserEmail: (state) => (state.user ? state.user.email : null),
     getUserDate: (state) => (state.user ? state.user.creationDate : null),
 };
 
 export default {
+    namespaced: true, // Certifique-se de definir namespaced como true
     state,
     mutations,
     actions,

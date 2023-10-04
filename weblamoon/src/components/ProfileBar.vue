@@ -14,8 +14,8 @@
     </v-list>
 
     <div class="pa-2">
-        <v-btn block>
-            Desconectar
+        <v-btn block >
+            Cadastrar
         </v-btn>
     </div>
 </template>
