@@ -23,8 +23,16 @@ public class CoursesController : ControllerBase
     }
 
     [HttpPost]
-    public IActionResult Post(Course course)
+    public IActionResult Post([FromForm] Course course, IFormFile? icon)
     {
+        if (icon != null)
+        {
+            MemoryStream memoryStream = new MemoryStream();
+            icon.OpenReadStream().CopyTo(memoryStream);
+            
+            course.Icon = Convert.ToBase64String(memoryStream.ToArray());
+        }
+        
         _courses.InsertOne(course);
         return Ok();
     }
@@ -61,7 +69,7 @@ public class CoursesController : ControllerBase
         var filter = Builders<Course>.Filter.Eq(c => c.Id, id);
         var update = Builders<Course>.Update
             .Set(c => c.Title, updatedCourse.Title)
-            .Set(c => c.ImageCourse, updatedCourse.ImageCourse)
+            .Set(c => c.Icon, updatedCourse.Icon)
             .Set(c => c.MainVideo, updatedCourse.MainVideo)
             .Set(c => c.BodyText, updatedCourse.BodyText)
             .Set(c => c.Attachments, updatedCourse.Attachments)

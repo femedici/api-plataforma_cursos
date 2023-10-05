@@ -1,5 +1,8 @@
 import axios from '@/../src/axios';
 import router from '@/routes';
+// import { formToJSON } from 'axios';
+
+axios.defaults.headers.common['Content-Type'] = 'multipart/form-data';
 
 export default {
     data() {
@@ -7,7 +10,7 @@ export default {
             formData: {
                 id: '',
                 title: '',
-                icon: 'xxxxx',
+                icon: null,
                 cover: 'xxxxx',
                 body: '',
                 attachments: '',
@@ -21,14 +24,22 @@ export default {
     },
 
     methods: {
-        submitForm() {
+
+        async submitForm() {
             try {
-                const response = axios.post('/Courses', this.formData);
+                this.formData.icon = this.$refs.fileInput.files[0];
+
+                console.log(this.$refs.fileInput.files[0]);
+
+                const response = await axios.post('/Courses', this.formData);
+
+
                 // Lide com a resposta aqui, por exemplo, exiba uma mensagem de sucesso
                 console.log('Dados enviados com sucesso:', response.data);
                 // Limpe o formulário após o envio~
                 this.formData.title = '';
                 this.formData.id = '';
+                this.formData.icon = '';
                 this.formData.body = '';
                 this.formData.attachments = '';
                 this.formData.password = '';

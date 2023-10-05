@@ -28,12 +28,12 @@ public class Course
     [BsonElement("password")]
     public string? Password { get; set; }
 
-    [BsonElement("imageCourse")]
-    public string? ImageCourse { get; set; }
+    [BsonElement("icon")]
+    public string? Icon { get; set; }
 
     [BsonElement("topicsCount")]
-    public int TopicsCount { get; set; }
+    public int? TopicsCount { get; set; }
 
     [BsonElement("creatorId")]
-    public int CreatorId { get; set; }
+    public int? CreatorId { get; set; }
 }
