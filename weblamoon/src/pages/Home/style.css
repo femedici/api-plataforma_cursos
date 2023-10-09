@@ -7,6 +7,24 @@
     align-items: center;
 }
 
+.esquerda {
+    margin-left: 200;
+    margin-top: 5%;
+    margin-bottom: 20px;
+    max-width: 25%;
+    float: left;
+    width: 50%;
+}
+
+.direita {
+    max-width: 50%;
+    margin-left: 200;
+    margin-bottom: 20px;
+    margin-top: 50;
+    float: left;
+    width: 50%;
+}
+
 .pres-text {
     width: 95%;
     font-family: 'Dosis', sans-serif;
@@ -23,7 +41,9 @@ body {
 }
 
 .container {
-    width: 80%;
+    margin-top: 100px;
+    /* Ajuste a margem superior para criar espaço entre as DIVs */
+    width: 100%;
     max-width: 800px;
     margin: 0 auto;
     padding: 20px;
@@ -43,7 +63,8 @@ body {
 }
 
 .texts {
-    text-align: left;
+    text-align: justify;
+    align-self: center;
     /* Alinha o texto à esquerda */
     margin-left: 0;
     /* Remove qualquer margem à esquerda que pode existir */
