@@ -1,10 +1,8 @@
 <template>
     <div>
-        <h1>THIS IS ABOUT PAGE</h1>
-        <h2>ASDFOPADSKFADSPOKFDSA</h2>
+       <h1>ABOUT PAGEZADA</h1>
     </div>
 </template>
-
+  
 <script>
-
 </script>

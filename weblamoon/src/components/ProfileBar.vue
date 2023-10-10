@@ -14,9 +14,19 @@
     </v-list>
 
     <div class="pa-2">
-        <v-btn block>
-            Desconectar
+        <v-btn block >
+            Cadastrar
         </v-btn>
     </div>
 </template>
 
+<script>
+import { mapGetters } from "vuex";
+
+export default {
+    computed: {
+        ...mapGetters("user", ["getUserName", "getUserDate"]), // Mapeie os getters do módulo "user"
+    },
+}
+
+</script>

@@ -1,10 +1,9 @@
 <template>
     <div>
-        <div v-if="user">
-            <h2>Informações do Usuário: {{ user.name }}</h2>
-            <p>Cpf: {{ user.cpf }}</p>
-            <p>Email: {{ user.email }}</p>
-            <!-- Adicione outras informações que desejar mostrar aqui -->
+        <div>
+            <p>Nome do usuário: {{ getUserName }}</p>
+            <p>Email do usuário: {{ getUserEmail }}</p>
+            <p>Data de criação do usuário: {{ getUserDate }}</p>
         </div>
     </div>
     <div class="button-container">
@@ -16,6 +15,7 @@
 <script>
 import axios from '@/../src/axios';
 import router from '@/routes';
+import { mapGetters } from 'vuex';
 
 export default {
     data() {
@@ -25,17 +25,8 @@ export default {
             }
         };
     },
-    created() {
-        const userEmail = this.$route.params.email;
-
-        // Busque os detalhes do curso
-        axios.get(`/User/email/${userEmail}`)
-            .then(response => {
-                this.user = response.data;
-            })
-            .catch(error => {
-                console.error("Erro ao buscar detalhes do curso:", error);
-            });
+    computed: {
+        ...mapGetters('user', ['getUserName', 'getUserEmail', 'getUserDate']), // Mapeando os getters do módulo 'user'
     },
     methods: {
         deleteUser(cpf) {

@@ -11,7 +11,6 @@ public class User
     public ObjectId Id { get; set; } 
 
     [BsonElement("name")]
-    [Required]
     public string? Name { get; set; }
 
     [BsonElement("email")]
