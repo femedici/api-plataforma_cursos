@@ -43,21 +43,32 @@ public class UserController : ControllerBase
     }
 
 
-    //Faz a consulta de apenas 1 usuário, com o email
-    [HttpGet("email/{email}")]
-    public ActionResult<User> GetByEmail(string email)
+    //Faz a consulta do usuario verificando o email e senha
+    [HttpGet("auth")]
+    public ActionResult<User> GetLogin([FromQuery] string EmailRequest, [FromQuery] string PasswordRequest)
     {
-        var user = _users.Find(User => User.Email == email).FirstOrDefault();
-        if (user == null)
+
+        //verifica o usuario pelo email
+        var userAuth = _users.Find(User => User.Email == EmailRequest).FirstOrDefault();
+        if (userAuth == null)
         {
+            //caso nao achar o email ja cai
             return NotFound();
         }
-        return Ok(user);
+
+        //verifica se as senhas batem
+        if (userAuth.Password != PasswordRequest)
+        {
+            return Unauthorized(); //A senha está incorreta;
+        }
+
+        //Passa o usuário autorizado pro login
+        return Ok(userAuth);
     }
 
 
     //Altera a senha do usuario pelo Id
-    [HttpPut("{id}")]
+    [HttpPut("password/{id}")]
     public IActionResult ChangePasswordById(int id, [FromBody] string newPassword)
     {
         // Verifique se o usuário com o id especificado existe
