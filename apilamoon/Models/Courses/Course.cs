@@ -1,13 +1,15 @@
 using System.ComponentModel.DataAnnotations;
 using MongoDB.Bson.Serialization.Attributes;
+using MongoDB.Bson;
+
 
 namespace MainProfiles.Models;
 [BsonIgnoreExtraElements]
 public class Course
 {
-    [Required]
-    [BsonElement("id")]
-    public int Id { get; set; }
+    
+    [BsonId, BsonElement("id"), BsonRepresentation(BsonType.ObjectId)]
+    public ObjectId Id { get; set; }
 
     [BsonElement("title")]
     [Required]
@@ -36,4 +38,8 @@ public class Course
 
     [BsonElement("creatorId")]
     public int CreatorId { get; set; }
+    public Course()
+    {
+        Id = ObjectId.GenerateNewId();
+    }
 }
