@@ -24,7 +24,7 @@ public class UserController : ControllerBase
     }
 
     [HttpPost]
-public ActionResult<User> CreateUser([FromBody] User newUser)
+public ActionResult<User> Post([FromBody] User newUser)
 {
     try
     {
