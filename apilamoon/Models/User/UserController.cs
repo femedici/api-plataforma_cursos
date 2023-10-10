@@ -24,52 +24,52 @@ public class UserController : ControllerBase
     }
 
     [HttpPost]
-public ActionResult<User> Post([FromBody] User newUser)
-{
-    try
+    public ActionResult<User> Post([FromBody] User newUser)
     {
-        // Validate the incoming user data
-        if (!ModelState.IsValid)
+        try
         {
-            return BadRequest(ModelState);
+            // Validate the incoming user data
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            // You may want to add more validation logic for the user data
+
+            // Set the creation date
+            newUser.CreationDate = DateTime.Now.ToString();
+
+            // Insert the new user document into MongoDB
+            _users.InsertOne(newUser);
+
+            // Return a 201 Created response with the newly created user
+            return CreatedAtAction("GetById", new { id = newUser.Id }, newUser);
+        }
+        catch (Exception ex)
+        {
+            // Handle any exceptions, log them, and return an error response
+            return StatusCode(500, $"Internal server error: {ex.Message}");
+        }
+    }
+    [HttpGet("id/{id}")]
+
+    public async Task<ActionResult<User>> GetById(string id)
+    {
+        if (!ObjectId.TryParse(id, out ObjectId objectId))
+        {
+            return BadRequest("Invalid ObjectId format");
         }
 
-        // You may want to add more validation logic for the user data
+        var filterDefinition = Builders<User>.Filter.Eq(user => user.Id, objectId);
+        var user = await _users.Find(filterDefinition).SingleOrDefaultAsync();
 
-        // Set the creation date
-        newUser.CreationDate = DateTime.Now.ToString();
+        if (user == null)
+        {
+            return NotFound();
+        }
 
-        // Insert the new user document into MongoDB
-        _users.InsertOne(newUser);
-
-        // Return a 201 Created response with the newly created user
-        return CreatedAtAction("GetById", new { id = newUser.Id }, newUser);
+        return Ok(user);
     }
-    catch (Exception ex)
-    {
-        // Handle any exceptions, log them, and return an error response
-        return StatusCode(500, $"Internal server error: {ex.Message}");
-    }
-}
-    [HttpGet("id/{id}")]
-    
-    public async Task<ActionResult<User>> GetById(string id)
-{
-    if (!ObjectId.TryParse(id, out ObjectId objectId))
-    {
-        return BadRequest("Invalid ObjectId format");
-    }
-
-    var filterDefinition = Builders<User>.Filter.Eq(user => user.Id, objectId);
-    var user = await _users.Find(filterDefinition).SingleOrDefaultAsync();
-
-    if (user == null)
-    {
-        return NotFound();
-    }
-
-    return Ok(user);
-}
 
 
     //Faz a consulta do usuario verificando o email e senha
@@ -99,58 +99,58 @@ public ActionResult<User> Post([FromBody] User newUser)
     //Altera a senha do usuario pelo Id
     [HttpPut("{id}")]
     public async Task<IActionResult> ChangePasswordById(string id, [FromBody] string newPassword)
-{
-    if (!ObjectId.TryParse(id, out ObjectId objectId))
     {
-        return BadRequest("Invalid ObjectId format");
-    }
+        if (!ObjectId.TryParse(id, out ObjectId objectId))
+        {
+            return BadRequest("Invalid ObjectId format");
+        }
 
-    var filterDefinition = Builders<User>.Filter.Eq(user => user.Id, objectId);
-    var user = await _users.Find(filterDefinition).SingleOrDefaultAsync();
+        var filterDefinition = Builders<User>.Filter.Eq(user => user.Id, objectId);
+        var user = await _users.Find(filterDefinition).SingleOrDefaultAsync();
 
-    if (user == null)
-    {
-        return NotFound();
-    }
-
-    try
-    {
-        // Update the user's password
-        var updateDefinition = Builders<User>.Update.Set(u => u.Password, newPassword);
-
-        var updateResult = await _users.UpdateOneAsync(filterDefinition, updateDefinition);
-
-        if (updateResult.ModifiedCount == 0)
+        if (user == null)
         {
             return NotFound();
         }
 
-        return Ok();
+        try
+        {
+            // Update the user's password
+            var updateDefinition = Builders<User>.Update.Set(u => u.Password, newPassword);
+
+            var updateResult = await _users.UpdateOneAsync(filterDefinition, updateDefinition);
+
+            if (updateResult.ModifiedCount == 0)
+            {
+                return NotFound();
+            }
+
+            return Ok();
+        }
+        catch (Exception ex)
+        {
+            // Handle any exceptions, log them, and return an error response
+            return StatusCode(500, $"Internal server error: {ex.Message}");
+        }
     }
-    catch (Exception ex)
-    {
-        // Handle any exceptions, log them, and return an error response
-        return StatusCode(500, $"Internal server error: {ex.Message}");
-    }
-}
     // Deleta por id
     [HttpDelete("{id}")]
     public async Task<IActionResult> DeleteById(string id)
-{
-    if (!ObjectId.TryParse(id, out ObjectId objectId))
     {
-        return BadRequest("Invalid ObjectId format");
+        if (!ObjectId.TryParse(id, out ObjectId objectId))
+        {
+            return BadRequest("Invalid ObjectId format");
+        }
+
+        var filterDefinition = Builders<User>.Filter.Eq(user => user.Id, objectId);
+        var deleteResult = await _users.DeleteOneAsync(filterDefinition);
+
+        if (deleteResult.DeletedCount == 0)
+        {
+            return NotFound();
+        }
+
+        return NoContent();
     }
-
-    var filterDefinition = Builders<User>.Filter.Eq(user => user.Id, objectId);
-    var deleteResult = await _users.DeleteOneAsync(filterDefinition);
-
-    if (deleteResult.DeletedCount == 0)
-    {
-        return NotFound();
-    }
-
-    return NoContent();
-}
 
 }
