@@ -7,7 +7,9 @@
     <v-divider></v-divider>
 
     <v-list>
-        <v-list-item prepend-icon="mdi-account" title="Perfil" to="/view-user"></v-list-item>
+        <v-list-item prepend-icon="mdi-home" title="Home" to="/"></v-list-item>
+        <v-list-item prepend-icon="mdi-format-align-left" title="Sobre" to="/about"></v-list-item>
+        <v-list-item prepend-icon="mdi-animation" title="Cursos" to="/list-courses"></v-list-item>
         <v-list-item prepend-icon="mdi-login" title="Login" to="/login"></v-list-item>
         <v-list-item prepend-icon="mdi-align-horizontal-left" title="Cursos Inscrito" to="/x"></v-list-item>
         <v-list-item prepend-icon="mdi-account" title="Cadastrar" to="/create-user"></v-list-item>
@@ -21,12 +23,8 @@
 </template>
 
 <script>
-import { mapGetters } from "vuex";
 
 export default {
-    computed: {
-        ...mapGetters("user", ["getUserName", "getUserDate"]), // Mapeie os getters do módulo "user"
-    },
 }
 
 </script>
