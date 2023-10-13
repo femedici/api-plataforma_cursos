@@ -4,7 +4,7 @@
             Crie seu curso
         </div>
         <br><br>
-        <form @submit="submitForm">
+        <form @submit.prevent="submitForm">
             <label for="id" labels>Código de identificação (3 Numeros)<br></label>
             <input type="text" id="search-bars" v-model="formData.id" required>
 
@@ -12,13 +12,17 @@
             <input type="text" id="search-bars" v-model="formData.title" required>
 
             <label for="body"><br>Conteúdo:<br></label>
-            <input type="text" id="search-bars" v-model="formData.body" required>
+            <input type="text" id="search-bars" v-model="formData.body">
+
+            <label for="icon"><br>Ícone do Curso:<br></label>
+            <input type="file" id="icon"  ref="fileInput" @change="handleFileChange">
+            <br><br>
 
             <label for="attachments" labels><br>Anexos:<br></label>
-            <input type="text" id="search-bars" v-model="formData.attachments" required>
+            <input type="text" id="search-bars" v-model="formData.attachments">
 
             <label for="password" labels><br>Senha de Acesso:<br></label>
-            <input type="text" id="search-bars" v-model="formData.password" required>
+            <input type="text" id="search-bars" v-model="formData.password">
             <br>
             <div>
                 <button type="submit">Enviar</button>

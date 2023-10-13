@@ -25,46 +25,52 @@ public class CoursesController : ControllerBase
     }
 
     [HttpPost]
-    public ActionResult<User> Post([FromBody] Course newCourse)
-{
-    try
+
+    public ActionResult<User> Post([FromForm] Course newCourse, IFormFile? icon)
     {
-        if (!ModelState.IsValid)
+        try
         {
-            return BadRequest(ModelState);
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            if (icon != null)
+            {
+                MemoryStream memoryStream = new MemoryStream();
+                icon.OpenReadStream().CopyTo(memoryStream);
+
+                newCourse.Icon = Convert.ToBase64String(memoryStream.ToArray());
+            }
+
+            _courses.InsertOne(newCourse);
+            return CreatedAtAction("GetById", new { id = newCourse.Id }, newCourse);
         }
-
-       // newCourse.CreationDate = DateTime.Now.ToString();
-
-        _courses.InsertOne(newCourse);
-
-        return CreatedAtAction("GetById", new { id = newCourse.Id }, newCourse);
+        catch (Exception ex)
+        {
+            return StatusCode(500, $"Internal server error: {ex.Message}");
+        }
     }
-    catch (Exception ex)
-    {
-        return StatusCode(500, $"Internal server error: {ex.Message}");
-    }
-}
 
     [HttpGet("id/{id}")]
     //Faz a consulta de apenas 1 curso, com o Id
     public async Task<ActionResult<Course>> GetById(string id)
-{
-    if (!ObjectId.TryParse(id, out ObjectId objectId))
     {
-        return BadRequest("Invalid ObjectId format");
+        if (!ObjectId.TryParse(id, out ObjectId objectId))
+        {
+            return BadRequest("Invalid ObjectId format");
+        }
+
+        var filterDefinition = Builders<Course>.Filter.Eq(course => course.Id, objectId);
+        var course = await _courses.Find(filterDefinition).SingleOrDefaultAsync();
+
+        if (course == null)
+        {
+            return NotFound();
+        }
+
+        return Ok(course);
     }
-
-    var filterDefinition = Builders<Course>.Filter.Eq(course => course.Id, objectId);
-    var course = await _courses.Find(filterDefinition).SingleOrDefaultAsync();
-
-    if (course == null)
-    {
-        return NotFound();
-    }
-
-    return Ok(course);
-}
 
     [HttpGet("title/{title}")]
     //Faz a consulta de apenas 1 curso, com o título
@@ -83,14 +89,14 @@ public class CoursesController : ControllerBase
     public IActionResult PutById(string id, Course updatedCourse)
     {
         if (!ObjectId.TryParse(id, out ObjectId objectId))
-    {
-        return BadRequest("Invalid ObjectId format");
-    }
+        {
+            return BadRequest("Invalid ObjectId format");
+        }
 
         var filter = Builders<Course>.Filter.Eq(c => c.Id, objectId);
         var update = Builders<Course>.Update
             .Set(c => c.Title, updatedCourse.Title)
-            .Set(c => c.ImageCourse, updatedCourse.ImageCourse)
+            .Set(c => c.Icon, updatedCourse.Icon)
             .Set(c => c.MainVideo, updatedCourse.MainVideo)
             .Set(c => c.BodyText, updatedCourse.BodyText)
             .Set(c => c.Attachments, updatedCourse.Attachments)
@@ -110,9 +116,9 @@ public class CoursesController : ControllerBase
     public IActionResult DeleteById(string id)
     {
         if (!ObjectId.TryParse(id, out ObjectId objectId))
-    {
-        return BadRequest("Invalid ObjectId format");
-    }
+        {
+            return BadRequest("Invalid ObjectId format");
+        }
 
         var filter = Builders<Course>.Filter.Eq(c => c.Id, objectId);
         var deleteResult = _courses.DeleteOne(filter);
