@@ -1,5 +1,6 @@
 using MainProfiles.Models;
 using Microsoft.AspNetCore.Mvc;
+using MongoDB.Bson;
 using MongoDB.Driver;
 
 namespace MainProfiles.Controllers;
@@ -24,9 +25,12 @@ public class SubscriptionController : ControllerBase
 
     //Faz a consulta de todas as inscrições do usuario
     [HttpGet("idUser/{idUser}")]
-    public ActionResult<Topic> GetByUser(int idUser)
+    public ActionResult<Topic> GetByUser(string idUser)
     {
-        var subscriptions = _subscriptions.Find(Subscription => Subscription.IdUser == idUser).ToList();
+        if(!ObjectId.TryParse(idUser, out ObjectId objectId)){
+            return BadRequest("Invalid Object Format");
+        }
+        var subscriptions = _subscriptions.Find(subscription => subscription.IdUser == objectId).ToList();
         if (subscriptions == null)
         {
             return NotFound();
@@ -36,9 +40,13 @@ public class SubscriptionController : ControllerBase
 
     //Faz a consulta de todas as inscrições do curso
     [HttpGet("idCourse/{idCourse}")]
-    public ActionResult<Topic> GetByCourse(int idCourse)
+    public ActionResult<Topic> GetByCourse(string idCourse)
     {
-        var subscriptions = _subscriptions.Find(Subscription => Subscription.IdCourse == idCourse).ToList();
+        if(!ObjectId.TryParse(idCourse, out ObjectId objectId)){
+            return BadRequest("Invalid ObjectId Format");
+        }
+
+        var subscriptions = _subscriptions.Find(subscription => subscription.IdCourse == objectId).ToList();
         if (subscriptions == null)
         {
             return NotFound();
@@ -48,18 +56,39 @@ public class SubscriptionController : ControllerBase
 
     //Cria uma nova inscrição
     [HttpPost]
-    public IActionResult Post(Subscription subscription)
-    {
-        _subscriptions.InsertOne(subscription);
-        return Ok();
-    }
 
+    public ActionResult<User> Post([FromBody] Subscription newSubscription)
+    {
+        try
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+           // newSubscription.CreationDate = DateTime.Now.ToString();
+
+            _subscriptions.InsertOne(newSubscription);
+
+            return CreatedAtAction("GetById", new { id = newSubscription.Id }, newSubscription);
+        }
+        catch (Exception ex)
+        {
+            return StatusCode(500, $"Internal server error: {ex.Message}");
+        }
+    }
     // Deleta uma inscrição pelo ID dela (Quase nunca vai acontecer - nao vis   ivel no front)
     [HttpDelete("{id}")]
-    public IActionResult DeleteById(int id)
+
+    public async Task<IActionResult> DeleteById(string id)
     {
-        var filter = Builders<Subscription>.Filter.Eq(u => u.Id, id);
-        var deleteResult = _subscriptions.DeleteOne(filter);
+        if (!ObjectId.TryParse(id, out ObjectId objectId))
+        {
+            return BadRequest("Invalid ObjectId format");
+        }
+
+        var filter = Builders<Subscription>.Filter.Eq(u => u.Id, objectId);
+        var deleteResult = await _subscriptions.DeleteOneAsync(filter);
 
         if (deleteResult.DeletedCount == 0)
         {
@@ -68,5 +97,4 @@ public class SubscriptionController : ControllerBase
 
         return NoContent();
     }
-
 }
