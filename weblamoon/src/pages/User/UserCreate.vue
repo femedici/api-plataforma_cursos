@@ -1,93 +1,71 @@
 <template>
-  <form>
-    <v-text-field
-      v-model="state.name"
-      :error-messages="v$.name.$errors.map(e => e.$message)"
-      :counter="10"
-      label="Name"
-      required
-      @input="v$.name.$touch"
-      @blur="v$.name.$touch"
-    ></v-text-field>
+  <section class="min-h-screen flex items-stretch text-white">
+    <div class="lg:flex w-1/2 hidden bg-gray-500 bg-no-repeat bg-cover relative items-center"
+      style="background-image: url(https://images.unsplash.com/photo-1522071820081-009f0129c71c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80);">
+      <div class="absolute bg-black opacity-60 inset-0 z-0"></div>
+      <div class="w-full px-24 z-10">
+        <h1 class="text-5xl font-bold text-left tracking-wide font-sans">Se Cadastre</h1>
+        <p class="text-2xl my-4 font-sans">Se junte à comunidade de alunos, criadores e aprendizagem do LaMoon!</p>
+      </div>
+    </div>
+    <div
+      class="lg:w-1/2 w-full flex items-center justify-center text-center md:px-16 px-0 z-0 bg-gradient-to-r from-[#6591cb]">
+      <div class="w-full py-6 z-20">
+        <h1 class="flex justify-center items-center">
+          <v-img src="@/assets/newlogo.png" class="object-cover h-48 w-96"></v-img>
+        </h1>
+        <v-card class="mx-auto pa-12 pb-8" elevation="8" max-width="448" rounded="lg">
+          <form @submit.prevent="submitForm()">
 
-    <v-text-field
-      v-model="state.email"
-      :error-messages="v$.email.$errors.map(e => e.$message)"
-      label="E-mail"
-      required
-      @input="v$.email.$touch"
-      @blur="v$.email.$touch"
-    ></v-text-field>
+            <v-text-field label="Nome" v-model="formData.name"></v-text-field>
+            <v-text-field label="Email" v-model="formData.email" type="email" required></v-text-field>
+            <v-text-field label="Senha" v-model="formData.password" type="password" required></v-text-field>
 
-    <v-select
-      v-model="state.select"
-      :items="items"
-      :error-messages="v$.select.$errors.map(e => e.$message)"
-      label="Item"
-      required
-      @change="v$.select.$touch"
-      @blur="v$.select.$touch"
-    ></v-select>
-
-    <v-checkbox
-      v-model="state.checkbox"
-      :error-messages="v$.checkbox.$errors.map(e => e.$message)"
-      label="Do you agree?"
-      required
-      @change="v$.checkbox.$touch"
-      @blur="v$.checkbox.$touch"
-    ></v-checkbox>
-
-    <v-btn
-      class="me-4"
-      @click="v$.$validate"
-    >
-      submit
-    </v-btn>
-    <v-btn @click="clear">
-      clear
-    </v-btn>
-  </form>
+            <v-btn type="submit" block class="mt-2">Cadastrar</v-btn>
+          </form>
+        </v-card>
+      </div>
+    </div>
+  </section>
 </template>
-  
-<script setup>
-    import { reactive } from 'vue'
-    import { useVuelidate } from '@vuelidate/core'
-    import { email, required } from '@vuelidate/validators'
 
-    const initialState = {
+
+<script>
+import axios from '@/../src/axios';
+
+export default {
+  data() {
+    return {
+      formData: {
         name: '',
         email: '',
-        select: null,
-        checkbox: null,
-    }
+        password: '',
+        icon: 'xxx',
+        creationDate: 'xxx',
+      },
+      error: null,
+    };
+  },
 
-    const state = reactive({
-        ...initialState,
-    })
+  methods: {
+    submitForm() {
+      try {
+        const response = axios.post('/User', this.formData);
 
-    const items = [
-        'Item 1',
-        'Item 2',
-        'Item 3',
-        'Item 4',
-    ]
+        console.log('Dados enviados com sucesso:', response.data);
+        // Limpe o formulário após o envio
+        this.formData.name = '';
+        this.formData.email = '';
+        this.formData.password = '';
+        this.error = false;
 
-    const rules = {
-        name: { required },
-        email: { required, email },
-        select: { required },
-        items: { required },
-        checkbox: { required },
-    }
-
-    const v$ = useVuelidate(rules, state)
-
-    function clear() {
-        v$.value.$reset()
-
-        for (const [key, value] of Object.entries(initialState)) {
-            state[key] = value
-        }
-    }
+        window.alert('Cadastro realizado com sucesso!');
+      } catch (error) {
+        // Lide com erros aqui, por exemplo, exiba uma mensagem de erro
+        console.error('Erro ao enviar dados:', error);
+        window.alert('Erro ao cadastrar. Por favor, tente novamente.');
+      }
+    },
+  },
+};
 </script>
