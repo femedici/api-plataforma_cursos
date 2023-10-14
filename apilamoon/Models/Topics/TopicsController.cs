@@ -50,6 +50,31 @@ public class TopicController : ControllerBase
         return Ok(topic);
     }
 
+    [HttpPut("video")]
+    public async Task<IActionResult> PutVideo(int id, IFormFile videoFile)
+    {
+        byte[] saveVideo;
+        
+        using (var memoryStream = new MemoryStream())
+        {
+            await videoFile.CopyToAsync(memoryStream);
+            saveVideo = memoryStream.ToArray();
+        }
+
+        var filter = Builders<Topic>.Filter.Eq(u => u.Id, id);
+        var update = Builders<Topic>.Update
+            .Set(u => u.Video, saveVideo);
+        var updateResult = _topic.UpdateOne(filter, update);
+
+        if (updateResult.ModifiedCount == 0)
+        {
+            return NotFound();
+        }
+
+        return Ok();
+    }
+
+
     [HttpPut("{id}")]
     public IActionResult PutByTitle(int id, Topic updatedTopic)
     {

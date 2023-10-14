@@ -26,21 +26,13 @@ public class CoursesController : ControllerBase
 
     [HttpPost]
 
-    public ActionResult<User> Post([FromForm] Course newCourse, IFormFile? icon)
+    public ActionResult<User> Post(Course newCourse)
     {
         try
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
-            }
-
-            if (icon != null)
-            {
-                MemoryStream memoryStream = new MemoryStream();
-                icon.OpenReadStream().CopyTo(memoryStream);
-
-                newCourse.Icon = Convert.ToBase64String(memoryStream.ToArray());
             }
 
             _courses.InsertOne(newCourse);
@@ -51,6 +43,8 @@ public class CoursesController : ControllerBase
             return StatusCode(500, $"Internal server error: {ex.Message}");
         }
     }
+
+
 
     [HttpGet("id/{id}")]
     //Faz a consulta de apenas 1 curso, com o Id
@@ -82,6 +76,29 @@ public class CoursesController : ControllerBase
             return NotFound();
         }
         return Ok(course);
+    }
+    [HttpPut("icon")]
+    public IActionResult PutIcon(string id, IFormFile icon)
+    {
+        if (!ObjectId.TryParse(id, out ObjectId objectId))
+        {
+            return BadRequest("Invalid ObjectId format");
+        }
+
+        MemoryStream memoryStream = new MemoryStream();
+        icon.OpenReadStream().CopyTo(memoryStream);
+
+        var filter = Builders<Course>.Filter.Eq(c => c.Id, objectId);
+        var update = Builders<Course>.Update
+            .Set(c => c.Icon, Convert.ToBase64String(memoryStream.ToArray()));
+        var updateResult = _courses.UpdateOne(filter, update);
+
+        if (updateResult.ModifiedCount == 0)
+        {
+            return NotFound();
+        }
+
+        return Ok();
     }
 
     [HttpPut("{id}")]
