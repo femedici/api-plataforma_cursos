@@ -1,82 +1,68 @@
 <template>
-    <div class="flex flex-wrap">
-        <div class="w-full md:w-1/2 p-4">
-            <v-img :width="600" cover class=""
-                src="https://images.unsplash.com/photo-1526657782461-9fe13402a841?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1984&q=80"></v-img>
+    <section class="min-h-screen flex items-stretch text-white ">
+        <div class="lg:flex w-1/2 hidden bg-gray-500 bg-no-repeat bg-cover relative items-center"
+            style="background-image: url(https://images.unsplash.com/photo-1601933513556-7926c45d1c49?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80);">
+            <div class="absolute bg-black opacity-60 inset-0 z-0"></div>
+            <div class="w-full px-24 z-10">
+                <h1 class="text-5xl font-bold text-left tracking-wide font-sans">Entre na sua conta já existente </h1>
+            </div>
         </div>
-        <div class="w-full md:w-1/2 p-4">
-            <form @submit.prevent="submit()">
-                <v-card class="mx-auto pa-12 pb-8" elevation="8" max-width="448" rounded="lg">
-                    <h2 class="text-base font-semibold leading-7 text-indigo-600 lg:text-center">Login</h2>
-                    <p class="mt-2 text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl lg:text-center">La Moon</p>
+        <div
+            class="lg:w-1/2 w-full flex items-center justify-center text-center md:px-16 px-0 z-0 bg-gradient-to-r from-[#6591cb]">
+            <div class="w-full py-6 z-20">
+                <h1 class="flex justify-center items-center">
                     <v-img src="@/assets/newlogo.png" class="object-cover h-48 w-96"></v-img>
-                    <div class="text-subtitle-1 text-medium-emphasis">Account</div>
+                </h1>
+                <form @submit.prevent="submit()">
+                    <v-card class="mx-auto pa-12 pb-8" elevation="8" max-width="448" rounded="lg">
+                        <div class="text-subtitle-1 text-medium-emphasis d-flex align-center justify-space-between">
+                            Email</div>
+                        <v-text-field density="compact" placeholder="Email cadastrado" prepend-inner-icon="mdi-email-outline"
+                            variant="outlined" v-model="form.email"></v-text-field>
 
-                    <v-text-field density="compact" placeholder="Email address" prepend-inner-icon="mdi-email-outline"
-                        variant="outlined" v-model="form.email"></v-text-field>
+                        <div class="text-subtitle-1 text-medium-emphasis d-flex align-center justify-space-between">
+                            Senha
+                        </div>
 
-                    <div class="text-subtitle-1 text-medium-emphasis d-flex align-center justify-space-between">
-                        Password
-                    </div>
+                        <v-text-field :append-inner-icon="visible ? 'mdi-eye-off' : 'mdi-eye'"
+                            :type="visible ? 'text' : 'password'" density="compact" placeholder="Coloque sua senha"
+                            prepend-inner-icon="mdi-lock-outline" variant="outlined" v-model="form.password"
+                            @click:append-inner="visible = !visible"></v-text-field>
 
-                    <v-text-field :append-inner-icon="visible ? 'mdi-eye-off' : 'mdi-eye'"
-                        :type="visible ? 'text' : 'password'" density="compact" placeholder="Enter your password"
-                        prepend-inner-icon="mdi-lock-outline" variant="outlined" v-model="form.password"
-                        @click:append-inner="visible = !visible"></v-text-field>
+                        <v-card-text class="text-center">
+                            <a @click="submit" class="relative inline-block text-lg group">
+                                <span
+                                    class="relative z-10 block px-5 py-3 overflow-hidden font-medium leading-tight text-gray-800 transition-colors duration-300 ease-out border-2 border-gray-900 rounded-lg group-hover:text-white">
+                                    <span class="absolute inset-0 w-full h-full px-5 py-3 rounded-lg bg-gray-50"></span>
+                                    <span
+                                        class="absolute left-0 w-48 h-48 -ml-2 transition-all duration-300 origin-top-right -rotate-90 -translate-x-full translate-y-12 bg-gray-900 group-hover:-rotate-180 ease"></span>
+                                    <span class="relative">Login</span>
+                                </span>
+                                <span
+                                    class="absolute bottom-0 right-0 w-full h-12 -mb-1 -mr-1 transition-all duration-200 ease-linear bg-gray-900 rounded-lg group-hover:mb-0 group-hover:mr-0"
+                                    data-rounded="rounded-lg"></span>
+                            </a>
+                        </v-card-text>
 
-                    <v-card-text class="text-center">
-                        <a @click="submit"
-                            class="size relative inline-flex items-center justify-start py-4 pl-10 pr-12 overflow-hidden font-semibold text-indigo-600 transition-all duration-150 ease-in-out rounded hover:pl-10 hover:pr-6 bg-gray-50 group">
-                            <span
-                                class="absolute bottom-0 left-0 w-full h-1 transition-all duration-150 ease-in-out bg-indigo-600 group-hover:h-full"></span>
-                            <span class="absolute right-0 pr-4 duration-200 ease-out group-hover:translate-x-12">
-                                <svg class="w-5 h-5 text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"
-                                    xmlns="http://www.w3.org/2000/svg">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                        d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
-                                </svg>
-                            </span>
-                            <span
-                                class="absolute left-0 pl-2.5 -translate-x-12 group-hover:translate-x-0 ease-out duration-200">
-                                <svg class="w-5 h-5 text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"
-                                    xmlns="http://www.w3.org/2000/svg">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                        d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
-                                </svg>
-                            </span>
-                            <span
-                                class="relative w-full text-left transition-colors duration-200 ease-in-out group-hover:text-white">Login</span>
-                        </a>
-                    </v-card-text>
-
-                    <v-card-text class="text-center">
-                        <a href="/create-user"
-                            class="size relative inline-flex items-center justify-start py-4 pl-10 pr-12 overflow-hidden font-semibold text-indigo-600 transition-all duration-150 ease-in-out rounded hover:pl-10 hover:pr-6 bg-gray-50 group">
-                            <span
-                                class="absolute bottom-0 left-0 w-full h-1 transition-all duration-150 ease-in-out bg-indigo-600 group-hover:h-full"></span>
-                            <span class="absolute right-0 pr-4 duration-200 ease-out group-hover:translate-x-12">
-                                <svg class="w-5 h-5 text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"
-                                    xmlns="http://www.w3.org/2000/svg">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                        d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
-                                </svg>
-                            </span>
-                            <span
-                                class="absolute left-0 pl-2.5 -translate-x-12 group-hover:translate-x-0 ease-out duration-200">
-                                <svg class="w-5 h-5 text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"
-                                    xmlns="http://www.w3.org/2000/svg">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                        d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
-                                </svg>
-                            </span>
-                            <span
-                                class="relative w-full text-left transition-colors duration-200 ease-in-out group-hover:text-white">Cadastrar</span>
-                        </a>
-                    </v-card-text>
-                </v-card>
-            </form>
+                        <v-card-text class="text-center">
+                            <a href="/create-user" class="relative inline-block text-lg group">
+                                <span
+                                    class="relative z-10 block px-5 py-3 overflow-hidden font-medium leading-tight text-gray-800 transition-colors duration-300 ease-out border-2 border-gray-900 rounded-lg group-hover:text-white">
+                                    <span class="absolute inset-0 w-full h-full px-5 py-3 rounded-lg bg-gray-50"></span>
+                                    <span
+                                        class="absolute left-0 w-48 h-48 -ml-2 transition-all duration-300 origin-top-right -rotate-90 -translate-x-full translate-y-12 bg-gray-900 group-hover:-rotate-180 ease"></span>
+                                    <span class="relative">Cadastre-se</span>
+                                </span>
+                                <span
+                                    class="absolute bottom-0 right-0 w-full h-12 -mb-1 -mr-1 transition-all duration-200 ease-linear bg-gray-900 rounded-lg group-hover:mb-0 group-hover:mr-0"
+                                    data-rounded="rounded-lg"></span>
+                            </a>
+                        </v-card-text>
+                    </v-card>
+                </form>
+            </div>
         </div>
-    </div>
+    </section>
 </template>
 
 

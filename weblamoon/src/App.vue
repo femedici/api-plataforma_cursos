@@ -1,23 +1,22 @@
 <template>
-  <v-layout class="rounded rounded-md">
-    <AppBar />
-    <v-navigation-drawer expand-on-hover rail class="bg-grey-darken-3">
-      <ProfileBar />
+  <v-layout class="">
+
+    <v-navigation-drawer class="bg-[#101828]">
+      <SideBar /> 
     </v-navigation-drawer>
 
-    <v-main style="min-height: 300px;">
+    <v-main class="">
       <router-view></router-view>
     </v-main>
   </v-layout>
 </template>
 
 <script>
-import ProfileBar from './components/ProfileBar.vue'
-import AppBar from './components/AppBar.vue'
+import SideBar from './components/SideBar.vue'
 
 export default {
   name: 'App',
-  components: { ProfileBar, AppBar },
+  components: { SideBar},
   data: () => ({
     //
   }),
