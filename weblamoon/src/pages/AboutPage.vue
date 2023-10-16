@@ -51,12 +51,11 @@
   }
   
   .divider {
-    height: 2px; /* Altura menor do divisor */
-    background-color: #ccc; /* Cor do divisor */
-    margin: 10px 0; /* Espaçamento menor entre divisores */
+    height: 2px;
+    background-color: #ccc;
+    margin: 10px 0;
   }
   p{
     margin-top: 30px;
   }
-  /* Estilos adicionais conforme necessário */
   </style>
