@@ -2,9 +2,10 @@
     <div class="user-profile">
       <div class="user-details">
         <h1>Dados do Usuário</h1>
-        <p class ="text-left"><strong>Nome do usuário:</strong> {{ getUserName }}</p>
-        <p class ="text-left"><strong>Email do usuário:</strong> {{ getUserEmail }}</p>
-        <p class ="text-left"><strong>Data de criação do usuário:</strong> {{ getUserDate }}</p>
+        <img class="profile-image" src="https://static.vecteezy.com/system/resources/previews/020/911/739/non_2x/user-profile-icon-profile-avatar-user-icon-male-icon-face-icon-profile-icon-free-png.png" alt="Foto de Perfil">
+        <p class="text-left"><strong>Nome do usuário:</strong> {{ getUserName }}</p>
+        <p class="text-left"><strong>Email do usuário:</strong> {{ getUserEmail }}</p>
+        <p class="text-left"><strong>Data de criação do usuário:</strong> {{ getUserDate }}</p>
       </div>
   
       <div class="button-container">
@@ -95,5 +96,10 @@ export default {
 
 button:hover.delete-button {
   background-color: #cc3e22;
+}
+.profile-image {
+  width: 100px; /* Ajuste o tamanho da imagem conforme necessário */
+  height: 100px; /* Ajuste o tamanho da imagem conforme necessário */
+  border-radius: 50%; /* Torna a imagem circular (borda arredondada) */
 }
 </style>
