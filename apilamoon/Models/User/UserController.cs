@@ -1,5 +1,6 @@
 using MainProfiles.Models;
 using Microsoft.AspNetCore.Mvc;
+using MongoDB.Bson;
 using MongoDB.Driver;
 
 namespace MainProfiles.Controllers;
@@ -23,61 +24,126 @@ public class UserController : ControllerBase
     }
 
     [HttpPost]
-    public IActionResult Post(User user)
+    public ActionResult<User> Post([FromBody] User newUser)
     {
-        _users.InsertOne(user);
-        return Ok();
-    }
+        try
+        {
+            // Validate the incoming user data
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
 
-    [HttpGet("cpf/{cpf}")]
-    //Faz a consulta de apenas 1 usuário, com o cpf
-    public ActionResult<User> GetByCpf(string cpf)
+            // You may want to add more validation logic for the user data
+
+            // Set the creation date
+            newUser.CreationDate = DateTime.Now.ToString();
+
+            // Insert the new user document into MongoDB
+            _users.InsertOne(newUser);
+
+            // Return a 201 Created response with the newly created user
+            return CreatedAtAction("GetById", new { id = newUser.Id }, newUser);
+        }
+        catch (Exception ex)
+        {
+            // Handle any exceptions, log them, and return an error response
+            return StatusCode(500, $"Internal server error: {ex.Message}");
+        }
+    }
+    [HttpGet("id/{id}")]
+
+    public async Task<ActionResult<User>> GetById(string id)
     {
-        var user = _users.Find(User => User.Cpf == cpf).FirstOrDefault();
+        if (!ObjectId.TryParse(id, out ObjectId objectId))
+        {
+            return BadRequest("Invalid ObjectId format");
+        }
+
+        var filterDefinition = Builders<User>.Filter.Eq(user => user.Id, objectId);
+        var user = await _users.Find(filterDefinition).SingleOrDefaultAsync();
+
         if (user == null)
         {
             return NotFound();
         }
+
         return Ok(user);
     }
 
-    [HttpGet("email/{email}")]
-    //Faz a consulta de apenas 1 usuário, com o cpf
-    public ActionResult<User> GetByEmail(string email)
+
+    //Faz a consulta do usuario verificando o email e senha
+    [HttpGet("auth")]
+    public ActionResult<User> GetLogin([FromQuery] string EmailRequest, [FromQuery] string PasswordRequest)
     {
-        var user = _users.Find(User => User.Email == email).FirstOrDefault();
+
+        //verifica o usuario pelo email
+        var userAuth = _users.Find(User => User.Email == EmailRequest).FirstOrDefault();
+        if (userAuth == null)
+        {
+            //caso nao achar o email ja cai
+            return NotFound();
+        }
+
+        //verifica se as senhas batem
+        if (userAuth.Password != PasswordRequest)
+        {
+            return Unauthorized(); //A senha está incorreta;
+        }
+
+        //Passa o usuário autorizado pro login
+        return Ok(userAuth);
+    }
+
+
+    //Altera a senha do usuario pelo Id
+    [HttpPut("{id}")]
+    public async Task<IActionResult> ChangePasswordById(string id, [FromBody] string newPassword)
+    {
+        if (!ObjectId.TryParse(id, out ObjectId objectId))
+        {
+            return BadRequest("Invalid ObjectId format");
+        }
+
+        var filterDefinition = Builders<User>.Filter.Eq(user => user.Id, objectId);
+        var user = await _users.Find(filterDefinition).SingleOrDefaultAsync();
+
         if (user == null)
         {
             return NotFound();
         }
-        return Ok(user);
-    }
 
-    [HttpPut("{cpf}")]
-    public IActionResult PutByCpf(string cpf, User updatedUser)
-    {
-        var filter = Builders<User>.Filter.Eq(u => u.Cpf, cpf);
-        var update = Builders<User>.Update
-            .Set(u => u.Name, updatedUser.Name)
-            .Set(u => u.Email, updatedUser.Email)
-            .Set(u => u.Password, updatedUser.Password);
-
-        var updateResult = _users.UpdateOne(filter, update);
-
-        if (updateResult.ModifiedCount == 0)
+        try
         {
-            return NotFound();
+            // Update the user's password
+            var updateDefinition = Builders<User>.Update.Set(u => u.Password, newPassword);
+
+            var updateResult = await _users.UpdateOneAsync(filterDefinition, updateDefinition);
+
+            if (updateResult.ModifiedCount == 0)
+            {
+                return NotFound();
+            }
+
+            return Ok();
+        }
+        catch (Exception ex)
+        {
+            // Handle any exceptions, log them, and return an error response
+            return StatusCode(500, $"Internal server error: {ex.Message}");
+        }
+    }
+    // Deleta por id
+    [HttpDelete("{id}")]
+    public async Task<IActionResult> DeleteById(string id)
+    {
+        if (!ObjectId.TryParse(id, out ObjectId objectId))
+        {
+            return BadRequest("Invalid ObjectId format");
         }
 
-        return Ok();
-    }
-
-    // HTTP DELETE por CPF
-    [HttpDelete("{cpf}")]
-    public IActionResult DeleteByCpf(string cpf)
-    {
-        var filter = Builders<User>.Filter.Eq(u => u.Cpf, cpf);
-        var deleteResult = _users.DeleteOne(filter);
+        var filterDefinition = Builders<User>.Filter.Eq(user => user.Id, objectId);
+        var deleteResult = await _users.DeleteOneAsync(filterDefinition);
 
         if (deleteResult.DeletedCount == 0)
         {

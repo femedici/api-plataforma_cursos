@@ -1,6 +1,8 @@
 using MainProfiles.Models;
 using Microsoft.AspNetCore.Mvc;
 using MongoDB.Driver;
+using MongoDB.Bson;
+
 
 namespace MainProfiles.Controllers;
 
@@ -23,23 +25,46 @@ public class CoursesController : ControllerBase
     }
 
     [HttpPost]
-    public IActionResult Post(Course course)
+    public ActionResult<User> Post([FromBody] Course newCourse)
+{
+    try
     {
-        _courses.InsertOne(course);
-        return Ok();
+        if (!ModelState.IsValid)
+        {
+            return BadRequest(ModelState);
+        }
+
+       // newCourse.CreationDate = DateTime.Now.ToString();
+
+        _courses.InsertOne(newCourse);
+
+        return CreatedAtAction("GetById", new { id = newCourse.Id }, newCourse);
     }
+    catch (Exception ex)
+    {
+        return StatusCode(500, $"Internal server error: {ex.Message}");
+    }
+}
 
     [HttpGet("id/{id}")]
     //Faz a consulta de apenas 1 curso, com o Id
-    public ActionResult<Course> GetById(int id)
+    public async Task<ActionResult<Course>> GetById(string id)
+{
+    if (!ObjectId.TryParse(id, out ObjectId objectId))
     {
-        var course = _courses.Find(Course => Course.Id == id).FirstOrDefault();
-        if (course == null)
-        {
-            return NotFound();
-        }
-        return Ok(course);
+        return BadRequest("Invalid ObjectId format");
     }
+
+    var filterDefinition = Builders<Course>.Filter.Eq(course => course.Id, objectId);
+    var course = await _courses.Find(filterDefinition).SingleOrDefaultAsync();
+
+    if (course == null)
+    {
+        return NotFound();
+    }
+
+    return Ok(course);
+}
 
     [HttpGet("title/{title}")]
     //Faz a consulta de apenas 1 curso, com o título
@@ -55,22 +80,21 @@ public class CoursesController : ControllerBase
 
     [HttpPut("{id}")]
     //Faz a consulta de apenas 1 curso, com o Id
-    public IActionResult PutById(int id, Course updatedCourse)
+    public IActionResult PutById(string id, Course updatedCourse)
     {
+        if (!ObjectId.TryParse(id, out ObjectId objectId))
+    {
+        return BadRequest("Invalid ObjectId format");
+    }
 
-        var filter = Builders<Course>.Filter.Eq(c => c.Id, id);
+        var filter = Builders<Course>.Filter.Eq(c => c.Id, objectId);
         var update = Builders<Course>.Update
             .Set(c => c.Title, updatedCourse.Title)
-            .Set(c => c.Icon, updatedCourse.Icon)
-            .Set(c => c.Cover, updatedCourse.Cover)
-            .Set(c => c.body, updatedCourse.body)
+            .Set(c => c.ImageCourse, updatedCourse.ImageCourse)
+            .Set(c => c.MainVideo, updatedCourse.MainVideo)
+            .Set(c => c.BodyText, updatedCourse.BodyText)
             .Set(c => c.Attachments, updatedCourse.Attachments)
-            .Set(c => c.Password, updatedCourse.Password)
-            .Set(c => c.Comments, updatedCourse.Comments)
-
-            .Set(c => c.General_Progression, updatedCourse.General_Progression)
-            .Set(c => c.User_Progression, updatedCourse.User_Progression);
-
+            .Set(c => c.Description, updatedCourse.Description);
         var updateResult = _courses.UpdateOne(filter, update);
 
         if (updateResult.ModifiedCount == 0)
@@ -83,9 +107,14 @@ public class CoursesController : ControllerBase
 
     // HTTP DELETE por Id
     [HttpDelete("{id}")]
-    public IActionResult DeleteById(int id)
+    public IActionResult DeleteById(string id)
     {
-        var filter = Builders<Course>.Filter.Eq(c => c.Id, id);
+        if (!ObjectId.TryParse(id, out ObjectId objectId))
+    {
+        return BadRequest("Invalid ObjectId format");
+    }
+
+        var filter = Builders<Course>.Filter.Eq(c => c.Id, objectId);
         var deleteResult = _courses.DeleteOne(filter);
 
         if (deleteResult.DeletedCount == 0)

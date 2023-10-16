@@ -1,10 +1,12 @@
 import axios from '@/../src/axios';
+import router from '@/routes';
 
 export default {
     data() {
         const courseId = this.$route.params.id;
         return {
             formData: {
+                id: '',
                 referenceCourse: courseId,
                 title: '',
                 body: '',
@@ -28,9 +30,12 @@ export default {
                 this.error = false;
 
                 //
+                window.alert('Topico criado com sucesso!');
+                router.push(`/view-course/${this.formData.referenceCourse}`);
             } catch (error) {
                 // Lide com erros aqui, por exemplo, exiba uma mensagem de erro
                 console.error('Erro ao enviar dados:', error);
+                window.alert('Erro ao criar um tópico. Por favor, tente novamente.');
             }
         },
     },

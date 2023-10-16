@@ -1,0 +1,47 @@
+/* .container1 {
+  font-family: 'BR Firma', sans-serif;
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #810b67;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+
+} */
+
+.button1 {
+  font-family: 'BR Firma', sans-serif;
+  text-transform: uppercase;
+  width: flex;
+  padding: .4rem;
+  border-radius: .3rem;
+  background-color: #810b67;
+  color: white;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.button2 {
+  font-family: 'BR Firma', sans-serif;
+  text-transform: uppercase;
+  width: flex;
+  padding: .4rem;
+  border-radius: .3rem;
+  background-color: #EF6C00;
+  color: white;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.button-container {
+  display: flex;
+  gap: 20px; /* Espaço horizontal entre os botões */
+  align-items: center; /* Alinha os botões verticalmente ao centro */
+  justify-content: center; /* Centraliza horizontalmente */
+  margin-top: 20px; /* Espaço superior opcional para afastar os botões do conteúdo acima */
+}
+
+.text-bold {
+  font-size: 18px;
+  font-weight: bold;
+}

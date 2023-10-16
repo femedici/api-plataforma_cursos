@@ -1,27 +1,27 @@
 <template>
-    <div>
+    <div class="user-form">
         <form @submit="submitForm">
-            <label for="title">Titulo do Tópico:</label>
-            <input type="text" id="title" v-model="formData.title" required>
-
-            <label for="body">Conteúdo:</label>
-            <input type="text" id="text" v-model="formData.body" required>
-
-            <label for="attachments">Anexos:</label>
-            <input type="text" id="text" v-model="formData.attachments" required>
-
-            <button type="submit">Enviar</button>
-
-            <div v-if="error === false">
-                <p>Sucesso ao criar tópico</p>
+            <div class="Title">
+                Crie o tópico
             </div>
-            <div v-if="error">
-                <p>Ocorreu um erro ao criar: {{ error }}</p>
-            </div>
+            <br><br>
+            <label for="title" class="label">Titulo do Tópico:</label>
+            <input type="text" id="search-bars" v-model="formData.title" required>
+
+            <label for="id" class="label">Código de identificação (2 Numeros)</label>
+            <input type="text" id="search-bars" v-model="formData.id" required>
+
+            <label for="body" class="label">Conteúdo:</label>
+            <input type="text" id="search-bars" v-model="formData.body" required>
+
+            <label for="attachments" class="label">Anexos:</label>
+            <input type="text" id="search-bars" v-model="formData.attachments" required>
+
+            <button type="submit" class="centralize">Enviar</button>
         </form>
     </div>
 </template>
   
 <script src="./TopicsCreate.js"></script>
 
-<style src="./style.css"></style>
+<style src="./TopicCreate.css"></style>

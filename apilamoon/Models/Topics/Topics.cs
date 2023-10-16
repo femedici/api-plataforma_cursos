@@ -6,30 +6,23 @@ namespace MainProfiles.Models;
 public class Topic
 {
     [Required]
-    [BsonElement("Referencecourse")]
-    public int? ReferenceCourse { get; set; }
+    [BsonElement("id")]
+    public int Id { get; set; }
+
+    [Required]
+    [BsonElement("referencecourse")]
+    public int ReferenceCourse { get; set; }
 
     [BsonElement("title")]
     [Required]
     public string? Title { get; set; }
 
-    // [BsonElement("capa")]
-    // [Required]
-    // public string? Capa { get; set; }
+    [BsonElement("description")]
+    public string? Description { get; set; }
 
-    [BsonElement("body")]
-    [Required]
-    public string? Body { get; set; } 
-    
-    [BsonElement("attachments")]
-    [Required]
-    public string? Attachments { get; set;} 
-    
-    [BsonElement("user_comments")]
-    [Required]
-    public string? User_Comments { get; set; }
+    [BsonElement("video")]
+    public string? Video { get; set; }
 
-    // [BsonElement("progressao")]
-    // [Required]
-    // public string? Progressao { get; set; }
+    [BsonElement("progress")]
+    public bool? Progress { get; set; }
 }

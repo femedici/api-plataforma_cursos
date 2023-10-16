@@ -1,28 +1,27 @@
 <template>
-    <div>
+    <div class="course-form">
+        <div class="Title">
+            Crie seu curso
+        </div>
+        <br><br>
         <form @submit="submitForm">
-            <label for="id">Código de identificação</label>
-            <input type="text" id="title" v-model="formData.id" required>
-            
-            <label for="title">Titulo do Curso:</label>
-            <input type="text" id="title" v-model="formData.title" required>
+            <label for="id" labels>Código de identificação (3 Numeros)<br></label>
+            <input type="text" id="search-bars" v-model="formData.id" required>
 
-            <label for="body">Conteúdo:</label>
-            <input type="text" id="text" v-model="formData.body" required>
+            <label for="title" labels><br>Titulo do Curso:<br></label>
+            <input type="text" id="search-bars" v-model="formData.title" required>
 
-            <label for="attachments">Anexos:</label>
-            <input type="text" id="text" v-model="formData.attachments" required>
+            <label for="body"><br>Conteúdo:<br></label>
+            <input type="text" id="search-bars" v-model="formData.body" required>
 
-            <label for="password">Senha de Acesso:</label>
-            <input type="text" id="text" v-model="formData.password" required>
+            <label for="attachments" labels><br>Anexos:<br></label>
+            <input type="text" id="search-bars" v-model="formData.attachments" required>
 
-            <button type="submit">Enviar</button>
-
-            <div v-if="error === false">
-                <p>Sucesso ao criar curso</p>
-            </div>
-            <div v-if="error">
-                <p>Ocorreu um erro ao criar: {{ error }}</p>
+            <label for="password" labels><br>Senha de Acesso:<br></label>
+            <input type="text" id="search-bars" v-model="formData.password" required>
+            <br>
+            <div>
+                <button type="submit">Enviar</button>
             </div>
         </form>
     </div>

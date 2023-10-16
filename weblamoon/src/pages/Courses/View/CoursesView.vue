@@ -1,26 +1,28 @@
 <template>
-    <div class="container">
+    <div class="container2">
         <h1>Detalhes do Curso</h1>
         <div v-if="course">
             <h2>{{ course.title }}</h2>
-            <p>{{ course.id }}</p>
-            <p>{{ course.body }}</p>
-            <p>{{ course.former }}</p>
-            <p>{{ course.comments }}</p>
+            <p>Código de referencia: {{ course.id }}</p>
+            <p>Sobre o curso: {{ course.body }}</p>
+            <p>Anexos: {{ course.attachments }}</p>
         </div>
         <h3>Tópicos:</h3>
+        <h3>-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+        </h3>
         <!-- Use topics em vez de data para iterar sobre os tópicos -->
         <div v-for="(item, index) in topics" :key="index">
-            <p>{{ item.title }}</p>
+            <p class="text-bold">{{ item.title }}</p>
             <p>{{ item.body }}</p>
-            <router-link :to="'/view-topic/' + item.title" class="nav-link">VER</router-link>
+            <router-link :to="'/view-topic/' + item.title" class="button1">Acessar</router-link>
+            <h3>-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+            </h3>
         </div>
-        <br><br>
-        <router-link :to="'/create-topic/' + course.id" class="nav-link">Criar Tópico</router-link>
-        <br><br>
-        <router-link :to="'/alter-course/' + course.id" class="nav-link">Alterar Curso</router-link>
-        <br><br>
-        <button type="button" @click="confirmDeleteCourse">Deletar Curso</button>
+        <router-link :to="'/create-topic/' + course.id" class="button2">Criar Tópico</router-link>
+        <div class="button-container">
+            <router-link :to="'/alter-course/' + course.id" class="button2">Alterar Curso</router-link>
+            <button type="button" @click="confirmDeleteCourse" class="button2">Deletar Curso</button>
+        </div>
     </div>
 </template>
 

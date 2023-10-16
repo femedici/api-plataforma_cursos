@@ -1,4 +1,5 @@
 import axios from '@/../src/axios';
+import router from '@/routes';
 
 export default {
     data() {
@@ -33,5 +34,25 @@ export default {
                 this.error = error.message;
                 console.error("Erro ao buscar tópicos:", error);
             });
+    },
+    methods: {
+        deleteCourse(id) {
+            axios.delete(`/Courses/${id}`)
+                .then(response => {
+                    this.course = response.data;
+                    window.alert('Curso deletado com sucesso!');
+                    router.push(`/list-courses`);
+                })
+                .catch(error => {
+                    console.error("Erro ao deletar curso:", error);
+                });
+        },
+        confirmDeleteCourse() {
+            const shouldDelete = window.confirm("Tem certeza de que deseja deletar este curso?");
+
+            if (shouldDelete) {
+                this.deleteCourse(this.course.id);
+            }
+        },
     },
 };
