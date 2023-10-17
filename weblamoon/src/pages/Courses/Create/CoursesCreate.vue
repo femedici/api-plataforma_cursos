@@ -1,32 +1,33 @@
 <template>
     <div class="course-form">
-        <div class="Title">
-            Crie seu curso
+      <div class="title">
+        Crie seu curso
+      </div>
+  
+      <form @submit="submitForm">
+        <label for="id" class="labels">Código de identificação (3 números):</label>
+        <input type="text" class="input-field" v-model="formData.id" required>
+  
+        <label for="title" class="labels">Título do Curso:</label>
+        <input type="text" class="input-field" v-model="formData.title" required>
+  
+        <label for="body" class="labels">Conteúdo:</label>
+        <input type="text" class="input-field" v-model="formData.body" required>
+  
+        <label for="attachments" class="labels">Anexos:</label>
+        <input type="text" class="input-field" v-model="formData.attachments" required>
+  
+        <label for="password" class="labels">Senha de Acesso:</label>
+        <input type="text" class="input-field" v-model="formData.password" required>
+  
+        <div class="button-container">
+          <button type="submit" class="submit-button">Enviar</button>
         </div>
-        <br><br>
-        <form @submit="submitForm">
-            <label for="id" labels>Código de identificação (3 Numeros)<br></label>
-            <input type="text" id="search-bars" v-model="formData.id" required>
-
-            <label for="title" labels><br>Titulo do Curso:<br></label>
-            <input type="text" id="search-bars" v-model="formData.title" required>
-
-            <label for="body"><br>Conteúdo:<br></label>
-            <input type="text" id="search-bars" v-model="formData.body" required>
-
-            <label for="attachments" labels><br>Anexos:<br></label>
-            <input type="text" id="search-bars" v-model="formData.attachments" required>
-
-            <label for="password" labels><br>Senha de Acesso:<br></label>
-            <input type="text" id="search-bars" v-model="formData.password" required>
-            <br>
-            <div>
-                <button type="submit">Enviar</button>
-            </div>
-        </form>
+      </form>
     </div>
-</template>
+  </template>
+  
   
 <script src="./CoursesCreate.js"></script>
 
-<style src="./style.css"></style>
+<style scoped src="./style.css"></style>
