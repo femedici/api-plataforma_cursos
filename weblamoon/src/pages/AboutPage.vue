@@ -4,9 +4,10 @@
         <div class="about-section" v-for="(topic, key, index) in topics" :key="key">
           <div class="about-card">
             <h1>{{ topic.title }}</h1>
+            <v-divider></v-divider>
             <p>{{ topic.text }}</p>
-          </div>
-          <v-divider class="divider" v-if="index < Object.keys(topics).length - 1"></v-divider>
+        </div>
+        <v-divider class="divider" v-if="index < Object.keys(topics).length - 1"></v-divider>
         </div>
       </div>
     </div>
@@ -54,6 +55,9 @@
     height: 2px;
     background-color: #ccc;
     margin: 10px 0;
+  }
+  h1 {
+    font-size:x-large;
   }
   p{
     margin-top: 30px;
