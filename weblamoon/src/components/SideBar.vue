@@ -11,6 +11,8 @@
             <v-list>
                 <v-list-item prepend-icon="mdi-view-dashboard" title="Cursos" to="/list-courses"
                 class="font-sans text-zinc-50 text-xl"></v-list-item>
+                <v-list-item prepend-icon="mdi-playlist-check" title="Cursos Inscritos" to=""
+                class="font-sans text-zinc-50 text-xl"></v-list-item>
                 <v-list-item prepend-icon="mdi-login" title="Login" to="/login"
                 class="font-sans text-zinc-50 text-xl"></v-list-item>
                 <v-list-item prepend-icon="mdi-format-align-left" title="Sobre" to="/about"
