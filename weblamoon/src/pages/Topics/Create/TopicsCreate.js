@@ -1,6 +1,9 @@
 import axios from '@/../src/axios';
 import router from '@/routes';
 
+axios.defaults.headers.common['Content-Type'] = 'multipart/form-data';
+
+
 export default {
     data() {
         const courseId = this.$route.params.id;
@@ -11,6 +14,7 @@ export default {
                 title: '',
                 body: '',
                 atachments: '',
+                video: '',
                 user_comments: 'xxxxx',
             },
             error: null,
@@ -20,6 +24,7 @@ export default {
     methods: {
         submitForm() {
             try {
+
                 const response = axios.post('/Topic', this.formData);
                 // Lide com a resposta aqui, por exemplo, exiba uma mensagem de sucesso
                 console.log('Dados enviados com sucesso:', response.data);
@@ -27,6 +32,7 @@ export default {
                 this.formData.title = '';
                 this.formData.body = '';
                 this.formData.atachments = '';
+                this.formData.video = '';
                 this.error = false;
 
                 //

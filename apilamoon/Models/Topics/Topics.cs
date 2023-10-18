@@ -21,7 +21,7 @@ public class Topic
     public string? Description { get; set; }
 
     [BsonElement("video")]
-    public string? Video { get; set; }
+    public string[]? Video { get; set; }
 
     [BsonElement("progress")]
     public bool? Progress { get; set; }

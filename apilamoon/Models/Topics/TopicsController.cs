@@ -22,7 +22,7 @@ public class TopicController : ControllerBase
     }
 
     [HttpPost]
-    public IActionResult Post(Topic topic)
+    public IActionResult Post([FromForm] Topic topic)
     {
         _topic.InsertOne(topic);
         return Ok();
