@@ -25,26 +25,26 @@ public class CoursesController : ControllerBase
     }
 
     [HttpPost]
-
     public ActionResult<User> Post(Course newCourse)
+{
+    try
     {
-        try
+        if (!ModelState.IsValid)
         {
-            if (!ModelState.IsValid)
-            {
-                return BadRequest(ModelState);
-            }
+            return BadRequest(ModelState);
+        }
 
-            _courses.InsertOne(newCourse);
-            return CreatedAtAction("GetById", new { id = newCourse.Id }, newCourse);
-        }
-        catch (Exception ex)
-        {
-            return StatusCode(500, $"Internal server error: {ex.Message}");
-        }
+       // newCourse.CreationDate = DateTime.Now.ToString();
+
+        _courses.InsertOne(newCourse);
+
+        return CreatedAtAction("GetById", new { id = newCourse.Id }, newCourse);
     }
-
-
+    catch (Exception ex)
+    {
+        return StatusCode(500, $"Internal server error: {ex.Message}");
+    }
+}
 
     [HttpGet("id/{id}")]
     //Faz a consulta de apenas 1 curso, com o Id
