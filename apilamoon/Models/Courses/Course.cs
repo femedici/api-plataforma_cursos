@@ -36,8 +36,8 @@ public class Course
     [BsonElement("topicsCount")]
     public int TopicsCount { get; set; }
 
-    [BsonElement("creatorId")]
-    public int CreatorId { get; set; }
+    [BsonElement("creator")]
+    public string? Creator { get; set; }
     public Course()
     {
         Id = ObjectId.GenerateNewId();
