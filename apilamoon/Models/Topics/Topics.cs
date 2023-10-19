@@ -5,7 +5,6 @@ namespace MainProfiles.Models;
 [BsonIgnoreExtraElements]
 public class Topic
 {
-    [Required]
     [BsonElement("id")]
     public int Id { get; set; }
 
