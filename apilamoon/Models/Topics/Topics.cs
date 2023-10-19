@@ -6,8 +6,8 @@ namespace MainProfiles.Models;
 [BsonIgnoreExtraElements]
 public class Topic
 {
-    [BsonId, BsonElement("id"), BsonRepresentation(BsonType.ObjectId)]
-    public ObjectId Id { get; set; } 
+    [BsonElement("id")]
+    public int Id { get; set; }
 
     [Required]
     [BsonElement("referencecourse")]
@@ -25,9 +25,4 @@ public class Topic
 
     [BsonElement("progress")]
     public bool? Progress { get; set; }
-
-    public Topic()
-    {
-        Id = ObjectId.GenerateNewId();
-    }
 }

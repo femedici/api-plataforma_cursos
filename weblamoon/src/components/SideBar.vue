@@ -17,6 +17,8 @@
                 class="font-sans text-zinc-50 text-xl"></v-list-item>
                 <v-list-item prepend-icon="mdi-format-align-left" title="Sobre" to="/about"
                 class="font-sans text-zinc-50 text-xl"></v-list-item>
+                <v-list-item prepend-icon="mdi-shield-account-variant" title="Administração" to="/admin-users"
+                class="font-sans text-zinc-50 text-xl"></v-list-item>
             </v-list>
         </div>
         
