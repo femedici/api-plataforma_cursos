@@ -1,6 +1,5 @@
 using MainProfiles.Models;
 using Microsoft.AspNetCore.Mvc;
-using MongoDB.Bson;
 using MongoDB.Driver;
 
 namespace MainProfiles.Controllers;
@@ -33,7 +32,7 @@ public class TopicController : ControllerBase
     }
 
     [HttpGet("referencecourse/{referencecourse}")]
-    public ActionResult<Topic> GetByReferenceCourse(string referencecourse)
+    public ActionResult<Topic> GetByReferenceCourse(int referencecourse)
     {
         var topics = _topic.Find(topic => topic.ReferenceCourse == referencecourse).ToList();
         if (topics == null)
@@ -55,14 +54,9 @@ public class TopicController : ControllerBase
     }
 
     [HttpPut("{id}")]
-    public IActionResult PutByTitle(string id, Topic updatedTopic)
+    public IActionResult PutByTitle(int id, Topic updatedTopic)
     {
-         if (!ObjectId.TryParse(id, out ObjectId objectId))
-        {
-            return BadRequest("Invalid ObjectId format");
-        }
-
-        var filter = Builders<Topic>.Filter.Eq(u => u.Id, objectId);
+        var filter = Builders<Topic>.Filter.Eq(u => u.Id, id);
         var update = Builders<Topic>.Update
             .Set(u => u.Title, updatedTopic.Title)
             .Set(u => u.Description, updatedTopic.Description)
@@ -79,15 +73,10 @@ public class TopicController : ControllerBase
 
     //Altera o status do progresso
     [HttpPut("{id}/ChangeProgress")]
-    public IActionResult ChangeProgressById(string id, [FromBody] bool newProgress)
+    public IActionResult ChangeProgressById(int id, [FromBody] bool newProgress)
     {
-         if (!ObjectId.TryParse(id, out ObjectId objectId))
-        {
-            return BadRequest("Invalid ObjectId format");
-        }
-
         // Verifique se o usuário com o id especificado existe
-        var filter = Builders<Topic>.Filter.Eq(u => u.Id, objectId);
+        var filter = Builders<Topic>.Filter.Eq(u => u.Id, id);
         var topic = _topic.Find(filter).FirstOrDefault();
 
         if (topic == null)

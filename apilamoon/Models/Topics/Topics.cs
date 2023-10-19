@@ -1,5 +1,4 @@
 using System.ComponentModel.DataAnnotations;
-using MongoDB.Bson;
 using MongoDB.Bson.Serialization.Attributes;
 
 namespace MainProfiles.Models;
@@ -11,7 +10,7 @@ public class Topic
 
     [Required]
     [BsonElement("referencecourse")]
-    public string? ReferenceCourse { get; set; }
+    public int ReferenceCourse { get; set; }
 
     [BsonElement("title")]
     [Required]
@@ -21,7 +20,7 @@ public class Topic
     public string? Description { get; set; }
 
     [BsonElement("video")]
-    public string? Video { get; set; }
+    public string[]? Video { get; set; }
 
     [BsonElement("progress")]
     public bool? Progress { get; set; }
