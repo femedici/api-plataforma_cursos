@@ -7,12 +7,12 @@ import ViewUser from './pages/User/UserView.vue'
 import AlterUser from './pages/User/UserAlter.vue'
 import CreateCourse from './pages/Courses/Create/CoursesCreate.vue'
 import ListCourses from './pages/Courses/CoursesList.vue'
-import ViewCourse from './pages/Courses/View/CoursesView.vue'
+import ViewCourse from './pages/Courses/CoursesView.vue'
 import AlterCourse from './pages/Courses/Alter/CoursesAlter.vue'
 import CreateTopic from './pages/Topics/Create/TopicsCreate.vue'
 import ViewTopic from './pages/Topics/View/TopicView.vue'
 
-const router = createRouter({
+const router = createRouter({   
     history: createWebHistory(process.env.BASE_URL),
     routes: [
         {
@@ -47,7 +47,7 @@ const router = createRouter({
             component: ListCourses
         },
         {
-            path: '/view-course',
+            path: '/view-course/:title',
             component: ViewCourse
         },
         {
