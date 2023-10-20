@@ -48,7 +48,7 @@ const router = createRouter({
             component: ListCourses
         },
         {
-            path: '/view-course/:title',
+            path: '/view-course/:id',
             component: ViewCourse
         },
         {
