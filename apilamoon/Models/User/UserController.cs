@@ -1,6 +1,5 @@
 using MainProfiles.Models;
 using Microsoft.AspNetCore.Mvc;
-using MongoDB.Bson;
 using MongoDB.Driver;
 
 namespace MainProfiles.Controllers;
@@ -10,6 +9,7 @@ namespace MainProfiles.Controllers;
 public class UserController : ControllerBase
 {
     IMongoCollection<User> _users;
+    private List<int> usedIDs = new List<int>(); //lista de ID's do sistema
     public UserController(MeuMongo meuMongo)
     {
         _users = meuMongo.DB.GetCollection<User>("users");
@@ -34,7 +34,8 @@ public class UserController : ControllerBase
                 return BadRequest(ModelState);
             }
 
-            // You may want to add more validation logic for the user data
+            // Generate a unique 5-digit ID for the new user
+            newUser.Id = GenerateUnique5DigitID();
 
             // Set the creation date
             newUser.CreationDate = DateTime.Now.ToString();
@@ -51,23 +52,15 @@ public class UserController : ControllerBase
             return StatusCode(500, $"Internal server error: {ex.Message}");
         }
     }
+
     [HttpGet("id/{id}")]
-
-    public async Task<ActionResult<User>> GetById(string id)
+    public ActionResult<User> GetById(int id)
     {
-        if (!ObjectId.TryParse(id, out ObjectId objectId))
-        {
-            return BadRequest("Invalid ObjectId format");
-        }
-
-        var filterDefinition = Builders<User>.Filter.Eq(user => user.Id, objectId);
-        var user = await _users.Find(filterDefinition).SingleOrDefaultAsync();
-
+        var user = _users.Find(User => User.Id == id).FirstOrDefault();
         if (user == null)
         {
             return NotFound();
         }
-
         return Ok(user);
     }
 
@@ -98,15 +91,11 @@ public class UserController : ControllerBase
 
     //Altera a senha do usuario pelo Id
     [HttpPut("{id}")]
-    public async Task<IActionResult> ChangePasswordById(string id, [FromBody] string newPassword)
+    public async Task<IActionResult> ChangePasswordById(int id, [FromBody] string newPassword)
     {
-        if (!ObjectId.TryParse(id, out ObjectId objectId))
-        {
-            return BadRequest("Invalid ObjectId format");
-        }
 
-        var filterDefinition = Builders<User>.Filter.Eq(user => user.Id, objectId);
-        var user = await _users.Find(filterDefinition).SingleOrDefaultAsync();
+        var filter = Builders<User>.Filter.Eq(u => u.Id, id);
+        var user = await _users.Find(filter).SingleOrDefaultAsync();
 
         if (user == null)
         {
@@ -118,7 +107,7 @@ public class UserController : ControllerBase
             // Update the user's password
             var updateDefinition = Builders<User>.Update.Set(u => u.Password, newPassword);
 
-            var updateResult = await _users.UpdateOneAsync(filterDefinition, updateDefinition);
+            var updateResult = await _users.UpdateOneAsync(filter, updateDefinition);
 
             if (updateResult.ModifiedCount == 0)
             {
@@ -135,15 +124,10 @@ public class UserController : ControllerBase
     }
     // Deleta por id
     [HttpDelete("{id}")]
-    public async Task<IActionResult> DeleteById(string id)
+    public async Task<IActionResult> DeleteById(int id)
     {
-        if (!ObjectId.TryParse(id, out ObjectId objectId))
-        {
-            return BadRequest("Invalid ObjectId format");
-        }
 
-        var filterDefinition = Builders<User>.Filter.Eq(user => user.Id, objectId);
-        var deleteResult = await _users.DeleteOneAsync(filterDefinition);
+        var deleteResult = await _users.DeleteOneAsync(User => User.Id == id);
 
         if (deleteResult.DeletedCount == 0)
         {
@@ -151,6 +135,50 @@ public class UserController : ControllerBase
         }
 
         return NoContent();
+    }
+
+    // ---------------------------
+    // TRATAMENTO DO ID 
+    // ---------------------------
+
+    [ApiExplorerSettings(IgnoreApi = true)] // Oculta a ação do Swagger
+    [NonAction] // Indica que esta ação não é uma ação da API
+    public int GenerateUnique5DigitID()
+    {
+        Random random = new Random();
+        int maxAttempts = 10000; // You can adjust this value based on your needs.
+
+        for (int attempt = 0; attempt < maxAttempts; attempt++)
+        {
+            int newID = random.Next(10000, 99999); // Generates a 5-digit random integer.
+
+            // Check if the generated ID is unique (not in use).
+            if (!IsIDAlreadyUsed(newID))
+            {
+                // If it's unique, you can mark it as used in your data source.
+                MarkIDAsUsed(newID);
+                return newID;
+            }
+        }
+
+        // If the maximum number of attempts is reached and no unique ID is found, you may handle it accordingly.
+        throw new Exception("Unable to generate a unique 5-digit ID.");
+    }
+
+    // Check if an ID is already used
+    private bool IsIDAlreadyUsed(int id)
+    {
+        // Implement logic to check if the ID already exists in your data source.
+        // For this example, we check against the in-memory list.
+        return usedIDs.Contains(id);
+    }
+
+    // Mark an ID as used
+    private void MarkIDAsUsed(int id)
+    {
+        // Implement logic to mark the ID as used in your data source.
+        // For this example, we add it to the in-memory list.
+        usedIDs.Add(id);
     }
 
 }

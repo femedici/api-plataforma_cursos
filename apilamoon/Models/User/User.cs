@@ -7,10 +7,11 @@ namespace MainProfiles.Models;
 
 public class User
 {
-    [BsonId, BsonElement("id"), BsonRepresentation(BsonType.ObjectId)]
-    public ObjectId Id { get; set; } 
+    [BsonElement("id")]
+    public int Id { get; set; } 
 
     [BsonElement("name")]
+    [Required]
     public string? Name { get; set; }
 
     [BsonElement("email")]
@@ -26,9 +27,4 @@ public class User
 
     [BsonElement("creationDate")]
     public string? CreationDate {get; set;}
-
-    public User()
-    {
-        Id = ObjectId.GenerateNewId();
-    }
 }
