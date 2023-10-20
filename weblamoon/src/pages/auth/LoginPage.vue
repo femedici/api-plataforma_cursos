@@ -17,8 +17,8 @@
                     <v-card class="mx-auto pa-12 pb-8" elevation="8" max-width="448" rounded="lg">
                         <div class="text-subtitle-1 text-medium-emphasis d-flex align-center justify-space-between">
                             Email</div>
-                        <v-text-field density="compact" placeholder="Email cadastrado" prepend-inner-icon="mdi-email-outline"
-                            variant="outlined" v-model="form.email"></v-text-field>
+                        <v-text-field density="compact" placeholder="Email cadastrado"
+                            prepend-inner-icon="mdi-email-outline" variant="outlined" v-model="form.email"></v-text-field>
 
                         <div class="text-subtitle-1 text-medium-emphasis d-flex align-center justify-space-between">
                             Senha
@@ -60,6 +60,9 @@
                         </v-card-text>
                     </v-card>
                 </form>
+                <div class="fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
+                    <LoginWarning ref="loginWarning" />
+                </div>
             </div>
         </div>
     </section>
@@ -69,8 +72,12 @@
 <script>
 import axios from '@/../src/axios';
 import { mapActions } from 'vuex';
+import LoginWarning from '@/components/LoginAlert.vue';
 
 export default {
+    components: {
+        LoginWarning, // Adicione o componente à seção de componentes
+    },
     data: () => ({
         visible: false,
         form: {
@@ -93,10 +100,10 @@ export default {
             })
                 .then(response => {
                     this.$store.dispatch('user/setUser', response.data);
-                    window.alert('Usuário logado: ' + response.data.name); // Use response.data.name diretamente
+                    this.$refs.loginWarning.openLoginWarning('Pronto! ' + response.data.name);
                 })
                 .catch(error => {
-                    console.error('Erro ao fazer a solicitação:', error);
+                    window.alert('Login não realizado, revise o login e senha!',error);
                 });
         }
     }
