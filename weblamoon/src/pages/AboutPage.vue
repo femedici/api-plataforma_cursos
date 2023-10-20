@@ -112,7 +112,7 @@ h2 {
 }
 
 .about-card {
-  background-color: #0a0736;
+  background-color: #041431;
   /*border-radius: 8px;*/
   padding: 20px;
 }

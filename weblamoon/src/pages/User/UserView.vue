@@ -1,24 +1,33 @@
 <template>
   <div class="user-profile">
-    <div class="user-details">
-      <h1>Dados do Usuário</h1>
-      <div class="profile-container">
-        <img class="profile-image" :src="currentProfileImageUrl" alt="Foto de Perfil">
-        <span class="edit-profile-icon" @click="openEditProfilePopup">✎</span>
+    <div class="profile-img">
+      <div class="user-top">
+        <div class="user-image-container">
+          <img class="user-image" :src="currentProfileImageUrl" alt="Foto de Perfil">
+        </div>
+        <div class="user-name">
+          {{ getUserName }}
+        </div>
       </div>
-      <p class="text-left"><strong>Nome do usuário:</strong> {{ getUserName }}</p>
-      <p class="text-left"><strong>Email do usuário:</strong> {{ getUserEmail }}</p>
-      <p class="text-left"><strong>Data de criação do usuário:</strong> {{ getUserDate }}</p>
+      <div class="action-bar">
+        <router-link :to="'/alter-user/' + user.cpf" class="action-button">Alterar Usuário</router-link>
+        <button type="button" @click="confirmDeleteUser" class="action-button delete-button">Deletar Usuário</button>
+      </div>
     </div>
-
-    <div class="button-container">
-      <router-link :to="'/alter-user/' + user.cpf" class="button">Alterar Usuário</router-link>
-      <button type="button" @click="confirmDeleteUser" class="button delete-button">Deletar Usuário</button>
+    <div class="profile-info">
+      <div class="user-card">
+        <p><strong>Nome:</strong> </p>
+        <input class="input-field" type="text" v-model="getUserName" readonly />
+        <p><strong>Email do usuário:</strong> </p>
+        <input class="input-field" type="text" v-model="getUserEmail" readonly />
+        <p><strong>Data de criação do usuário:</strong> </p>
+        <input class="input-field" type="text" v-model="getUserDate" readonly />
+      </div>
     </div>
     <edit-profile-popup v-if="showEditProfilePopup" @close="closeEditProfilePopup"></edit-profile-popup>
   </div>
 </template>
-  
+
 <script>
 import EditProfilePopup from './UserPic.vue';
 import axios from '@/../src/axios';
@@ -60,7 +69,6 @@ export default {
         this.deleteUser(this.user.cpf);
       }
     },
-
     openEditProfilePopup() {
       this.showEditProfilePopup = true;
     },
@@ -70,37 +78,104 @@ export default {
   },
 };
 </script>
-  
+
 <style scoped>
-.text-left {
-  text-align: left;
+.user-profile {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  padding: 20px;
 }
 
-.user-profile {
+.profile-img {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  background-color: #111111;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  margin: 20px;
+}
+
+.profile-info {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  background-color: #111111;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  margin: 20px;
+  width: 100vh;
+  height: 30vh;
+}
+
+.user-top {
   display: flex;
   flex-direction: column;
   align-items: center;
+  text-align: left;
+  margin-bottom: 20px;
+  margin-left: 20px;
 }
 
-.user-details {
-  margin: 20px;
-  text-align: center;
-  border: 1px solid #ccc;
-  padding: 20px;
-  background-color: #000000;
-  border-radius: 5px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+.user-image-container {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  overflow: hidden;
 }
 
-.button {
+.user-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.user-name {
+  font-size: 18px;
+  margin-left: 20px;
+  color: #ffffff;
+}
+
+.user-card {
+  color: #ffffff;
+  max-width: 50%;
+  margin-top: 15px;
+  margin-left: 10px;
+  align-self: left;
+  text-align: left;
+}
+
+.input-field {
+  background-color: #303030;
+  border: 1px solid #1d1d1d;
+  border-style: solid;
+  color: #fff;
+  border-radius: 8px;
+  font-size: 16px;
+  width: 250%;
+  padding: 5px 0;
+
+}
+
+.action-bar {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.action-button {
   background-color: #007BFF;
   color: #fff;
   padding: 10px 20px;
-  margin: 10px;
+  margin: 10px 0;
   border: none;
   border-radius: 5px;
   cursor: pointer;
-  text-decoration: none;
   text-align: center;
 }
 
@@ -108,30 +183,11 @@ export default {
   background-color: #FF5733;
 }
 
-.button:hover {
+.action-button:hover {
   background-color: #0056b3;
 }
 
-button:hover.delete-button {
+.delete-button:hover {
   background-color: #cc3e22;
-}
-
-.profile-container {
-  position: relative;
-  display: inline-block;
-}
-
-.profile-image {
-  width: 100px;
-  height: 100px;
-  border-radius: 50%;
-}
-
-.edit-profile-icon {
-  position: absolute;
-  top: 0;
-  right: 0;
-  font-size: 20px;
-  cursor: pointer;
 }
 </style>
