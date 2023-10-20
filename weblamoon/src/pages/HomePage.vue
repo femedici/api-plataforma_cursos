@@ -90,6 +90,7 @@ export default {
 .textlogo {
   margin-top: -120px;
   margin-left: 90px;
+  color: #fff;
 }
 
 .imagem-com-relevo {
@@ -136,6 +137,7 @@ h1 {
 }
 
 .card {
+  color: #fff;
   background-color: #092a49;
   padding: 20px;
   border-radius: 10px;
@@ -151,6 +153,7 @@ h1 {
 
 
 .big-card {
+  color: #fff;
   margin-top: 200px;
   border: 1px solid #092a4985;
   padding: 20px;
@@ -161,6 +164,7 @@ h1 {
 }
 
 .bc-description {
+  color: #fff;
   margin-left: 20px;
   text-align: center;
 }

@@ -109,6 +109,7 @@ h2 {
 
 .about-us {
   text-align: center;
+  color: #fff;
 }
 
 .about-card {
@@ -141,6 +142,7 @@ h1 {
 
 .text-container {
   flex: 1;
+  color: #fff;
 }
 
 p {
@@ -166,12 +168,14 @@ p {
   display: flex;
   justify-content: space-around;
   margin-top: 20px;
+  color: #fff;
 }
 
 .github-user {
   text-align: center;
   margin-bottom: 30px;
   margin-top: 20px;
+  color: #fff;
 }
 
 .github-user img {
