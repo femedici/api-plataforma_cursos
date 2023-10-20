@@ -1,7 +1,7 @@
 <template>
-  <div class="user-form">
+  <div class="user-form bg-white">
     <div v-if="data.length > 0">
-      <h2>Usuários Cadastrados:</h2>
+      <h2 class="bg-white">Usuários Cadastrados:</h2>
       <table>
         <thead>
           <tr>

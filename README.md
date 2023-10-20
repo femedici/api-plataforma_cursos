@@ -27,7 +27,7 @@ A pasta '\weblamoon' representa o front-end, desenvolvido em vue.js, html, css, 
 
 ### Linguagens e Tecnologias
 **Front-end:** 
-[![My Skills](https://skillicons.dev/icons?i=vue,html,css)](https://skillicons.dev)
+[![My Skills](https://skillicons.dev/icons?i=vue,tailwind,js)](https://skillicons.dev)
 
 **Back-end:** 
 [![My Skills](https://skillicons.dev/icons?i=cs,dotnet,mongodb)](https://skillicons.dev)

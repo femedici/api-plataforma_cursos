@@ -11,6 +11,7 @@ import ViewCourse from './pages/Courses/View/CoursesView.vue'
 import AlterCourse from './pages/Courses/Alter/CoursesAlter.vue'
 import CreateTopic from './pages/Topics/Create/TopicsCreate.vue'
 import ViewTopic from './pages/Topics/View/TopicView.vue'
+import AdminView from './pages/User/UserList.vue'
 
 const router = createRouter({
     history: createWebHistory(process.env.BASE_URL),
@@ -61,6 +62,10 @@ const router = createRouter({
         {
             path: '/view-topic',
             component: ViewTopic
+        },
+        {
+            path: '/admin-users',
+            component: AdminView
         },
         {
             path: '/about',
