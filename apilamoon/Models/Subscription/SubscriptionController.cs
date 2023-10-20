@@ -10,11 +10,12 @@ namespace MainProfiles.Controllers;
 public class SubscriptionController : ControllerBase
 {
     IMongoCollection<Subscription> _subscriptions;
+    private List<int> usedIDs = new List<int>(); //lista de ID's do sistema
     public SubscriptionController(MeuMongo meuMongo)
     {
         _subscriptions = meuMongo.DB.GetCollection<Subscription>("subscription");
     }
-    
+
     //Faz a consulta de todas as inscrições existentes
     [HttpGet]
     public IActionResult Get()
@@ -25,12 +26,9 @@ public class SubscriptionController : ControllerBase
 
     //Faz a consulta de todas as inscrições do usuario
     [HttpGet("idUser/{idUser}")]
-    public ActionResult<Topic> GetByUser(string idUser)
+    public ActionResult<Topic> GetByUser(int idUser)
     {
-        if(!ObjectId.TryParse(idUser, out ObjectId objectId)){
-            return BadRequest("Invalid Object Format");
-        }
-        var subscriptions = _subscriptions.Find(subscription => subscription.IdUser == objectId).ToList();
+        var subscriptions = _subscriptions.Find(subscription => subscription.IdUser == idUser).ToList();
         if (subscriptions == null)
         {
             return NotFound();
@@ -40,13 +38,9 @@ public class SubscriptionController : ControllerBase
 
     //Faz a consulta de todas as inscrições do curso
     [HttpGet("idCourse/{idCourse}")]
-    public ActionResult<Topic> GetByCourse(string idCourse)
+    public ActionResult<Topic> GetByCourse(int idCourse)
     {
-        if(!ObjectId.TryParse(idCourse, out ObjectId objectId)){
-            return BadRequest("Invalid ObjectId Format");
-        }
-
-        var subscriptions = _subscriptions.Find(subscription => subscription.IdCourse == objectId).ToList();
+        var subscriptions = _subscriptions.Find(subscription => subscription.IdCourse == idCourse).ToList();
         if (subscriptions == null)
         {
             return NotFound();
@@ -56,8 +50,7 @@ public class SubscriptionController : ControllerBase
 
     //Cria uma nova inscrição
     [HttpPost]
-
-    public ActionResult<User> Post([FromBody] Subscription newSubscription)
+    public ActionResult<Subscription> Post([FromBody] Subscription newSubscription)
     {
         try
         {
@@ -66,29 +59,28 @@ public class SubscriptionController : ControllerBase
                 return BadRequest(ModelState);
             }
 
-           // newSubscription.CreationDate = DateTime.Now.ToString();
+            newSubscription.Id = GenerateUnique5DigitID();
+
+            newSubscription.SubscriptionDate = DateTime.Now.ToString();
 
             _subscriptions.InsertOne(newSubscription);
 
-            return CreatedAtAction("GetById", new { id = newSubscription.Id }, newSubscription);
+            // Use a ação GetByUser para recuperar os detalhes da inscrição recém-criada
+            return CreatedAtAction("GetByUser", new { idUser = newSubscription.IdUser }, newSubscription);
         }
         catch (Exception ex)
         {
             return StatusCode(500, $"Internal server error: {ex.Message}");
         }
     }
+
+
     // Deleta uma inscrição pelo ID dela (Quase nunca vai acontecer - nao vis   ivel no front)
     [HttpDelete("{id}")]
 
-    public async Task<IActionResult> DeleteById(string id)
+    public async Task<IActionResult> DeleteById(int id)
     {
-        if (!ObjectId.TryParse(id, out ObjectId objectId))
-        {
-            return BadRequest("Invalid ObjectId format");
-        }
-
-        var filter = Builders<Subscription>.Filter.Eq(u => u.Id, objectId);
-        var deleteResult = await _subscriptions.DeleteOneAsync(filter);
+        var deleteResult = await _subscriptions.DeleteOneAsync(u => u.Id == id);
 
         if (deleteResult.DeletedCount == 0)
         {
@@ -97,4 +89,49 @@ public class SubscriptionController : ControllerBase
 
         return NoContent();
     }
+
+    // ---------------------------
+    // TRATAMENTO DO ID 
+    // ---------------------------
+
+    [ApiExplorerSettings(IgnoreApi = true)] // Oculta a ação do Swagger
+    [NonAction] // Indica que esta ação não é uma ação da API
+    public int GenerateUnique5DigitID()
+    {
+        Random random = new Random();
+        int maxAttempts = 10000; // You can adjust this value based on your needs.
+
+        for (int attempt = 0; attempt < maxAttempts; attempt++)
+        {
+            int newID = random.Next(10000, 99999); // Generates a 5-digit random integer.
+
+            // Check if the generated ID is unique (not in use).
+            if (!IsIDAlreadyUsed(newID))
+            {
+                // If it's unique, you can mark it as used in your data source.
+                MarkIDAsUsed(newID);
+                return newID;
+            }
+        }
+
+        // If the maximum number of attempts is reached and no unique ID is found, you may handle it accordingly.
+        throw new Exception("Unable to generate a unique 5-digit ID.");
+    }
+
+    // Check if an ID is already used
+    private bool IsIDAlreadyUsed(int id)
+    {
+        // Implement logic to check if the ID already exists in your data source.
+        // For this example, we check against the in-memory list.
+        return usedIDs.Contains(id);
+    }
+
+    // Mark an ID as used
+    private void MarkIDAsUsed(int id)
+    {
+        // Implement logic to mark the ID as used in your data source.
+        // For this example, we add it to the in-memory list.
+        usedIDs.Add(id);
+    }
+
 }

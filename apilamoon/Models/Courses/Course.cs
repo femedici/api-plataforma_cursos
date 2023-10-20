@@ -7,9 +7,9 @@ namespace MainProfiles.Models;
 [BsonIgnoreExtraElements]
 public class Course
 {
-    
-    [BsonId, BsonElement("id"), BsonRepresentation(BsonType.ObjectId)]
-    public ObjectId Id { get; set; }
+
+    [BsonElement("id")]
+    public int Id { get; set; }
 
     [BsonElement("title")]
     [Required]
@@ -24,22 +24,19 @@ public class Course
     [BsonElement("bodyText")]
     public string? BodyText { get; set; }
 
-    [BsonElement("attachments")]
-    public string? Attachments { get; set; }
-
     [BsonElement("password")]
     public string? Password { get; set; }
 
-    [BsonElement("imageCourse")]
-    public string? ImageCourse { get; set; }
+    [BsonElement("icon")]
+    public string? Icon { get; set; }
 
-    [BsonElement("topicsCount")]
-    public int TopicsCount { get; set; }
+    [BsonElement("creator")]
+    public string? Creator { get; set; }
 
-    [BsonElement("creatorId")]
-    public int CreatorId { get; set; }
-    public Course()
-    {
-        Id = ObjectId.GenerateNewId();
-    }
+    [BsonElement("creatorID")]
+    public int CreatorID { get; set; }
+
+    [BsonElement("creationDate")]
+    public string? CreationDate { get; set; }
+
 }
