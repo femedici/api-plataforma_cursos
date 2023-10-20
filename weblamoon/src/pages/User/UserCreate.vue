@@ -39,7 +39,7 @@ import UserAlert from '@/components/UserCreateAlert.vue'
 
 export default {
   components: {
-      UserAlert, // Adicione o componente à seção de componentes
+    UserAlert, // Add the component to the components section
   },
   data() {
     return {
@@ -54,25 +54,29 @@ export default {
 
   methods: {
     submitForm() {
-      try {
-        console.log(this.formData);
-        const response = axios.post('/User', this.formData);
-        
-        this.$refs.userAlert.openWarning('Pronto! ' + this.formData.name);
+      console.log('Form data:', this.formData);
 
-        console.log('Dados enviados com sucesso:', response.data);
-        // Limpe o formulário após o envio
-        this.formData.name = '';
-        this.formData.email = '';
-        this.formData.password = '';
-        this.error = false;
-      } catch (error) {
-        // Lide com erros aqui, por exemplo, exiba uma mensagem de erro
-        console.error('Erro ao enviar dados:', error);
-        window.alert('Erro ao cadastrar. Por favor, tente novamente.');
-      }
-      UserAlert
+      axios.post('/User', this.formData, {
+        headers: {
+          'Content-Type': 'application/json', // Set the content type to JSON
+        },
+      })
+        .then(response => {
+          console.log('Data sent successfully:', response.data);
+          // Clear the form after sending
+          this.formData.name = '';
+          this.formData.email = '';
+          this.formData.password = '';
+          this.error = false;
+
+          this.$refs.userAlert.openWarning('Success! ' + this.formData.name);
+        })
+        .catch(error => {
+          console.error('Registration not completed, please try again', error);
+          // Handle the error appropriately
+        });
     },
   },
 };
 </script>
+
