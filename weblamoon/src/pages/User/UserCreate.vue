@@ -24,6 +24,9 @@
             <v-btn type="submit" block class="mt-2">Cadastrar</v-btn>
           </form>
         </v-card>
+        <div class="fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
+          <UserAlert ref="userAlert" />
+        </div>
       </div>
     </div>
   </section>
@@ -32,16 +35,18 @@
 
 <script>
 import axios from '@/../src/axios';
+import UserAlert from '@/components/UserCreateAlert.vue'
 
 export default {
+  components: {
+      UserAlert, // Adicione o componente à seção de componentes
+  },
   data() {
     return {
       formData: {
         name: '',
         email: '',
         password: '',
-        icon: 'xxx',
-        creationDate: 'xxx',
       },
       error: null,
     };
@@ -50,7 +55,10 @@ export default {
   methods: {
     submitForm() {
       try {
+        console.log(this.formData);
         const response = axios.post('/User', this.formData);
+        
+        this.$refs.userAlert.openWarning('Pronto! ' + this.formData.name);
 
         console.log('Dados enviados com sucesso:', response.data);
         // Limpe o formulário após o envio
@@ -58,13 +66,12 @@ export default {
         this.formData.email = '';
         this.formData.password = '';
         this.error = false;
-
-        window.alert('Cadastro realizado com sucesso!');
       } catch (error) {
         // Lide com erros aqui, por exemplo, exiba uma mensagem de erro
         console.error('Erro ao enviar dados:', error);
         window.alert('Erro ao cadastrar. Por favor, tente novamente.');
       }
+      UserAlert
     },
   },
 };

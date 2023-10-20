@@ -38,5 +38,4 @@ public class Course
 
     [BsonElement("creationDate")]
     public string? CreationDate { get; set; }
-
 }
