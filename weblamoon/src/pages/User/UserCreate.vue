@@ -69,7 +69,7 @@ export default {
           this.formData.password = '';
           this.error = false;
 
-          this.$refs.userAlert.openWarning('Success! ' + this.formData.name);
+          this.$refs.userAlert.openWarning('Pronto! ' + this.formData.name);
         })
         .catch(error => {
           console.error('Registration not completed, please try again', error);
