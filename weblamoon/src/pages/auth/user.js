@@ -21,6 +21,7 @@ const getters = {
     getUserName: (state) => (state.user ? state.user.name : null),
     getUserEmail: (state) => (state.user ? state.user.email : null),
     getUserDate: (state) => (state.user ? state.user.creationDate : null),
+    getUserID: (state) => (state.user ? state.user.id : null),
 };
 
 export default {
