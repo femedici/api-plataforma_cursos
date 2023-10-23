@@ -2,8 +2,7 @@
     <div class="h-screen flex flex-col justify-between">
         <div>
             <v-list>
-                <v-img src="@/assets/logoName.png"></v-img>
-                <v-list-item prepend-icon="mdi-home" title="Home" to="/" class="font-sans text-zinc-50 text-xl"></v-list-item>
+                <a href="/"><v-img src="@/assets/logoName.png"></v-img></a>
             </v-list>
             
             <v-divider></v-divider>
@@ -15,16 +14,12 @@
                 class="font-sans text-zinc-50 text-xl"></v-list-item>
                 <v-list-item prepend-icon="mdi-login" title="Login" to="/login"
                 class="font-sans text-zinc-50 text-xl"></v-list-item>
-                <v-list-item prepend-icon="mdi-format-align-left" title="Sobre" to="/about"
-                class="font-sans text-zinc-50 text-xl"></v-list-item>
-                <v-list-item prepend-icon="mdi-shield-account-variant" title="Administração" to="/admin-users"
-                class="font-sans text-zinc-50 text-xl"></v-list-item>
             </v-list>
         </div>
-        
-
 
         <div>
+            <v-list-item prepend-icon="mdi-shield-account-variant" title="Administração" to="/admin-users"
+                class="font-sans text-zinc-50 text-xl"></v-list-item>
             <v-divider></v-divider>
             <v-list>
                 <v-list-item prepend-icon="mdi-account" title="Perfil" to="/view-user"
