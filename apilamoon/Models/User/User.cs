@@ -27,4 +27,9 @@ public class User
 
     [BsonElement("creationDate")]
     public string? CreationDate {get; set;}
+    
+    [BsonElement("creator")]
+    public bool Creator {get; set;}
 }
+
+

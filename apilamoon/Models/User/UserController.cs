@@ -40,6 +40,8 @@ public class UserController : ControllerBase
             // Set the creation date
             newUser.CreationDate = DateTime.Now.ToString();
 
+            newUser.Creator = false;
+
             // Insert the new user document into MongoDB
             _users.InsertOne(newUser);
 
@@ -106,6 +108,38 @@ public class UserController : ControllerBase
         {
             // Update the user's password
             var updateDefinition = Builders<User>.Update.Set(u => u.Password, newPassword);
+
+            var updateResult = await _users.UpdateOneAsync(filter, updateDefinition);
+
+            if (updateResult.ModifiedCount == 0)
+            {
+                return NotFound();
+            }
+
+            return Ok();
+        }
+        catch (Exception ex)
+        {
+            // Handle any exceptions, log them, and return an error response
+            return StatusCode(500, $"Internal server error: {ex.Message}");
+        }
+    }
+    // Altera o estado o User/Creator pra True ou False
+    [HttpPut("admin-users")]
+    public async Task<IActionResult> AlterCreator(int id, [FromBody] bool newCreator)
+    {
+
+        var filter = Builders<User>.Filter.Eq(u => u.Id, id);
+        var user = await _users.Find(filter).SingleOrDefaultAsync();
+
+        if (user == null)
+        {
+            return NotFound();
+        }
+
+        try
+        {
+            var updateDefinition = Builders<User>.Update.Set(u => u.Creator, newCreator);
 
             var updateResult = await _users.UpdateOneAsync(filter, updateDefinition);
 
