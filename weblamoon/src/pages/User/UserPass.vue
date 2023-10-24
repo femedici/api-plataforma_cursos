@@ -1,33 +1,41 @@
 <template>
-  <div class="edit-profile-popup">
-    <h2>Editar Foto de Perfil</h2>
-    <input type="text" v-model="icon" placeholder="Insira a URL da nova foto de perfil">
-    <button @click="saveNewProfileImage">Salvar</button>
+  <div class="change-password-popup">
+    <h2>Trocar Senha</h2>
+    <input type="password" v-model="oldPassword" placeholder="Senha Antiga">
+    <input type="password" v-model="newPassword" placeholder="Nova Senha">
+    <input type="password" v-model="confirmPassword" placeholder="Confirmar Nova Senha">
+    <button @click="changePassword">Trocar Senha</button>
     <button @click="closePopup">Fechar</button>
   </div>
 </template>
-  
+
 <script>
 export default {
   data() {
     return {
-      icon: '',
+      oldPassword: '',
+      newPassword: '',
+      confirmPassword: ''
     };
   },
   methods: {
-    saveNewProfileImage() {
-      //Script pra trocar a img
-      this.closePopup();
+    changePassword() {
+      if (this.newPassword === this.confirmPassword) {
+        // Script pra trocar senha
+        this.closePopup();
+      } else {
+        window.alert('As senhas não coincidem. Tente novamente.');
+      }
     },
     closePopup() {
       this.$emit('close');
-    },
-  },
+    }
+  }
 };
 </script>
-  
+
 <style scoped>
-.edit-profile-popup {
+.change-password-popup {
   background-color: #1d1d1d;
   border: 1px solid #ccc;
   border-radius: 5px;
@@ -41,12 +49,12 @@ export default {
   text-align: center;
 }
 
-.edit-profile-popup h2 {
+.change-password-popup h2 {
   font-size: 1.2rem;
   margin-bottom: 10px;
 }
 
-.edit-profile-popup input {
+.change-password-popup input {
   color: #ffffff;
   width: 100%;
   padding: 10px;
@@ -55,7 +63,7 @@ export default {
   border-radius: 5px;
 }
 
-.edit-profile-popup button {
+.change-password-popup button {
   background-color: #007BFF;
   color: #fff;
   padding: 10px 20px;
@@ -65,7 +73,7 @@ export default {
   margin-right: 10px;
 }
 
-.edit-profile-popup button:hover {
+.change-password-popup button:hover {
   background-color: #0056b3;
 }
 </style>

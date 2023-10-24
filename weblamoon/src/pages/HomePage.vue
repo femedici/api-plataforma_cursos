@@ -1,53 +1,147 @@
 <template>
-  <v-parallax class="object-cover"
-    src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2072&q=80">
-    <div class="page">
-      <div class="content">
-        <div class="text-left">
-          <v-img class="logoimg" src="@/assets/logoName.png"></v-img>
-          <h1 class="textlogo">Embarque nessa jornada de possibilidades e explore um<br>universo de conhecimento!</h1>
-          <div class="matrix-section">
-            <div class="matrix-container">
-              <div class="card-matrix">
-                <div class="row">
-                  <div class="card">
-                    <h3><v-icon icon="mdi-wifi" size="small"></v-icon> Dev WEB</h3>
-                    <v-divider></v-divider>
-                    <p>Aprenda o básico de tudo necessário para desenvolver uma aplicação web completa!</p>
-                  </div>
-                  <div class="card">
-                    <h3><v-icon icon="mdi-wifi" size="small"></v-icon> Dev WEB</h3>
-                    <v-divider></v-divider>
-                    <p>Aprenda o básico de tudo necessário para desenvolver uma aplicação web completa!</p>
-                  </div>
-                  <div class="card">
-                    <h3><v-icon icon="mdi-wifi" size="small"></v-icon> Dev WEB</h3>
-                    <v-divider></v-divider>
-                    <p>Aprenda o básico de tudo necessário para desenvolver uma aplicação web completa!</p>
-                  </div>
-                </div>
-              </div>
+  <section class="bg-gray-900 lg:pt-[120px] pb-10 lg:pb-20"
+    style="background-image: url('https://images.unsplash.com/photo-1690046793092-f8d634523264?auto=format&fit=crop&q=80&w=2070&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'); background-size: cover; background-position: center;">
+    <div class="grid max-w-screen-xl px-4 py-8 mx-auto lg:gap-8 xl:gap-0 lg:py-16 lg:grid-cols-12">
+      <div class="mr-auto place-self-center lg:col-span-7">
+        <h1
+          class="max-w-2xl mb-4 text-4xl font-extrabold tracking-tight leading-none md:text-5xl xl:text-6xl dark:text-white">
+          Bem vindo a La Moon</h1>
+        <br>
+        <p class="max-w-2xl mb-6 font-light text-teal-100 lg:mb-8 md:text-lg lg:text-xl">Bem-vindo ao nosso universo de
+          aprendizagem! Aqui, você encontrará a porta de entrada para uma jornada de conhecimento e crescimento.
+          Navegue pelos nossos cursos abrangentes e inspiradores, projetados para moldar o seu futuro e aprimorar as suas
+          habilidades.
+          Seja qual for o seu objetivo, estamos prontos para ajudá-lo a trilhar o caminho do sucesso. Junte-se a nós e
+          comece a sua jornada de aprendizado hoje!</p>
+        <br>
+        <p class="max-w-2xl mb-6 font-light text-teal-100 lg:mb-8 md:text-lg lg:text-xl">Para começar crie sua conta.</p>
+        <br><br>
+        <a href="/create-user"
+          class="inline-flex items-center  justify-center px-5 py-3 text-base font-medium text-center text-white border border-gray-300 rounded-lg hover:bg-teal-400 focus:ring-4 focus:ring-gray-100">
+          Criar Conta
+          <svg class="w-5 h-5 ml-2 -mr-1" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+            <path fill-rule="evenodd"
+              d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z"
+              clip-rule="evenodd"></path>
+          </svg>
+        </a>
+        <br><br><br><br>
+      </div>
+    </div>
+  </section>
+  <section class="pt-20 lg:pt-[120px] pb-10 lg:pb-20 bg-slate-200">
+    <div class="container">
+      <div class="flex flex-wrap justify-center -mx-4">
+        <div class="w-full px-4">
+          <div class="text-center mx-auto mb-[60px] lg:mb-20 max-w-[610px]">
+            <div class="text-5xl font-extrabold ...">
+              <span class="bg-clip-text text-transparent bg-gradient-to-r from-sky-900 to-emerald-300">
+                Explore a Plataforma
+              </span>
             </div>
+            <br>
+            <p class=" text-cyan-900 text-xl text-body-color">
+              Existem inúmeras formas de interagir com a La Moon. Veja alguns exemplos
+            </p>
+            <br>
+            <br>
           </div>
         </div>
-        <div class="imagem-com-relevo">
-          <img class="imagem-com-relevo-inner"
-            src="https://images.unsplash.com/photo-1513258496099-48168024aec0?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" />
+      </div>
+      <div class="flex flex-wrap justify-center -mx-4">
+        <div class="flex flex-wrap -mx-4" data-aos="fade-up">
+          <div class="w-full md:w-1/2 lg:w-1/3 px-4 hover:translate-y-[-0.3rem] hover:shadow-md" v-for="item in Cards"
+            :key="item.id">
+            <a :href="item.link">
+              <div class="max-w-[370px] mx-auto mb-10 flex flex-col items-center">
+                <div class="rounded overflow-hidden mb-8">
+                  <img :src="item.image" :alt="item.title" class="w-full" />
+                </div>
+                <div>
+                  <h3 class="font-semibold
+                    text-xl
+                    sm:text-2xl
+                    lg:text-xl
+                    xl:text-2xl
+                    mb-4
+                    inline-block
+                    text-dark
+                    hover:text-primary">
+                    {{ item.title }}
+                  </h3>
+                  <p class="text-base text-body-color">
+                    {{ item.description }}
+                  </p>
+                </div>
+              </div>
+            </a>
+          </div>
+        </div>
+      </div>
+      <br><br>
+    </div>
+  </section>
+  <section class="bg-cover bg-center py-32 w-full">
+    <div class="container mx-auto text-white">
+      <div class="flex items-center">
+        <!-- Text content -->
+        <div class="w-2/3 mr-8" data-aos="fade-down">
+          <h1 class="text-5xl font-medium mb-6 text-neutral-50">Sobre Nós</h1>
+          <p class="text-xl mb-12 text-white break-all">
+            Nossa plataforma tem um objetivo claro: simplificar a vida daqueles que desejam aprender algo novo e também
+            daqueles que desejam compartilhar seu conhecimento.
+            No La Moon, quer você seja um indivíduo buscando aprender ou uma empresa que deseja oferecer cursos e
+            especializações,
+            fornecemos um espaço unificado para acomodar todas as suas necessidades de aprendizado.
+            Aqui, a diversidade de cursos e especializações está ao alcance de um clique, independentemente de você ser
+            uma pessoa física com um interesse pessoal
+            ou uma organização com experiência a compartilhar. Unimos todos esses recursos em um só lugar, tornando a
+            jornada de ensino e
+            aprendizado mais acessível e conveniente para todos os envolvidos. É a combinação perfeita de conhecimento e
+            oportunidade, ao alcance de todos..
+          </p>
+          <p class="text-xl mb-12 text-white break-all text-left">
+            Na La Moon, garantimos a qualidade e confiabilidade de
+            nossos cursos através de uma equipe dedicada que aprova apenas criadores qualificados.
+            Para usuários que desejam compartilhar seu conhecimento, o processo é descomplicado: basta fazer uma
+            solicitação e escolher um plano de assinatura adequado,
+            seja para um único curso ou múltiplos, adaptando-se às suas necessidades. Além disso, para empresas,
+            oferecemos contratos de serviço personalizados,
+            para atender às demandas corporativas. Dessa forma, garantimos que o aprendizado seja acessível, seguro e
+            adaptado às diferentes necessidades de nossos usuários,
+            tornando a La Moon uma plataforma versátil e confiável para aprimoramento pessoal e profissional.
+          </p>
+          <p class="text-xl mb-12 text-white break-all">
+            Para você, usuário, a La Moon oferece opções flexíveis. Você pode explorar nossa ampla variedade de cursos
+            gratuitos, obtendo conhecimento valioso sem custo algum.
+            Além disso, se desejar aprofundar seus estudos em áreas mais especializadas, temos cursos disponíveis a
+            preços acessíveis. Dessa forma, garantimos que a aprendizagem
+            esteja ao alcance de todos, independentemente do seu orçamento. Na La Moon, a sua busca por conhecimento é
+            sempre flexível e adaptada às suas preferências e necessidades.
+          </p>
+        </div>
+        <div class="w-1/3">
+          <img
+            src="https://images.unsplash.com/photo-1599837565318-67429bde7162?auto=format&fit=crop&q=80&w=1974&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+            alt="Image Alt Text" class="w-auto h-auto rounded-lg content-end" />
         </div>
       </div>
     </div>
-
-    <div class="big-card">
-      <h1><strong>Para começar é simples.</strong></h1>
-      <v-divider></v-divider>
-      <p class="bc-description"><br>Crie uma conta<br>Escolha um curso<br>Se cadastre nele, ou<br>Vá para a aba
-        cursos<br>Clique em "Publicar Curso"<br>Preencha todos os campos<br>E aguarde o mesmo ser liberado!</p>
-      <br>
-      <v-divider></v-divider>
-      <h3>Demonstrou interesse? Por que não começa <strong><router-link :to="'/create-user/'">criando uma
-            conta?</router-link></strong></h3>
+  </section>
+  <v-divider></v-divider>
+  <section>
+    <div class="github-users" data-aos="fade-left">
+      <h2 class="text-2xl sm:text-4xl file:md:text-[40px]">Equipe La Moon</h2>
+      <div class="github-user" v-for="(user, userIndex) in Users" :key="userIndex">
+        <img :src="user.image">
+        <div class="user-details">
+          <a :href="`https://github.com/${user.githubUsername}`" target="_blank"><img
+              src="https://cdn-icons-png.flaticon.com/512/25/25231.png" /></a>
+          <p>{{ user.name }}</p>
+        </div>
+      </div>
     </div>
-  </v-parallax>
+  </section>
 </template>
 <script>
 
@@ -55,113 +149,83 @@ export default {
   name: "App",
   data() {
     return {
+      Users: [
+        {
+          name: "Felipe Augusto Medici",
+          image: "https://avatars.githubusercontent.com/u/111476568?v=4",
+          githubUsername: "femedici",
+        },
+        {
+          name: "Felipe Roskosz Moran",
+          image: "https://avatars.githubusercontent.com/u/105233020?v=4",
+          githubUsername: "feliperm17",
+        },
+        {
+          name: "Felipe Martins Sanches",
+          image: "https://avatars.githubusercontent.com/u/79864909?s=400&u=0bd727ea4080ae444b74f08fac8cad2d17912821&v=4",
+          githubUsername: "mattokgit44",
+        },
+        {
+          name: "Caio Ducati Castilho",
+          image: "https://avatars.githubusercontent.com/u/101857288?v=4",
+          githubUsername: "Cast43",
+        },
+      ],
+      Cards: [
+        {
+          title: "Cursos Diversos",
+          description: " Este é o ponto de partida para personalizar sua nova jornada de aprendizado. Explore todos os cursos disponíveis no sistema",
+          image: "https://images.pexels.com/photos/374897/pexels-photo-374897.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+          link: "/list-courses"
+        },
+        {
+          title: "Se tornar um criador",
+          description: "Acha que seu conhecimento tem valor e pode ser agregado a mais pessoas? Veja mais como publicar um curso no La Moon",
+          image: "https://images.pexels.com/photos/4974920/pexels-photo-4974920.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+          link: "#"
+        },
+        {
+          title: "Seu espaço de aprendizagem",
+          description: "Todos seus cursos inscritos e seu progresso particular em cada um deles em um só espaço.",
+          image: "https://images.pexels.com/photos/3747156/pexels-photo-3747156.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+          link: "#"
+        }
+      ]
     };
+  },
+  mounted() {
+    this.$AOS.init(); // Initialize AOS for this component
   },
 };
 </script>
 
 <style scoped>
-.page {
+.github-users {
   display: flex;
-  flex-direction: column;
-  align-items: center;
+  justify-content: space-around;
+  margin-top: 20px;
+  color: #fff;
+}
+
+.github-user {
   text-align: center;
-  padding: 20px;
+  margin-bottom: 30px;
+  margin-top: 20px;
+  color: #fff;
 }
 
-.content {
-  display: flex;
-  justify-content: center;
+.github-user img {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
 }
 
-.logoimg {
-  margin-top: -200px;
-  margin-left: -170px;
+.user-details img {
+  width: 24px;
+  height: 24px;
 }
 
-.text-left {
-  width: 50%;
-  padding: 20px;
-  text-align: left;
-  align-self: center;
-  margin-top: 150px;
-}
-
-.textlogo {
-  margin-top: -120px;
-  margin-left: 90px;
-}
-
-.imagem-com-relevo {
-  box-shadow: 0 0 0px rgba(0, 0, 0, 0.7);
-  transform: scale(1);
-  border-radius: 12px;
-  max-width: 40%;
-  margin-top: 55px;
-}
-
-.imagem-com-relevo-inner {
-  box-shadow: 0 15px 10px rgba(0, 0, 0, 0.5);
-  border-radius: 8px;
-  max-width: 100%;
-  margin-top: 80px;
-}
-
-h1 {
-  font-size: large;
-}
-
-.matrix-section {
-  text-align: center;
-  margin: 40px;
-}
-
-.matrix-container {
-  margin-left: -130px;
-  margin-top: 130px;
-  display: flex;
-  justify-content: left;
-}
-
-.card-matrix {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.row {
-  display: flex;
-  justify-content: center;
-  margin: 10px 0;
-}
-
-.card {
-  background-color: #092a49;
-  padding: 20px;
-  border-radius: 10px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  margin: 10px;
-  margin-left: 50px;
-  flex: 1;
-  width: 200px;
-  /* Largura do cartão */
-  height: 200px;
-  /* Altura do cartão */
-}
-
-
-.big-card {
-  margin-top: 200px;
-  border: 1px solid #092a4985;
-  padding: 20px;
-  width: 100%;
-  height: 300px;
-  text-align: center;
-  background-color: #092a4985;
-}
-
-.bc-description {
-  margin-left: 20px;
-  text-align: center;
+.user-details p {
+  margin-top: 10px;
 }
 </style>
