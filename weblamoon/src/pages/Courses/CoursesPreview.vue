@@ -39,7 +39,7 @@
                 <!-- tirar após player video!!! -->
                 <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
                 <v-btn @click="subscribeCourse" size="large" prepend-icon="mdi-check-decagram"
-                    class="bg-gradient-to-r from-sky-700 to-emerald-600 text-neutral-50" :disabled="show">
+                    class="bg-gradient-to-r from-sky-700 to-emerald-600 text-neutral-50" :disabled="isDisabled">
                     Inscrever-se
                 </v-btn>
                 <br>
@@ -48,7 +48,8 @@
                     class="bg-gradient-to-r from-sky-700 to-emerald-600 text-neutral-50" :disabled="!show">
                     Acessar Curso
                 </v-btn>
-                <v-alert v-if="subNow" closable icon="mdi-check-all" text="Inscrito com sucesso! Acesse o curso clicando no botão acima" type="success"
+                <v-alert v-if="subNow" closable icon="mdi-check-all"
+                    text="Inscrito com sucesso! Acesse o curso clicando no botão acima" type="success"
                     variant="tonal"></v-alert>
             </div>
             <div
@@ -74,7 +75,8 @@
         </div>
         <div class="flex flex-wrap lg:w-4/5 sm:mx-auto sm:mb-2 -mx-2 p-4">
             <div v-for="(item, index) in topics" :key="index" class="p-2 sm:w-1/2 w-full">
-                <div class="bg-gray-100 rounded flex p-4 h-full items-center shadow-2xl  hover:translate-y-[-0.3rem] hover:shadow-md">
+                <div
+                    class="bg-gray-100 rounded flex p-4 h-full items-center shadow-2xl  hover:translate-y-[-0.3rem] hover:shadow-md">
                     <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="3"
                         class="text-sky-900 w-6 h-6 flex-shrink-0 mr-4" viewBox="0 0 24 24">
                         <path d="M22 11.08V12a10 10 0 11-5.93-9.14"></path>
@@ -163,6 +165,10 @@ export default {
     },
     computed: {
         ...mapGetters('user', ['getUserID', 'getUserName']), // Mapeando os getters do módulo 'user'
+        isDisabled() {
+            // Use a computed property to return true if either of the conditions is met
+            return this.show || !this.getUserID;
+        },
     },
     methods: {
         subscribeCourse() {

@@ -143,7 +143,9 @@
     </div>
   </section>
 </template>
+
 <script>
+import { mapGetters } from 'vuex';
 
 export default {
   name: "App",
@@ -179,7 +181,7 @@ export default {
           link: "/list-courses"
         },
         {
-          title: "Se tornar um criador",
+          title: "Torne-se um criador na LaMoon",
           description: "Acha que seu conhecimento tem valor e pode ser agregado a mais pessoas? Veja mais como publicar um curso no La Moon",
           image: "https://images.pexels.com/photos/4974920/pexels-photo-4974920.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
           link: "/becameCreator"
@@ -188,13 +190,16 @@ export default {
           title: "Seu espaço de aprendizagem",
           description: "Todos seus cursos inscritos e seu progresso particular em cada um deles em um só espaço.",
           image: "https://images.pexels.com/photos/3747156/pexels-photo-3747156.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
-          link: "/coursesSub"
+          link: "/coursesSub" 
         }
       ]
     };
   },
   mounted() {
     this.$AOS.init(); // Initialize AOS for this component
+  },
+  computed: {
+    ...mapGetters('user', ['getUserID']), // Mapeando os getters do módulo 'user'
   },
 };
 </script>

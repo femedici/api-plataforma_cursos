@@ -14,7 +14,7 @@
             <div class="mb-10 sm:mb-0 mt-10 grid gap-4 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
                 <div v-for="(item, index) in data" :key="index"
                     class="relative group bg-gray-900 py-10 sm:py-20 px-4 flex flex-col space-y-2 items-center cursor-pointer rounded-md ">
-                    <img class="w-20 h-20 object-cover object-center rounded-full" :src="item.icon" alt="icon"/>
+                    <img class="w-20 h-20 object-cover object-center rounded-full" :src="item.icon" alt="icon" />
                     <a :href="'/course/' + item.id">
                         <h4 class="text-white text-2xl font-bold capitalize text-center">{{ item.title }}</h4>
                     </a>
@@ -81,6 +81,16 @@ export default {
     },
     computed: {
         ...mapGetters('user', ['getUserID', 'getUserName']), // Mapeando os getters do módulo 'user'
+    },
+    watch: {
+        getUserID: {
+            immediate: true, // Trigger the watch immediately when the component is created
+            handler(newValue) {
+                if (!newValue) {
+                    this.$router.push('/login'); // Redirect to the login page
+                }
+            },
+        },
     },
 };
 </script>
