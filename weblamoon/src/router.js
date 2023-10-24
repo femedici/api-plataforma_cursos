@@ -14,6 +14,7 @@ import ViewTopic from './pages/Topics/View/TopicView.vue'
 import AdminView from './pages/User/UserList.vue'
 import Course from './pages/Courses/CourseAcess.vue'
 import CourseSubscription from './pages/Courses/CoursesSub.vue'
+import BecameCreator from './pages/BecameCreator.vue'
 
 const router = createRouter({   
     history: createWebHistory(process.env.BASE_URL),
@@ -82,6 +83,10 @@ const router = createRouter({
         {
             path: '/coursesSub',
             component: CourseSubscription
+        },
+        {
+            path: '/becameCreator',
+            component: BecameCreator
         }
     ]
 });

@@ -182,7 +182,7 @@ export default {
           title: "Se tornar um criador",
           description: "Acha que seu conhecimento tem valor e pode ser agregado a mais pessoas? Veja mais como publicar um curso no La Moon",
           image: "https://images.pexels.com/photos/4974920/pexels-photo-4974920.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
-          link: "#"
+          link: "/becameCreator"
         },
         {
           title: "Seu espaço de aprendizagem",

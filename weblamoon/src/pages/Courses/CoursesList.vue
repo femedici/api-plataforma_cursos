@@ -5,9 +5,9 @@
         class="max-w-2xl mb-4 text-4xl font-bold tracking-tight leading-none md:text-5xl xl:text-6xl text-cyan-100">
         Cursos Disponíveis
       </span>
-      <v-btn to="/create-course" prepend-icon="mdi-plus-circle"
+      <v-btn to="/becameCreator" prepend-icon="mdi-plus-circle"
         class="bg-gradient-to-r from-sky-700 to-emerald-600 text-neutral-50">
-        Criar curso
+        Se tornar um criador
       </v-btn>
     </div>
     <v-card-text class="font-sans text-zinc-50 text-xl">
