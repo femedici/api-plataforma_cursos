@@ -2,7 +2,7 @@
   <v-container fluid class="bg-sky-950/60 flex flex-col">
     <div class="flex items-end justify-between">
       <span
-        class="max-w-2xl mb-4 text-4xl font-extrabold tracking-tight leading-none md:text-5xl xl:text-6xl text-cyan-100">
+        class="max-w-2xl mb-4 text-4xl font-bold tracking-tight leading-none md:text-5xl xl:text-6xl text-cyan-100">
         Cursos Disponíveis
       </span>
       <v-btn to="/create-course" prepend-icon="mdi-plus-circle"
@@ -24,7 +24,7 @@
         class="mx-3 mt-6 flex shadow-2xl flex-col rounded-lg bg-transparent transform translate-y-0 transition-transform hover:translate-y-[-1rem] hover:shadow-md">
         <a :href="'/view-course/' + item.id">
           <img class="rounded-t-lg"
-            src="https://cdn.elearningindustry.com/wp-content/uploads/2020/08/5-ways-to-improve-your-course-cover-design-1024x575.png"
+            src="https://scontent.ftow4-1.fna.fbcdn.net/v/t39.30808-6/278019551_7535454386494767_1280416841719107481_n.jpg?_nc_cat=109&ccb=1-7&_nc_sid=5f2048&_nc_ohc=wsbo1RcAzIwAX-cqktj&_nc_oc=AQlWIsPE0G0udDQZaenHc3hvfsDwd9OrQrCNT2S1ceYfbCEeZvGsb3UxTvZI0pNhwkE&_nc_ht=scontent.ftow4-1.fna&cb_e2o_trans=t&oh=00_AfA-yBPXphpq7FdHTMCsWIiPUnWywgngWcF9W5gvFmf42A&oe=653C66EC"
             alt="Course" />
           =
 
