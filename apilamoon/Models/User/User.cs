@@ -1,4 +1,3 @@
-using System.Globalization;
 using System.ComponentModel.DataAnnotations;
 using MongoDB.Bson;
 using MongoDB.Bson.Serialization.Attributes;
@@ -31,10 +30,6 @@ public class User
 
     [BsonElement("creator")]
     public bool Creator {get; set;}
-
-    public User(){
-        Creator = false; // Creator vai ser "false" por default
-    }
 }
 
  
