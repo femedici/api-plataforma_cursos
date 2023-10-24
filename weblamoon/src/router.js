@@ -13,6 +13,7 @@ import CreateTopic from './pages/Topics/Create/TopicsCreate.vue'
 import ViewTopic from './pages/Topics/View/TopicView.vue'
 import AdminView from './pages/User/UserList.vue'
 import Course from './pages/Courses/CourseAcess.vue'
+import CourseSubscription from './pages/Courses/CoursesSub.vue'
 
 const router = createRouter({   
     history: createWebHistory(process.env.BASE_URL),
@@ -77,6 +78,10 @@ const router = createRouter({
             path: '/course/:id',
             name: 'course',
             component: Course
+        },
+        {
+            path: '/coursesSub',
+            component: CourseSubscription
         }
     ]
 });

@@ -188,7 +188,7 @@ export default {
           title: "Seu espaço de aprendizagem",
           description: "Todos seus cursos inscritos e seu progresso particular em cada um deles em um só espaço.",
           image: "https://images.pexels.com/photos/3747156/pexels-photo-3747156.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
-          link: "#"
+          link: "/coursesSub"
         }
       ]
     };
