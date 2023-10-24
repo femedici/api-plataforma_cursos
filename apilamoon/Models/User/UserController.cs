@@ -40,6 +40,8 @@ public class UserController : ControllerBase
             // Set the creation date
             newUser.CreationDate = DateTime.Now.ToString();
 
+            newUser.BecameCreator = false;
+
             newUser.Creator = false;
 
             // Insert the new user document into MongoDB

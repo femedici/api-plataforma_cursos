@@ -30,6 +30,9 @@ public class User
     
     [BsonElement("creator")]
     public bool Creator {get; set;}
+
+    [BsonElement("becameCreator")]
+    public bool BecameCreator {get; set;}
 }
 
 
