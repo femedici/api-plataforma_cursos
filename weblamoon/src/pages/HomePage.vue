@@ -86,8 +86,8 @@
       <div class="flex items-center">
         <!-- Text content -->
         <div class="w-2/3 mr-8" data-aos="fade-down">
-          <h1 class="text-5xl font-medium mb-6 text-neutral-50">Sobre Nós</h1>
-          <p class="text-xl mb-12 text-white break-all">
+          <h1 class="text-5xl font-medium mb-6 text-neutral-50 ml-4 pl-4">Sobre Nós</h1>
+          <p class="text-xl mb-12 text-white break-all ml-4 pl-4">
             Nossa plataforma tem um objetivo claro: simplificar a vida daqueles que desejam aprender algo novo e também
             daqueles que desejam compartilhar seu conhecimento.
             No La Moon, quer você seja um indivíduo buscando aprender ou uma empresa que deseja oferecer cursos e
@@ -100,7 +100,7 @@
             aprendizado mais acessível e conveniente para todos os envolvidos. É a combinação perfeita de conhecimento e
             oportunidade, ao alcance de todos..
           </p>
-          <p class="text-xl mb-12 text-white break-all text-left">
+          <p class="text-xl mb-12 text-white break-all text-left ml-4 pl-4">
             Na La Moon, garantimos a qualidade e confiabilidade de
             nossos cursos através de uma equipe dedicada que aprova apenas criadores qualificados.
             Para usuários que desejam compartilhar seu conhecimento, o processo é descomplicado: basta fazer uma
@@ -111,7 +111,7 @@
             adaptado às diferentes necessidades de nossos usuários,
             tornando a La Moon uma plataforma versátil e confiável para aprimoramento pessoal e profissional.
           </p>
-          <p class="text-xl mb-12 text-white break-all">
+          <p class="text-xl mb-12 text-white break-all ml-4 pl-4">
             Para você, usuário, a La Moon oferece opções flexíveis. Você pode explorar nossa ampla variedade de cursos
             gratuitos, obtendo conhecimento valioso sem custo algum.
             Além disso, se desejar aprofundar seus estudos em áreas mais especializadas, temos cursos disponíveis a

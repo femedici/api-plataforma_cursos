@@ -16,7 +16,7 @@
                     class="relative group bg-gray-900 py-10 sm:py-20 px-4 flex flex-col space-y-2 items-center cursor-pointer rounded-md ">
                     <img class="w-20 h-20 object-cover object-center rounded-full" :src="item.icon" alt="icon" />
                     <a :href="'/course/' + item.id">
-                        <h4 class="text-white text-2xl font-bold capitalize text-center">{{ item.title }}</h4>
+                        <h4 class="text-white text-2xl font-bold capitalize text-center rounded-full py-2 px-4 hover:bg-cyan-900 focus:ring-4 focus:ring-gray-100">{{ item.title }}</h4>
                     </a>
                 </div>
             </div>

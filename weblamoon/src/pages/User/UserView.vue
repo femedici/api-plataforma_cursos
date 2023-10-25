@@ -13,8 +13,10 @@
         </div>
       </div>
       <div class="action-bar">
-        <button @click="openChangePasswordPopup" class="action-button showChangePasswordButton">Alterar Senha</button>
-        <button type="button" @click="confirmDeleteUser" class="action-button delete-button">Deletar Usuário</button>
+        <a @click="openChangePasswordPopup"
+          class="inline-flex items-center  justify-center px-5 py-3 text-base font-medium text-center text-white border border-gray-300 rounded-lg hover:bg-teal-400 focus:ring-4 focus:ring-gray-100">
+          Alterar Senha
+        </a>
       </div>
     </div>
     <div class="profile-info">
@@ -106,7 +108,7 @@ export default {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  background-color: #111111;
+  background-color: #082f49;
   padding: 20px;
   border: 1px solid #ccc;
   border-radius: 5px;
@@ -118,14 +120,14 @@ export default {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  background-color: #111111;
+  background-color: #082f49;
   padding: 20px;
   border: 1px solid #ccc;
   border-radius: 5px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   margin: 20px;
   width: 100vh;
-  height: 30vh;
+  height: flex;
 }
 
 .user-card {
@@ -174,7 +176,7 @@ export default {
 
 .action-button {
   width: 100%;
-  background-color: #007BFF;
+  background-color: #fee754;
   color: #fff;
   padding: 10px 20px;
   margin: 10px 0;
