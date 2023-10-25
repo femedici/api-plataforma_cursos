@@ -126,6 +126,7 @@ public class UserController : ControllerBase
             return StatusCode(500, $"Internal server error: {ex.Message}");
         }
     }
+    
     // Altera o estado o User/Creator pra True ou False
     [HttpPut("admin-users")]
     public async Task<IActionResult> AlterCreator(int id, [FromBody] bool newCreator)
