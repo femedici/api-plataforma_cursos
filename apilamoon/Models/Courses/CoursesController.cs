@@ -65,6 +65,19 @@ public class CoursesController : ControllerBase
         return Ok(course);
     }
 
+    [HttpGet("creatorId/{creatorId}")]
+    //Faz a consulta de todos os cursos daquele criador
+    public ActionResult<Topic> GetByUser(int creatorId)
+    {
+        var courses = _courses.Find(Course => Course.CreatorID == creatorId).ToList();
+        if (courses == null)
+        {
+            return NotFound();
+        }
+        return Ok(courses);
+    }
+
+
     [HttpGet("title/{title}")]
     //Faz a consulta de apenas 1 curso, com o título
     public ActionResult<Course> GetByTitle(string title)
