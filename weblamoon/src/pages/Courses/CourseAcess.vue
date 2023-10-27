@@ -30,25 +30,25 @@
                     </div>
                 </div>
             </div>
-                <div
-                    class="lg:col-span-2 lg:col-start-1 lg:row-start-2 lg:mx-auto lg:grid lg:w-full lg:max-w-7xl lg:grid-cols-2 lg:gap-x-8 lg:px-8">
-                    <div class="lg:pr-4">
-                        <div class="max-w-xl text-base leading-7 text-gray-700 lg:max-w-lg">
-                            <h1 class="mt-2 text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
-                                <span
-                                    class="text-7xl bg-clip-text text-transparent bg-gradient-to-r from-sky-900 to-emerald-600">_</span>
-                                Sobre o Curso
-                            </h1>
-                            <br>
-                            <p>{{ course.bodyText }}</p>
-                            <h1 class="mt-2 text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
-                                <span
-                                    class="text-7xl bg-clip-text text-transparent bg-gradient-to-r from-sky-900 to-emerald-600">_</span>
-                                Tópicos
-                            </h1>
-                        </div>
+            <div
+                class="lg:col-span-2 lg:col-start-1 lg:row-start-2 lg:mx-auto lg:grid lg:w-full lg:max-w-7xl lg:grid-cols-2 lg:gap-x-8 lg:px-8">
+                <div class="lg:pr-4">
+                    <div class="max-w-xl text-base leading-7 text-gray-700 lg:max-w-lg">
+                        <h1 class="mt-2 text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
+                            <span
+                                class="text-7xl bg-clip-text text-transparent bg-gradient-to-r from-sky-900 to-emerald-600">_</span>
+                            Sobre o Curso
+                        </h1>
+                        <br>
+                        <p>{{ course.bodyText }}</p>
+                        <h1 class="mt-2 text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
+                            <span
+                                class="text-7xl bg-clip-text text-transparent bg-gradient-to-r from-sky-900 to-emerald-600">_</span>
+                            Tópicos
+                        </h1>
                     </div>
                 </div>
+            </div>
         </div>
         <div class="flex flex-wrap lg:w-4/5 sm:mx-auto sm:mb-2 -mx-2 p-4">
             <v-expansion-panels class="mb-6">
@@ -74,8 +74,10 @@
                             <v-col cols="8">
                                 <v-sheet class="pa-2 ma-2">
                                     <VideoPlayer :videoSource="item.video" />
+                                    <span
+                                        class="text-5xl bg-clip-text text-transparent bg-gradient-to-r from-sky-900 to-emerald-600">____________________________</span>
                                 </v-sheet>
-                            </v-col>
+                            </v-col>    
                         </v-row>
                         <div class="ml-3">
                             <v-switch color="success" :model-value="false" label="Concluído"
@@ -87,8 +89,6 @@
         </div>
     </div>
     <v-divider></v-divider>
-
-    <!-- <VideoPlayer /> -->
 </template>
 
 <script>

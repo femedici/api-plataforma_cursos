@@ -34,10 +34,17 @@
             </div>
             <div
                 class="-ml-12 -mt-12 p-12 lg:sticky lg:top-4 lg:col-start-2 lg:row-span-2 lg:row-start-1 lg:overflow-hidden">
-                <img :src="imageCourse" class="bg-contain h-40 w-90 rounded-lg" />
-                <h1 class="mt-2 text-1x font-bold tracking-tight text-gray-900 sm:text-2xl">Introdução</h1>
-                <!-- tirar após player video!!! -->
-                <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+                <h1 class="mt-2 text-1x font-bold tracking-tight text-gray-900 sm:text-2xl">Vídeo Introdutório</h1>
+                <br>
+                <div v-if="course.mainVideo != null">
+                    <VideoPlayer :videoSource="course.mainVideo" />
+                    <span
+                        class="text-5xl bg-clip-text text-transparent bg-gradient-to-r from-sky-900 to-emerald-600">___________________________</span>
+                </div>
+                <div v-else>
+                    <p>Sem video de apresentação</p>
+                </div>
+                <br><br><br><br><br><br><br><br><br>
                 <v-btn @click="subscribeCourse" size="large" prepend-icon="mdi-check-decagram"
                     class="bg-gradient-to-r from-sky-700 to-emerald-600 text-neutral-50" :disabled="isDisabled">
                     Inscrever-se
@@ -64,15 +71,14 @@
                         <br>
                         <p>{{ course.bodyText }}</p>
                         <br>
-                        <h1 class="mt-2 text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
-                            <span
-                                class="text-7xl bg-clip-text text-transparent bg-gradient-to-r from-sky-900 to-emerald-600">_</span>
-                            Tópicos abordados
-                        </h1>
                     </div>
                 </div>
             </div>
         </div>
+        <h1 class="mt-2 text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl ml-8">
+            <span class="text-7xl bg-clip-text text-transparent bg-gradient-to-r from-sky-900 to-emerald-600">_</span>
+            Tópicos abordados
+        </h1>
         <div class="flex flex-wrap lg:w-4/5 sm:mx-auto sm:mb-2 -mx-2 p-4">
             <div v-for="(item, index) in topics" :key="index" class="p-2 sm:w-1/2 w-full">
                 <div
@@ -92,8 +98,12 @@
 <script>
 import axios from '@/../src/axios';
 import { mapGetters } from 'vuex';
+import VideoPlayer from '@/components/VideoPlayer.vue';
 
 export default {
+    components: {
+        VideoPlayer, // Adicione o componente à seção de componentes
+    },
     data() {
         return {
             course: {
