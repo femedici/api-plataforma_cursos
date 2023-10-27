@@ -1,7 +1,7 @@
 <template>
     <div>
         <div>
-            <iframe width="720" height="405" :src="embedUrls[0]" frameborder="0" allowfullscreen class="mr-2"></iframe>
+            <iframe width="760" height="425" :src="embedUrls[0]" frameborder="0" allowfullscreen class="mr-2"></iframe>
         </div>
     </div>
 </template>

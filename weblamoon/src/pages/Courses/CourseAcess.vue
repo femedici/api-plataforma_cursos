@@ -1,6 +1,6 @@
 <template>
     <div class=" isolate overflow-hidden bg-zinc-200 px-6 py-24 sm:py-32 lg:overflow-visible lg:px-0">
-        <v-btn to="/list-courses" prepend-icon="mdi-format-horizontal-align-left" variant="text" class="text-sky-900">
+        <v-btn to="/coursesSub" prepend-icon="mdi-format-horizontal-align-left" variant="text" class="text-sky-900">
             VOLTAR
         </v-btn>
         <div class="absolute inset-0 -z-10 overflow-hidden">
@@ -30,42 +30,58 @@
                     </div>
                 </div>
             </div>
-            <div
-                class="lg:col-span-2 lg:col-start-1 lg:row-start-2 lg:mx-auto lg:grid lg:w-full lg:max-w-7xl lg:grid-cols-2 lg:gap-x-8 lg:px-8">
-                <div class="lg:pr-4">
-                    <div class="max-w-xl text-base leading-7 text-gray-700 lg:max-w-lg" style="word-wrap: break-word;">
-                        <h1 class="mt-2 text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
-                            <span
-                                class="text-7xl bg-clip-text text-transparent bg-gradient-to-r from-sky-900 to-emerald-600">_</span>
-                            Tópicos
-                        </h1>
+                <div
+                    class="lg:col-span-2 lg:col-start-1 lg:row-start-2 lg:mx-auto lg:grid lg:w-full lg:max-w-7xl lg:grid-cols-2 lg:gap-x-8 lg:px-8">
+                    <div class="lg:pr-4">
+                        <div class="max-w-xl text-base leading-7 text-gray-700 lg:max-w-lg">
+                            <h1 class="mt-2 text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
+                                <span
+                                    class="text-7xl bg-clip-text text-transparent bg-gradient-to-r from-sky-900 to-emerald-600">_</span>
+                                Sobre o Curso
+                            </h1>
+                            <br>
+                            <p>{{ course.bodyText }}</p>
+                            <h1 class="mt-2 text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
+                                <span
+                                    class="text-7xl bg-clip-text text-transparent bg-gradient-to-r from-sky-900 to-emerald-600">_</span>
+                                Tópicos
+                            </h1>
+                        </div>
                     </div>
                 </div>
-            </div>
         </div>
         <div class="flex flex-wrap lg:w-4/5 sm:mx-auto sm:mb-2 -mx-2 p-4">
             <v-expansion-panels class="mb-6">
-                <v-expansion-panel v-for="(item, index) in topics" :key="index">
+                <v-expansion-panel v-for="(item, index) in topics" :key="index" class="rounded-lg mb-4 border-inherit ">
                     <v-expansion-panel-title expand-icon="mdi-menu-down">
-                        {{ item.title }}
+                        <div class="text-2xl mt-2 font-bold tracking-tight">
+                            <span class="bg-clip-text text-transparent bg-gradient-to-r from-sky-900 to-emerald-600">
+                                {{ item.title }}
+                            </span>
+                        </div>
                     </v-expansion-panel-title>
                     <v-expansion-panel-text>
                         <v-row no-gutters>
                             <v-col cols="4">
+                                <h1 class="mt-2 font-bold tracking-tight text-gray-900 sm:text-2xl">
+                                    <span
+                                        class="text-5xl bg-clip-text text-transparent bg-gradient-to-r from-sky-900 to-emerald-600">_</span>
+                                    Neste video:
+                                </h1>
                                 <v-sheet class="pa-2 ma-2 break-all" v-html="item.description">
                                 </v-sheet>
                             </v-col>
                             <v-col cols="8">
-                                <v-divider :thickness="6" color="info" vertical></v-divider>
                                 <v-sheet class="pa-2 ma-2">
                                     <VideoPlayer :videoSource="item.video" />
                                 </v-sheet>
                             </v-col>
                         </v-row>
+                        <div class="ml-3">
+                            <v-switch color="success" :model-value="false" label="Concluído"
+                                class="mt-2 font-bold tracking-tight text-gray-900 sm:text-xl"></v-switch>
+                        </div>
                     </v-expansion-panel-text>
-                    <div class="ml-2">
-                        <v-switch color="primary" :model-value="false" label="Concluído"></v-switch>
-                    </div>
                 </v-expansion-panel>
             </v-expansion-panels>
         </div>
