@@ -11,10 +11,11 @@
   <div class="ml-20 mr-20 mt-5 mb-8 bg-slate-300 border-solid border-2 rounded-md">
     <div class="ml-20 mr-20 mt-5">
 
-      <h2 class="text-2xl font-bold tracking-tight text-gray-800 text-center m:text-3xl">Primeiro, preencha as informações abaixo:
+      <h2 class="text-2xl font-bold tracking-tight text-gray-800 text-center m:text-3xl">Primeiro, preencha as informações
+        abaixo:
       </h2>
       <br>
-      <form @submit="submitForm">
+      <form @submit="submitCourse">
         <div class="space-y-12">
           <div class="border-b border-white-900/10 pb-12">
             <div class="mt-10 grid grid-cols-1 gap-x-6 gap-y-8 m:grid-cols-6">
@@ -55,7 +56,8 @@
           </div>
 
           <div>
-            <label for="photo" class="block text-m font-medium leading-6 text-white-900 mb-2">Imagem de Capa do Curso</label>
+            <label for="photo" class="block text-m font-medium leading-6 text-white-900 mb-2">Imagem de Capa do
+              Curso</label>
             <label class="block">
               <span class="sr-only">Choose profile photo</span>
               <input type="file" class="block w-full text-sm text-slate-500
@@ -76,18 +78,31 @@
               file:bg-violet-50 file:text-cyan-700
               hover:file:bg-violet-100" />
             </label>
-
           </div>
 
+          <div>
+            <div class="m:col-span-4">
+              <label for="username" class="block text-m font-medium leading-6 text-white-900">Adicione a URL do Vídeo de
+                Apresentação do curso</label>
+              <div class="mt-2">
+                <div
+                  class="flex rounded-md shadow-m ring-1 ring-inset ring-white-300 focus-within:ring-2 focus-within:ring-inset focus-within:ring-indigo-600 m:max-w-md">
+                  <input type="text" name="username" id="username" autocomplete="username"
+                    class="block flex-1 border-0 bg-transparent py-1.5 pl-1 text-white-900 placeholder:text-white-400 focus:ring-0 m:text-m m:leading-6"
+                    placeholder="drive.com/">
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
-
-        <div class="mt-6 mb-4 flex items-center justify-end gap-x-6">
-          <button  class="text-m font-semibold leading-6 text-white-900">Limpar</button>
-          <button type=""
-            class="rounded-md bg-teal-400 px-3 py-2 text-m font-semibold text-white shadow-m hover:bg-cyan-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Próximo Passo</button>
-        </div>
-
       </form>
+      <div class="mt-6 mb-4 flex items-center justify-end gap-x-6">
+        <button class="text-m font-semibold leading-6 text-white-900">Limpar</button>
+        <button type=""
+          class="rounded-md bg-teal-400 px-3 py-2 text-m font-semibold text-white shadow-m hover:bg-cyan-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Próximo
+          Passo</button>
+      </div>
+
     </div>
     <!-- <div class="title">
         Crie seu curso
@@ -117,5 +132,30 @@
 </template>
 
 <script>
-
+export default {
+  data() {
+    return {
+      step: 1, // Initial step
+      formData: {
+        // Initialize your form data here
+      },
+    };
+  },
+  methods: {
+    nextStep() {
+      if (this.step < 4) {
+        this.step++;
+      }
+    },
+    previousStep() {
+      if (this.step > 1) {
+        this.step--;
+      }
+    },
+    submitForm() {
+      // Handle form submission here
+      // Access form data using this.formData
+    },
+  },
+};
 </script>
