@@ -1,35 +1,39 @@
 <template>
-    <div class="bg-white">
-        <section class="bg-gray-900 lg:pt-[120px] pb-10 lg:pb-20"
-            style="background-color:white; background-image: url('https://img.freepik.com/vetores-gratis/ilustracao-do-conceito-de-formula_114360-8367.jpg?w=826&t=st=1698271990~exp=1698272590~hmac=d846b4602f1a22ece92a6c4e1dc47b2f83f591732fb25ec8dfba83c0b7cb099d'); background-size:50%; background-position: right;">
+    <div
+        style="background-image:url(https://images.unsplash.com/photo-1557682250-33bd709cbe85?auto=format&fit=crop&q=80&w=2029&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D)">
+        <section class="bg-violet lg:pt-[120px] pb-10 lg:pb-20"
+            style="background-image:url(https://images.unsplash.com/photo-1557682250-33bd709cbe85?auto=format&fit=crop&q=80&w=2029&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D);">
             <div class="grid max-w-screen-xl px-4 py-8 mx-auto lg:gap-8 xl:gap-0 lg:py-16 lg:grid-cols-12">
-                <div class="mr-auto place-self-center lg:col-span-7">
-                    <h1
-                        class="max-w-2xl mb-4 text-4xl font-extrabold tracking-tight leading-none md:text-5xl xl:text-6xl dark:text-black ">
-                        Tornar-se um Criador!</h1>
-                    <br>
-                    <p class="max-w-2xl mb-6 font-light text-black-100 lg:mb-8 md:text-lg lg:text-xl dark:text-black">Aqui
-                        te
-                        mostraremos o que significa ser um Criador LaMoon, no que isso te ajuda e no impacto que isso traz
-                        ao
-                        seu negócio.</p>
-                    <br>
-                    <p class="max-w-2xl mb-6 font-light text-black-100 lg:mb-8 md:text-lg lg:text-xl dark:text-black">
-                        Continue
-                        scrollando e se torne um Criador.</p>
-                    <br><br>
-                    <path fill-rule="evenodd"
-                        d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z"
-                        clip-rule="evenodd"></path>
-                    <br><br><br><br>
+                <div class="lg:col-span-7" style="margin-top: 140px;">
+                    <h1 style="margin-right: 10px;"
+                        class="max-w-2xl mb-4 text-4xl font-extrabold tracking-tight leading-none md:text-5xl xl:text-6xl dark:text-white">
+                        Tornar-se um Criador!
+                    </h1>
+                    <p style="margin-right: 10px;"
+                        class="max-w-2xl mb-6 font-light text-white-100 lg:mb-8 md:text-lg lg:text-xl dark:text-white">
+                        Aqui te mostraremos o que significa ser um Criador LaMoon, no que isso te ajuda e no impacto que
+                        isso traz ao seu negócio.
+                    </p>
+                    <p style="margin-right: 10px;"
+                        class="max-w-2xl mb-6 font-light text-white-100 lg:mb-8 md:text-lg lg:text-xl dark:text-white">
+                        Continue scrollando e se torne um Criador.
+                    </p>
+                </div>
+                <div class="lg:col-span-5 flex justify-end">
+                    <v-img src="@/assets/BecomeCreator/1.png" class="float-right"></v-img>
                 </div>
             </div>
         </section>
-        <div>
+
+        <div
+            style="background-image:url(https://images.unsplash.com/photo-1557682250-33bd709cbe85?auto=format&fit=crop&q=80&w=2029&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D);">
             <section id="section1" class="section">
                 <div class="section-content">
                     <div class="section-text">
-                        <h2 class="large-text">Demonstração de conhecimentos!</h2>
+                        <span
+                            class="large-text bg-clip-text text-transparent bg-gradient-to-r to-violet-700 from-violet-700">
+                            <strong>Demonstração de conhecimentos</strong>
+                        </span>
                         <p class="medium-text">
                             Ao se tornar um Criador LaMoon, você não só está repassando diversas experiencias
                             que alavancam a carreira de outras pessoas, como também está contribuindo para o seu
@@ -38,20 +42,21 @@
                         </p>
                     </div>
                     <div class="section-image">
-                        <img src="https://img.freepik.com/vetores-gratis/ilustracao-do-conceito-de-qualidade-do-produto_114360-7301.jpg?w=826&t=st=1698295802~exp=1698296402~hmac=7abb8f6c0f84e1d12b111d9541e9f5f384e0154df49899c6fef951ba46d08fbd"
-                            alt="Imagem 1">
+                        <v-img src="@/assets/BecomeCreator/2.png"></v-img>
                     </div>
                 </div>
             </section>
             <section id="section2" class="section">
                 <div class="section-content">
                     <div class="section-image">
-                        <img src="https://img.freepik.com/vetores-gratis/ilustracao-do-conceito-de-webinar_114360-4764.jpg?w=1380&t=st=1698296266~exp=1698296866~hmac=b10cea87438da7010970106f7445f3e38325271d48f2a51c572b890e3f6c201b"
-                            alt="Imagem 2">
+                        <v-img src="@/assets/BecomeCreator/3.png"></v-img>
                     </div>
                     <div class="section-text">
-                        <h2 class="large-text">Ótimo para o seu negócio.</h2>
-                        <p>
+                        <span
+                            class="large-textl bg-clip-text text-transparent bg-gradient-to-r to-violet-600 from-violet-600">
+                            <strong>Ótimo para o seu negócio</strong>
+                        </span>
+                        <p class="medium-textl">
                             Imagine, contratar novos desenvolvedores para o seu projeto, técnicos para sua empresa, ou mão
                             de obra para algum sistema mecânico. Com a LaMoon, você pode providenciar os cursos
                             preparatórios facilmente com todo sistema de gerenciamento e infraestrutura de nossa aplicação.
@@ -62,29 +67,31 @@
             <section id="section3" class="section">
                 <div class="section-content">
                     <div class="section-text">
-                        <h2 class="large-text">Recompensas</h2>
-                        <p>
+                        <span
+                            class="large-text bg-clip-text text-transparent bg-gradient-to-r to-violet-500 from-violet-500"
+                            style="margin-left:-120px;">
+                            <strong>Recompensas</strong>
+                        </span>
+                        <p class="medium-text" style="margin-left:-120px;">
                             É possível obter lucros de acordo com a forma que você vende cursos. Ministre aulas
                             interessantes e que chamem atenção, aulas essas que você tem um manejo especializado e de fácil
                             compreensão.
                         </p>
                     </div>
                     <div class="section-image">
-                        <img src="https://img.freepik.com/vetores-gratis/poupar-dinheiro-conceito-fundo_23-2148146453.jpg?w=826&t=st=1698296505~exp=1698297105~hmac=e060b428a028b791d2906c09df9736b5d4eceb37168abdd7c6954b1d47ee216f"
-                            alt="Imagem 3">
+                        <v-img src="@/assets/BecomeCreator/4.png" style="margin-left:-300px"></v-img>
                     </div>
                 </div>
             </section>
         </div>
-        <section class="tam-dir bg-cover bg-center py-32"
-            style="background-image: url('https://img.freepik.com/vetores-gratis/design-de-banner-ondulado-de-luz-neon_1017-32706.jpg?w=1380&t=st=1698305118~exp=1698305718~hmac=d9a0f6e6585e0c79ea8ee76dd7eceb67d780277d254469e6fb95ba0a2ddc704e');">
+        <section class="tam-dir bg-cover bg-center py-32 section-divider"
+            style="background-image: url('https://images.unsplash.com/photo-1638272181967-7d3772a91265?auto=format&fit=crop&q=80&w=2070&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D');">
             <div class="container mx-auto text-center text-white">
-                <h1 class="text-5xl font-medium mb-6 text-black bottommargin">Não perca tempo.</h1>
-                <p class="text-xl mb-12 text-black">Junte-se ao nosso universo de conhecimento.</p>
+                <h1 class="text-5xl font-medium mb-6 text-white bottommargin">Não perca tempo.</h1>
+                <p class="text-xl mb-12 text-white">Junte-se ao nosso universo de conhecimento.</p>
                 <v-btn @click="beCreator" size="large" prepend-icon="mdi-check-decagram"
                     class="bg-indigo-500 text-white py-4 px-12 rounded-full hover:bg-indigo-600" :disabled="show">
-                    Tornar-se um
-                    Criador
+                    Tornar-se um Criador
                 </v-btn>
             </div>
         </section>
@@ -129,12 +136,8 @@ export default {
 }
 
 .tam-dir {
-    flex: 1;
     background-position: center;
-    text-align: right;
-    align-self: flex;
-    max-width: 100%;
-    max-height: 14%;
+    padding-top: -100px;
 }
 
 .margem {
@@ -147,36 +150,29 @@ export default {
     margin-right: 30px;
 }
 
-header {
-    background-color: #333;
-    color: #fff;
-    padding: 20px;
-    text-align: center;
-}
-
 h1 {
     margin: 0;
 }
 
 nav {
-    background-color: #444;
+    background-color: #48008b;
     padding: 10px;
     text-align: center;
 }
 
 nav a {
     text-decoration: none;
-    color: #fff;
+    color: #dffdff;
     margin: 10px;
 }
 
 .section {
     padding: 20px;
     margin: 20px;
-    background-color: #f9f9f9;
+    background-color: #ffffff;
     border: 1px solid #ddd;
-    border-radius: 5px;
-    height: 25%;
+    border-radius: 15px;
+    height: 20%;
     max-width: 100%;
     display: flex;
     justify-content: space-between;
@@ -203,13 +199,26 @@ nav a {
 }
 
 .large-text {
-    font-size: 20px;
+    font-size: 30px;
+    margin-left: 20%;
+
 }
 
-footer {
-    background-color: #333;
-    color: #fff;
-    text-align: center;
-    padding: 10px;
+.medium-text {
+    font-size: 15px;
+    margin-left: 20%;
+}
+
+.large-textl {
+    font-size: 30px;
+    text-align: left;
+    margin-left: 30px;
+
+}
+
+.medium-textl {
+    font-size: 15px;
+    max-width: 70%;
+    margin-left: 30px;
 }
 </style>

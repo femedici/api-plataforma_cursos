@@ -103,7 +103,7 @@ export default {
                     this.$refs.loginWarning.openLoginWarning('Pronto! ' + response.data.name);
                 })
                 .catch(error => {
-                    window.alert('Login não realizado, revise o login e senha!',error);
+                    window.alert('Login não realizado, revise o login e senha!', error);
                 });
         }
     }
