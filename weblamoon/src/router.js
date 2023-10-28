@@ -60,7 +60,7 @@ const router = createRouter({
             component: AlterCourse
         },
         {
-            path: '/create-topic',
+            path: '/create-topic/:id',
             component: CreateTopic
         },
         {

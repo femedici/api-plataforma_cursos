@@ -18,7 +18,7 @@
             <form @submit="submitTopics">
                 <!-- Use v-for to render forms for each topic -->
                 <div v-for="(topic, index) in formData.topics" :key="index">
-                    <h2 class="text-2xl font-bold tracking-tight text-gray-800 m:text-2xl">
+                    <h2 class="text-2xl mt-3 font-bold tracking-tight text-gray-800 m:text-2xl">
                         Tópico {{ index + 1 }}.
                     </h2>
                     <div class="space-y-12">
@@ -46,22 +46,24 @@
                                     <div class="mt-2">
                                         <div
                                             class="flex rounded-md shadow-m ring-1 ring-inset ring-white-300 focus-within:ring-2 focus-within:ring-inset focus-within:ring-indigo-600 m:max-w-md">
-                                            <input type="text" name="username" id="username" autocomplete="username"
+                                            <input v-model="topic.description" type="text" name="description"
+                                                id="description" autocomplete="username"
                                                 class="block flex-1 border-0 bg-transparent py-1.5 pl-1 text-white-900 placeholder:text-white-400 focus:ring-0 m:text-m m:leading-6"
-                                                placeholder="Nesse topico vamos trabalhar ...">
+                                                placeholder="Nesse tópico vamos trabalhar ...">
                                         </div>
                                     </div>
                                 </div>
 
                                 <div>
                                     <div class="m:col-span-4">
-                                        <label for="username"
-                                            class="block text-m font-medium leading-6 text-white-900">Adicione
-                                            a URL do Vídeo desse tópico</label>
+                                        <label for="videoUrl"
+                                            class="block text-m font-medium leading-6 text-white-900">Adicione a URL do
+                                            Vídeo desse tópico</label>
                                         <div class="mt-2">
                                             <div
                                                 class="flex rounded-md shadow-m ring-1 ring-inset ring-white-300 focus-within:ring-2 focus-within:ring-inset focus-within:ring-indigo-600 m:max-w-md">
-                                                <input type="text" name="username" id="username" autocomplete="username"
+                                                <input v-model="topic.videoUrl" type="text" name="videoUrl" id="videoUrl"
+                                                    autocomplete="username"
                                                     class="block flex-1 border-0 bg-transparent py-1.5 pl-1 text-white-900 placeholder:text-white-400 focus:ring-0 m:text-m m:leading-6"
                                                     placeholder="drive.com/">
                                             </div>
@@ -70,6 +72,12 @@
                                 </div>
                             </div>
                         </div>
+                    </div>
+
+                    <!-- Delete Topic Button -->
+                    <div class="mt-6 mb-4 flex items-center justify-end gap-x-6">
+                        <button @click="deleteTopic(index)" class="text-m font-semibold leading-6 text-red-500">Deletar
+                            Tópico</button>
                     </div>
                 </div>
             </form>
@@ -85,7 +93,7 @@
         </div>
     </div>
 </template>
-  
+
 <script>
 export default {
     data() {
@@ -110,6 +118,10 @@ export default {
                 description: '',
                 videoUrl: ''
             });
+        },
+        deleteTopic(index) {
+            // Remove the specified topic from the array
+            this.formData.topics.splice(index, 1);
         },
         submitTopics() {
             // Handle form submission
