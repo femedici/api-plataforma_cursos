@@ -1,22 +1,23 @@
 <template>
     <div
-        style="background-image:url(https://images.unsplash.com/photo-1557682250-33bd709cbe85?auto=format&fit=crop&q=80&w=2029&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D)">
+        style="background-image:url(https://images.unsplash.com/photo-1618397746666-63405ce5d015?auto=format&fit=crop&q=80&w=1974&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D)">
         <section class="bg-violet lg:pt-[120px] pb-10 lg:pb-20"
-            style="background-image:url(https://images.unsplash.com/photo-1557682250-33bd709cbe85?auto=format&fit=crop&q=80&w=2029&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D);">
+            style="background-image:url(https://images.unsplash.com/photo-1618397746666-63405ce5d015?auto=format&fit=crop&q=80&w=1974&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D);">
             <div class="grid max-w-screen-xl px-4 py-8 mx-auto lg:gap-8 xl:gap-0 lg:py-16 lg:grid-cols-12">
                 <div class="lg:col-span-7" style="margin-top: 140px;">
                     <h1 style="margin-right: 10px;"
-                        class="max-w-2xl mb-4 text-4xl font-extrabold tracking-tight leading-none md:text-5xl xl:text-6xl dark:text-white">
+                        class="max-w-2xl mb-4 text-4xl font-extrabold tracking-tight leading-none md:text-5xl xl:text-6xl dark:text-blue-950">
                         Tornar-se um Criador!
                     </h1>
                     <p style="margin-right: 10px;"
-                        class="max-w-2xl mb-6 font-light text-white-100 lg:mb-8 md:text-lg lg:text-xl dark:text-white">
-                        Aqui te mostraremos o que significa ser um Criador LaMoon, no que isso te ajuda e no impacto que
-                        isso traz ao seu negócio.
+                        class="max-w-2xl mb-6 font-light text-blue-900-100 lg:mb-8 md:text-lg lg:text-xl dark:text-blue-900">
+                        <strong>Aqui te mostraremos o que significa ser um Criador LaMoon, no que isso te ajuda e no impacto
+                            que
+                            isso traz ao seu negócio.</strong>
                     </p>
                     <p style="margin-right: 10px;"
-                        class="max-w-2xl mb-6 font-light text-white-100 lg:mb-8 md:text-lg lg:text-xl dark:text-white">
-                        Continue scrollando e se torne um Criador.
+                        class="max-w-2xl mb-6 font-light text-blue-900-100 lg:mb-8 md:text-lg lg:text-xl dark:text-blue-900">
+                        <strong>Continue scrollando e se torne um Criador.</strong>
                     </p>
                 </div>
                 <div class="lg:col-span-5 flex justify-end">
@@ -26,12 +27,11 @@
         </section>
 
         <div
-            style="background-image:url(https://images.unsplash.com/photo-1557682250-33bd709cbe85?auto=format&fit=crop&q=80&w=2029&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D);">
+            style="background-image:url(https://images.unsplash.com/photo-1618397746666-63405ce5d015?auto=format&fit=crop&q=80&w=1974&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D);">
             <section id="section1" class="section">
                 <div class="section-content">
                     <div class="section-text">
-                        <span
-                            class="large-text bg-clip-text text-transparent bg-gradient-to-r to-violet-700 from-violet-700">
+                        <span class="large-text bg-clip-text text-transparent bg-gradient-to-r to-sky-700 from-sky-700">
                             <strong>Demonstração de conhecimentos</strong>
                         </span>
                         <p class="medium-text">
@@ -52,8 +52,7 @@
                         <v-img src="@/assets/BecomeCreator/3.png"></v-img>
                     </div>
                     <div class="section-text">
-                        <span
-                            class="large-textl bg-clip-text text-transparent bg-gradient-to-r to-violet-600 from-violet-600">
+                        <span class="large-textl bg-clip-text text-transparent bg-gradient-to-r to-sky-600 from-sky-600">
                             <strong>Ótimo para o seu negócio</strong>
                         </span>
                         <p class="medium-textl">
@@ -67,8 +66,7 @@
             <section id="section3" class="section">
                 <div class="section-content">
                     <div class="section-text">
-                        <span
-                            class="large-text bg-clip-text text-transparent bg-gradient-to-r to-violet-500 from-violet-500"
+                        <span class="large-text bg-clip-text text-transparent bg-gradient-to-r to-sky-500 from-sky-500"
                             style="margin-left:-120px;">
                             <strong>Recompensas</strong>
                         </span>
@@ -85,12 +83,12 @@
             </section>
         </div>
         <section class="tam-dir bg-cover bg-center py-32 section-divider"
-            style="background-image: url('https://images.unsplash.com/photo-1638272181967-7d3772a91265?auto=format&fit=crop&q=80&w=2070&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D');">
-            <div class="container mx-auto text-center text-white">
-                <h1 class="text-5xl font-medium mb-6 text-white bottommargin">Não perca tempo.</h1>
-                <p class="text-xl mb-12 text-white">Junte-se ao nosso universo de conhecimento.</p>
+            style=" background-image: url('https://images.unsplash.com/photo-1586809797289-ae54d86fe28b?auto=format&fit=crop&q=80&w=2070&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D');">
+            <div class="container mx-auto text-center text-gray-800">
+                <h1 class="text-5xl font-medium mb-6 text-blue-950 bottommargin">Não perca tempo.</h1>
+                <p class="text-xl mb-12 text-sky-950">Junte-se ao nosso universo de conhecimento.</p>
                 <v-btn @click="beCreator" size="large" prepend-icon="mdi-check-decagram"
-                    class="bg-indigo-500 text-white py-4 px-12 rounded-full hover:bg-indigo-600" :disabled="show">
+                    class="bg-indigo-500 text-sky-950 py-3 px-12 rounded-full hover:bg-indigo-600" :disabled="show">
                     Tornar-se um Criador
                 </v-btn>
             </div>
