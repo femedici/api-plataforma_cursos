@@ -56,13 +56,13 @@
 
                                 <div>
                                     <div class="m:col-span-4">
-                                        <label for="videoUrl"
+                                        <label for="video"
                                             class="block text-m font-medium leading-6 text-white-900">Adicione a URL do
                                             Vídeo desse tópico</label>
                                         <div class="mt-2">
                                             <div
                                                 class="flex rounded-md shadow-m ring-1 ring-inset ring-white-300 focus-within:ring-2 focus-within:ring-inset focus-within:ring-indigo-600 m:max-w-md">
-                                                <input v-model="topic.videoUrl" type="text" name="videoUrl" id="videoUrl"
+                                                <input v-model="topic.video" type="text" name="video" id="video"
                                                     autocomplete="username"
                                                     class="block flex-1 border-0 bg-transparent py-1.5 pl-1 text-white-900 placeholder:text-white-400 focus:ring-0 m:text-m m:leading-6"
                                                     placeholder="drive.com/">
@@ -108,7 +108,7 @@ export default {
                         referenceCourse: courseId,
                         title: '',
                         description: '',
-                        videoUrl: ''
+                        video: ''
                     }
                 ]
             },
@@ -121,7 +121,7 @@ export default {
                 referenceCourse: this.$route.params.id,
                 title: '',
                 description: '',
-                videoUrl: ''
+                video: ''
             });
         },
         deleteTopic(index) {
@@ -148,7 +148,7 @@ export default {
                         referenceCourse: topic.referenceCourse,
                         title: '',
                         description: '',
-                        videoUrl: ''
+                        video: ''
                     }));
                 } else {
                     // Handle errors or notify the user of any failed topics
