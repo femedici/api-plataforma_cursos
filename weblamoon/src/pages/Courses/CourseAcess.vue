@@ -52,7 +52,7 @@
         </div>
         <div class="flex flex-wrap lg:w-4/5 sm:mx-auto sm:mb-2 -mx-2 p-4">
             <v-expansion-panels class="mb-6">
-                <v-expansion-panel v-for="(item, index) in topics" :key="index" class="rounded-lg mb-4 border-inherit ">
+                <v-expansion-panel v-for="(item, index) in reversedTopics" :key="index" class="rounded-lg mb-4 border-inherit ">
                     <v-expansion-panel-title expand-icon="mdi-menu-down">
                         <div class="text-2xl mt-2 font-bold tracking-tight">
                             <span class="bg-clip-text text-transparent bg-gradient-to-r from-sky-900 to-emerald-600">
@@ -77,7 +77,7 @@
                                     <span
                                         class="text-5xl bg-clip-text text-transparent bg-gradient-to-r from-sky-900 to-emerald-600">____________________________</span>
                                 </v-sheet>
-                            </v-col>    
+                            </v-col>
                         </v-row>
                         <div class="ml-3">
                             <v-switch color="success" :model-value="false" label="Concluído"
@@ -114,6 +114,12 @@ export default {
             error: null,
             userSubs: [],
         };
+    },
+    computed: {
+        reversedTopics() {
+            // Reverse the topics array
+            return this.topics.slice().reverse();
+        },
     },
     created() {
         const courseId = this.$route.params.id;
