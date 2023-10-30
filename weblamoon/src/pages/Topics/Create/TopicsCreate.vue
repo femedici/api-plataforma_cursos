@@ -76,32 +76,36 @@
 
                     <!-- Delete Topic Button -->
                     <div class="mt-6 mb-4 flex items-center justify-end gap-x-6">
-                        <button @click="deleteTopic(index)" class="text-m font-semibold leading-6 text-red-500">Deletar
+                        <button @click="deleteTopic(index)" type="button"
+                            class="text-m font-semibold leading-6 text-red-500">Deletar
                             Tópico</button>
                     </div>
                 </div>
+                <!-- Add Topic Button -->
+                <div class="mt-6 mb-4 flex items-center justify-end gap-x-6">
+                    <button @click="addTopic" type="button"  class="text-m font-semibold leading-6 text-white-900">Adicionar
+                        Tópico</button>
+                        <button type="submit"
+                            class="rounded-md bg-teal-400 px-3 py-2 text-m font-semibold text-white shadow-m hover:bg-cyan-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">
+                            Publicar Curso
+                        </button>
+                    </div>
             </form>
-
-            <!-- Add Topic Button -->
-            <div class="mt-6 mb-4 flex items-center justify-end gap-x-6">
-                <button @click="addTopic" class="text-m font-semibold leading-6 text-white-900">Adicionar Tópico</button>
-                <button @click="submitTopics" type=""
-                    class="rounded-md bg-teal-400 px-3 py-2 text-m font-semibold text-white shadow-m hover:bg-cyan-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">
-                    Publicar Curso
-                </button>
-            </div>
         </div>
     </div>
 </template>
 
 <script>
+import axios from '@/../src/axios';
+
 export default {
     data() {
+        const courseId = this.$route.params.id;
         return {
-            step: 1, // Initial step
             formData: {
                 topics: [ // Initialize with one topic object
                     {
+                        referenceCourse: courseId,
                         title: '',
                         description: '',
                         videoUrl: ''
@@ -114,6 +118,7 @@ export default {
         addTopic() {
             // Add a new topic object to the array
             this.formData.topics.push({
+                referenceCourse: this.$route.params.id,
                 title: '',
                 description: '',
                 videoUrl: ''
@@ -123,10 +128,39 @@ export default {
             // Remove the specified topic from the array
             this.formData.topics.splice(index, 1);
         },
-        submitTopics() {
-            // Handle form submission
-            console.log(this.formData.topics);
-        }
+        async submitTopics() {
+            try {
+                const topicData = this.formData.topics;
+
+                // Use Promise.all to make multiple POST requests for each topic
+                const responses = await Promise.all(
+                    topicData.map(topic => axios.post('/Topic', topic))
+                );
+
+                // Check if all requests were successful
+                if (responses.every(response => response.status === 200)) {
+                    // All topics were successfully created
+                    console.log('All topics were created successfully.');
+                    window.alert('All topics were created successfully.');
+
+                    // Clear the form after successful submission
+                    this.formData.topics = topicData.map(topic => ({
+                        referenceCourse: topic.referenceCourse,
+                        title: '',
+                        description: '',
+                        videoUrl: ''
+                    }));
+                } else {
+                    // Handle errors or notify the user of any failed topics
+                    console.error('Some topics could not be created.');
+                    window.alert('Some topics could not be created.');
+                }
+            } catch (error) {
+                // Handle errors here, such as network issues
+                console.error('Error sending data:', error);
+                window.alert('Error creating topics. Please try again.');
+            }
+        },
     },
 };
 </script>

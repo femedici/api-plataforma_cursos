@@ -18,13 +18,14 @@
   <v-divider></v-divider>
 
   <v-container fluid>
-    <div class="grid-cols-1 sm:grid md:grid-cols-3 ">
+    <div class="grid-cols-1 sm:grid md:grid-cols-3">
       <div v-for="(item, index) in data" :key="index"
-        class="mx-3 mt-6 flex shadow-2xl flex-col rounded-lg bg-transparent transform translate-y-0 transition-transform hover:translate-y-[-1rem] hover:shadow-md">
+        class="mx-3 mt-6 flex shadow-2xl flex-col rounded-lg bg-transparent transform translate-y-0 transition-transform hover:translate-y-[-1rem] hover:shadow-md"
+        style="height: 400px; /* Set a fixed height for the container */">
         <a :href="'/view-course/' + item.id">
-          <img class="rounded-t-lg" :src="item.banner"
-            alt="Course" />
-          =
+          <div style="height: 200px; /* Set a fixed height for the image container */">
+            <img class="rounded-t-lg object-cover h-full w-full" :src="item.banner" alt="Course" />
+          </div>
           <div class="p-6">
             <h5 class="mb-2 text-xl font-medium leading-tight text-neutral-100">
               {{ item.title }}
