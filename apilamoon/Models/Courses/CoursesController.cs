@@ -108,6 +108,24 @@ public class CoursesController : ControllerBase
         return Ok();
     }
 
+    [HttpPut("banner")]
+    public IActionResult PutBanner(int id, IFormFile banner)
+    {
+        MemoryStream memoryStream = new MemoryStream();
+        banner.OpenReadStream().CopyTo(memoryStream);
+
+        var update = Builders<Course>.Update
+            .Set(c => c.Banner, Convert.ToBase64String(memoryStream.ToArray()));
+        var updateResult = _courses.UpdateOne(c => c.Id == id, update);
+
+        if (updateResult.ModifiedCount == 0)
+        {
+            return NotFound();
+        }
+
+        return Ok();
+    }
+
     [HttpPut("{id}")]
     //Faz a consulta de apenas 1 curso, com o Id
     public IActionResult PutById(int id, Course updatedCourse)
