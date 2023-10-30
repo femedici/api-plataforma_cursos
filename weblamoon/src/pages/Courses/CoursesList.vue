@@ -1,8 +1,7 @@
 <template>
   <v-container fluid class="bg-sky-950/60 flex flex-col">
     <div class="flex items-end justify-between">
-      <span
-        class="max-w-2xl mb-4 text-4xl font-bold tracking-tight leading-none md:text-5xl xl:text-6xl text-cyan-100">
+      <span class="max-w-2xl mb-4 text-4xl font-bold tracking-tight leading-none md:text-5xl xl:text-6xl text-cyan-100">
         Cursos Disponíveis
       </span>
       <v-btn to="/becameCreator" prepend-icon="mdi-plus-circle"
@@ -19,15 +18,14 @@
   <v-divider></v-divider>
 
   <v-container fluid>
-    <div class="grid-cols-1 sm:grid md:grid-cols-3 ">
+    <div class="grid-cols-1 sm:grid md:grid-cols-3">
       <div v-for="(item, index) in data" :key="index"
-        class="mx-3 mt-6 flex shadow-2xl flex-col rounded-lg bg-transparent transform translate-y-0 transition-transform hover:translate-y-[-1rem] hover:shadow-md">
+        class="mx-3 mt-6 flex shadow-2xl flex-col rounded-lg bg-transparent transform translate-y-0 transition-transform hover:translate-y-[-1rem] hover:shadow-md"
+        style="height: 400px; /* Set a fixed height for the container */">
         <a :href="'/view-course/' + item.id">
-          <img class="rounded-t-lg"
-            src="https://scontent.ftow4-1.fna.fbcdn.net/v/t39.30808-6/278019551_7535454386494767_1280416841719107481_n.jpg?_nc_cat=109&ccb=1-7&_nc_sid=5f2048&_nc_ohc=wsbo1RcAzIwAX-cqktj&_nc_oc=AQlWIsPE0G0udDQZaenHc3hvfsDwd9OrQrCNT2S1ceYfbCEeZvGsb3UxTvZI0pNhwkE&_nc_ht=scontent.ftow4-1.fna&cb_e2o_trans=t&oh=00_AfA-yBPXphpq7FdHTMCsWIiPUnWywgngWcF9W5gvFmf42A&oe=653C66EC"
-            alt="Course" />
-          =
-
+          <div style="height: 200px; /* Set a fixed height for the image container */">
+            <img class="rounded-t-lg object-cover h-full w-full" :src="item.banner" alt="Course" />
+          </div>
           <div class="p-6">
             <h5 class="mb-2 text-xl font-medium leading-tight text-neutral-100">
               {{ item.title }}
@@ -61,6 +59,10 @@ export default {
       .then(response => {
         this.data = response.data;
         this.error = null;
+
+        this.data.forEach(course => {
+          course.banner = 'data:image;base64,' + course.banner;
+        });
       })
       .catch(error => {
         this.data = [];

@@ -14,12 +14,17 @@
             <div class="mb-10 sm:mb-0 mt-10 grid gap-4 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
                 <div v-for="(item, index) in data" :key="index"
                     class="relative group bg-gray-900 py-10 sm:py-20 px-4 flex flex-col space-y-2 items-center cursor-pointer rounded-md ">
-                    <img class="w-20 h-20 object-cover object-center rounded-full" :src="item.icon" alt="icon" />
                     <a :href="'/course/' + item.id">
+                        <img class="w-20 h-20 object-cover object-center rounded-full" :src="item.icon" alt="icon" />
                         <h4
                             class="text-white text-2xl font-bold capitalize text-center rounded-full py-2 px-4 hover:bg-cyan-900 focus:ring-4 focus:ring-gray-100">
                             {{ item.title }}</h4>
                     </a>
+                    <v-btn class="mx-2" fab dark large color="cyan" :href="'/edit-course/' + item.id">
+                        <v-icon dark>
+                            mdi-pencil
+                        </v-icon>
+                    </v-btn>
                 </div>
             </div>
         </div>

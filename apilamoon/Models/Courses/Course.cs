@@ -30,6 +30,9 @@ public class Course
     [BsonElement("icon")]
     public string? Icon { get; set; }
 
+    [BsonElement("banner")]
+    public string? Banner { get; set; }
+
     [BsonElement("creator")]
     public string? Creator { get; set; }
 
