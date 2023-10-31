@@ -80,7 +80,7 @@
             Tópicos abordados
         </h1>
         <div class="flex flex-wrap lg:w-4/5 sm:mx-auto sm:mb-2 -mx-2 p-4">
-            <div v-for="(item, index) in topics" :key="index" class="p-2 sm:w-1/2 w-full">
+            <div v-for="(item, index) in reversedTopics" :key="index" class="p-2 sm:w-1/2 w-full">
                 <div
                     class="bg-gray-100 rounded flex p-4 h-full items-center shadow-2xl  hover:translate-y-[-0.3rem] hover:shadow-md">
                     <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="3"
@@ -178,6 +178,10 @@ export default {
         isDisabled() {
             // Use a computed property to return true if either of the conditions is met
             return this.show || !this.getUserID;
+        },
+        reversedTopics() {
+            // Reverse the topics array
+            return this.topics.slice().reverse();
         },
     },
     methods: {

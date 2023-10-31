@@ -10,6 +10,7 @@ import ListCourses from './pages/Courses/CoursesList.vue'
 import ViewCourse from './pages/Courses/CoursesPreview.vue'
 import AlterCourse from './pages/Courses/Alter/CoursesAlter.vue'
 import CreateTopic from './pages/Topics/Create/TopicsCreate.vue'
+import EditTopic from './pages/Topics/Alter/TopicsEdit.vue'
 import ViewTopic from './pages/Topics/View/TopicView.vue'
 import AdminView from './pages/User/UserList.vue'
 import Course from './pages/Courses/CourseAcess.vue'
@@ -71,6 +72,10 @@ const router = createRouter({
         {
             path: '/view-topic',
             component: ViewTopic
+        },
+        {
+            path: '/edit-topics/:id',
+            component: EditTopic
         },
         {
             path: '/admin-users',
