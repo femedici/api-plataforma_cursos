@@ -158,12 +158,12 @@ export default {
                 console.log('Inscrições do usuário resgatadas.');
 
                 console.log("User Subscriptions:", this.userSubs);
-                console.log("Course ID to check:", this.course.id);
+                console.log("Course ID to check:", this.subData.idCourse);
 
                 for (const subscription of this.userSubs) {
                     console.log("Subscription ID Course:", subscription.idCourse);
-                    if (subscription.idCourse === this.course.id) {
-                        console.log(`User is subscribed to course with ID: ${this.course.id}`);
+                    if (parseInt(subscription.idCourse) === parseInt(this.subData.idCourse)) {
+                        console.log(`User is subscribed to course with ID: ${this.subData.idCourse}`);
                         this.show = true;
                         break; // Break out of the loop since we found a match
                     }
