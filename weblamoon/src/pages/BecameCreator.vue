@@ -88,46 +88,47 @@
                 <h1 class="text-5xl font-medium mb-6 text-blue-950 bottommargin">Não perca tempo.</h1>
                 <p class="text-xl mb-12 text-sky-950">Junte-se ao nosso universo de conhecimento.</p>
                 <v-btn @click="beCreator" size="large" prepend-icon="mdi-check-decagram"
-                    class="bg-indigo-500 text-sky-950 py-3 px-12 rounded-full hover:bg-indigo-600" :disabled="show">
+                    class="bg-gradient-to-r from-sky-700 to-emerald-600 text-white py-3 px-12 rounded-full hover:bg-emerald-600">
                     Tornar-se um Criador
                 </v-btn>
             </div>
         </section>
     </div>
 </template>
+
 <script>
 import axios from '@/../src/axios';
 import { mapGetters } from 'vuex';
-//Falta adequar o script pra criador
+
 export default {
     name: "PageWithSections",
     computed: {
-        ...mapGetters('user', ['getUserID', 'getUserName']), // Mapeando os getters do módulo 'user'
+        ...mapGetters('user', ['getUserID', 'getUserName', 'getUserBecameCreator']),
     },
     methods: {
         beCreator() {
-            this.subData.idUser = this.getUserID;
-
-            axios.post('/Subscription', this.subData, {
+            axios.put(`/User/becameCreator?id=${this.getUserID}`, true, {
                 headers: {
-                    'Content-Type': 'application/json', // Set the content type to JSON
+                    'Content-Type': 'application/json',
                 },
             })
                 .then(response => {
+                    // Handle the successful response here
                     console.log('Data sent successfully:', response.data);
-
-                    console.log('Inscrito com sucesso!' + this.getUserName);
+                    window.alert('Requisitado com sucesso!');
                     this.subNow = true;
                     this.show = true;
                 })
                 .catch(error => {
+                    // Handle errors here
                     console.error('Registration not completed, please try again', error);
-                    // Handle the error appropriately
                 });
         },
     },
 }
 </script>
+
+
 <style scoped>
 .bottommargin {
     margin-top: -50px;

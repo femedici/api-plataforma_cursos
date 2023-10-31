@@ -126,7 +126,39 @@ public class UserController : ControllerBase
             return StatusCode(500, $"Internal server error: {ex.Message}");
         }
     }
-    
+    // Altera o estado o becameCreator pra True ou False
+    [HttpPut("becameCreator")]
+    public async Task<IActionResult> AlterBecameCreator(int id, [FromBody] bool newCreator)
+    {
+
+        var filter = Builders<User>.Filter.Eq(u => u.Id, id);
+        var user = await _users.Find(filter).SingleOrDefaultAsync();
+
+        if (user == null)
+        {
+            return NotFound();
+        }
+
+        try
+        {
+            var updateDefinition = Builders<User>.Update.Set(u => u.BecameCreator, newCreator);
+
+            var updateResult = await _users.UpdateOneAsync(filter, updateDefinition);
+
+            if (updateResult.ModifiedCount == 0)
+            {
+                return NotFound();
+            }
+
+            return Ok();
+        }
+        catch (Exception ex)
+        {
+            // Handle any exceptions, log them, and return an error response
+            return StatusCode(500, $"Internal server error: {ex.Message}");
+        }
+    }
+
     // Altera o estado o User/Creator pra True ou False
     [HttpPut("admin-users")]
     public async Task<IActionResult> AlterCreator(int id, [FromBody] bool newCreator)
