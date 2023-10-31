@@ -22,25 +22,18 @@
                 </tr>
               </thead>
               <tbody>
-                <tr v-for="(item, index) in data" :key="index">
-                  <td class="px-5 py-5 border-b border-gray-200 bg-gray-800 text-sm">
-                    <div class="flex items-center">
-                      <div class="flex-shrink-0 w-10 h-10">
-                        <img class="user-image" :src="currentProfileImageUrl" alt="Foto de Perfil">
-                      </div>
-                      <div class="ml-3">
-                        <p class="text-gray-400 whitespace-no-wrap">
-                          {{ item.name }}
-                        </p>
-                      </div>
-                    </div>
+                <tr v-for="(item, index) in filteredData" :key="index">
+                  <td class=" text-center border-gray-200 bg-gray-800 text-sm">
+                    <p class="text-gray-400 whitespace-no-wrap">{{ item.name }}</p>
                   </td>
-                  <td class="w-full px-5 py-5 border-b border-gray-200 bg-gray-800 text-sm">
+                  <td class=" text-center border-b border-gray-200 bg-gray-800 text-sm">
                     <p class="text-gray-400 whitespace-no-wrap">{{ item.email }}</p>
                   </td>
                   <td class="w-full px-5 py-5 border-b border-gray-200 bg-gray-800 text-gray-400 text-sm">
-                    <v-switch v-model="model" hide-details true-value="Criador" false-value="Não Criador"
-                      :label="`${model}`"></v-switch>
+                    <v-radio-group v-model="item.creator" row>
+                      <v-radio label="Criador" :value="true" @change="updateUserCreatorStatus(item, true)"></v-radio>
+                      <v-radio label="Não Criador" :value="false" @change="updateUserCreatorStatus(item, false)"></v-radio>
+                    </v-radio-group>
                   </td>
                 </tr>
               </tbody>
@@ -53,7 +46,6 @@
 </template>
   
   
-
 <script>
 import axios from '@/../src/axios';
 
@@ -62,8 +54,8 @@ export default {
     return {
       data: [],
       error: null,
+      switch1: true,
       currentProfileImageUrl: 'https://static.vecteezy.com/system/resources/previews/020/911/739/non_2x/user-profile-icon-profile-avatar-user-icon-male-icon-face-icon-profile-icon-free-png.png',
-      model: 'Não Criador'
     };
   },
   created() {
@@ -77,12 +69,37 @@ export default {
         this.error = error.message;
       });
   },
+  computed: {
+    filteredData() {
+      return this.data.filter(item => item.becameCreator === true);
+    },
+  },
+  methods: {
+    updateUserCreatorStatus(user, newValue) {
+      axios.put(`/User/admin-users?id=${user.id}`, newValue, {
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      })
+        .then(response => {
+          // Handle the successful response here
+          console.log('Data sent successfully:', response.data);
+          window.alert('User status updated successfully!');
+          this.subNow = true;
+          this.show = true;
+        })
+        .catch(error => {
+          // Handle errors here
+          console.error('Update not completed, please try again', error);
+        });
+    },
+  },
 };
 </script>
-
+ 
 <style scoped>
 .background {
-  background-color: #132b46;
+  background-color: #153151;
   height: 300%;
 }
 </style>

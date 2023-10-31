@@ -66,68 +66,78 @@
             <section id="section3" class="section">
                 <div class="section-content">
                     <div class="section-text">
-                        <span class="large-text bg-clip-text text-transparent bg-gradient-to-r to-sky-500 from-sky-500"
-                            style="margin-left:-120px;">
+                        <span class="large-text bg-clip-text text-transparent bg-gradient-to-r to-sky-500 from-sky-500">
                             <strong>Recompensas</strong>
                         </span>
-                        <p class="medium-text" style="margin-left:-120px;">
+                        <p class="medium-text">
                             É possível obter lucros de acordo com a forma que você vende cursos. Ministre aulas
                             interessantes e que chamem atenção, aulas essas que você tem um manejo especializado e de fácil
                             compreensão.
                         </p>
                     </div>
                     <div class="section-image">
-                        <v-img src="@/assets/BecomeCreator/4.png" style="margin-left:-300px"></v-img>
+                        <v-img src="@/assets/BecomeCreator/4.png"></v-img>
                     </div>
                 </div>
             </section>
         </div>
+        <v-alert v-if="alreadyBecome" closable icon="mdi-check-all" class=" text-center"
+            text="Requisitado com sucesso! Nosso time irá averiguar seu pedido o quanto antes. Obrigado!" type="success"
+            variant="tonal"></v-alert>
         <section class="tam-dir bg-cover bg-center py-32 section-divider"
             style=" background-image: url('https://images.unsplash.com/photo-1586809797289-ae54d86fe28b?auto=format&fit=crop&q=80&w=2070&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D');">
             <div class="container mx-auto text-center text-gray-800">
                 <h1 class="text-5xl font-medium mb-6 text-blue-950 bottommargin">Não perca tempo.</h1>
                 <p class="text-xl mb-12 text-sky-950">Junte-se ao nosso universo de conhecimento.</p>
-                <v-btn @click="beCreator" size="large" prepend-icon="mdi-check-decagram"
-                    class="bg-indigo-500 text-sky-950 py-3 px-12 rounded-full hover:bg-indigo-600" :disabled="show">
+                <v-btn @click="beCreator" :disabled="isDisabled" size="large" prepend-icon="mdi-check-decagram"
+                    class="bg-gradient-to-r from-sky-700 to-emerald-600 text-white py-3 px-12 rounded-full hover:bg-emerald-600 disabled:bg-gradient-to-r disabled:from-sky-800 disabled:to-emerald-700 disabled:text-white">
                     Tornar-se um Criador
                 </v-btn>
             </div>
         </section>
     </div>
 </template>
+
 <script>
 import axios from '@/../src/axios';
 import { mapGetters } from 'vuex';
-//Falta adequar o script pra criador
+
 export default {
+    data() {
+        return {
+            alreadyBecome: false,
+        };
+    },
     name: "PageWithSections",
     computed: {
-        ...mapGetters('user', ['getUserID', 'getUserName']), // Mapeando os getters do módulo 'user'
+        ...mapGetters('user', ['getUserID', 'getUserName', 'getUserBecameCreator']),
+        isDisabled() {
+            // Use a computed property to return true if either of the conditions is met
+            return this.getUserBecameCreator || !this.getUserID;
+        },
     },
     methods: {
         beCreator() {
-            this.subData.idUser = this.getUserID;
-
-            axios.post('/Subscription', this.subData, {
+            axios.put(`/User/becameCreator?id=${this.getUserID}`, true, {
                 headers: {
-                    'Content-Type': 'application/json', // Set the content type to JSON
+                    'Content-Type': 'application/json',
                 },
             })
                 .then(response => {
+                    // Handle the successful response here
                     console.log('Data sent successfully:', response.data);
-
-                    console.log('Inscrito com sucesso!' + this.getUserName);
-                    this.subNow = true;
-                    this.show = true;
+                    this.alreadyBecome = true;
                 })
                 .catch(error => {
+                    // Handle errors here
                     console.error('Registration not completed, please try again', error);
-                    // Handle the error appropriately
                 });
         },
     },
 }
 </script>
+
+
 <style scoped>
 .bottommargin {
     margin-top: -50px;
