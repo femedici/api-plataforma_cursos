@@ -11,8 +11,20 @@
 
     <div class="ml-20 mr-20 mt-5 mb-8 bg-slate-300 border-solid border-2 rounded-md">
         <div class="ml-20 mr-20 mt-5">
-
-            <h2 class="text-2xl font-bold tracking-tight text-gray-800 text-center m:text-3xl">Alterar as informações principais do seu curso
+            <div class="mt-6 mb-4 flex items-center justify-end gap-x-6">
+                <a :href="'/edit-topics/' + this.$route.params.id">
+                    <v-btn prepend-icon="mdi-pencil"
+                        class="rounded-md bg-cyan-800 px-3 py-2 text-m font-semibold text-white shadow-m hover:bg-cyan-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Ver
+                        Tópicos Existentes</v-btn>
+                </a>
+                <a :href="'/create-topic/' + this.$route.params.id">
+                    <v-btn prepend-icon="mdi-plus-circle"
+                        class="rounded-md bg-cyan-800 px-3 py-2 text-m font-semibold text-white shadow-m hover:bg-cyan-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Adicionar
+                        Tópicos</v-btn>
+                </a>
+            </div>
+            <h2 class="text-2xl font-bold tracking-tight text-gray-800 text-center m:text-3xl">Altere as informações
+                principais do seu curso
             </h2>
             <br>
             <form @submit.prevent="submitCourse">
@@ -89,10 +101,9 @@
                 </div>
 
                 <div class="mt-6 mb-4 flex items-center justify-end gap-x-6">
-                    <button class="text-m font-semibold leading-6 text-white-900">Limpar</button>
                     <button type="submit"
-                        class="rounded-md bg-teal-400 px-3 py-2 text-m font-semibold text-white shadow-m hover:bg-cyan-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Criar
-                        os Tópicos</button>
+                        class="rounded-md bg-teal-400 px-3 py-2 text-m font-semibold text-white shadow-m hover:bg-cyan-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Alterar
+                        Informações</button>
                 </div>
             </form>
 
@@ -146,23 +157,42 @@ export default {
             });
     },
     methods: {
+        async handleIconChange(event) {
+            const selectedIcon = event.target.files[0];
+            if (selectedIcon) {
+                // Read the selected icon file and convert it to a Base64 string
+                const reader = new FileReader();
+                reader.onload = (e) => {
+                    this.formData.icon = e.target.result.split(',')[1]; // Extract the base64 part
+                };
+                reader.readAsDataURL(selectedIcon);
+            }
+        },
+        async handleBannerChange(event) {
+            const selectedBanner = event.target.files[0];
+            if (selectedBanner) {
+                const reader = new FileReader();
+                reader.onload = (e) => {
+                    this.formData.banner = e.target.result.split(',')[1]; // Extract the base64 part
+                };
+                reader.readAsDataURL(selectedBanner);
+            }
+        },
         async submitCourse() {
             this.formData.creator = this.getUserName;
             this.formData.creatorID = this.getUserID;
             try {
-                console.log(this.formData);
-                const response = await axios.post('/Courses', this.formData);
-
+                const response = axios.put(`/Courses/${this.formData.id}`, this.formData);
                 // Lide com a resposta aqui, por exemplo, exiba uma mensagem de sucesso
                 console.log('Dados enviados com sucesso:', response.data);
-
-                this.$router.push(`/create-topic/${response.data.id}`);
-
-                window.alert('Dados criados');
-                // Limpe o formulário após o envio~
+                // Limpe o formulário após o envio
+                this.formData.title = '';
+                this.formData.body = '';
+                this.formData.attachments = '';
+                this.formData.password = '';
                 this.error = false;
-                //
-                window.alert('Curso criado com sucesso!');
+
+                window.alert('Curso alterado com sucesso!');
             } catch (error) {
                 // Lide com erros aqui, por exemplo, exiba uma mensagem de erro
                 console.error('Erro ao enviar dados:', error);
