@@ -30,9 +30,10 @@
                     <p class="text-gray-400 whitespace-no-wrap">{{ item.email }}</p>
                   </td>
                   <td class="w-full px-5 py-5 border-b border-gray-200 bg-gray-800 text-gray-400 text-sm">
-                    <v-switch v-model="item.creator" hide-details true-value="true" false-value="false"
-                      :label="item.creator ? 'Criador' : 'Não Criador'" @change="confirmUpdateUserCreatorStatus(item)">
-                    </v-switch>
+                    <v-radio-group v-model="item.creator" row>
+                      <v-radio label="Criador" :value="true" @change="updateUserCreatorStatus(item, true)"></v-radio>
+                      <v-radio label="Não Criador" :value="false" @change="updateUserCreatorStatus(item, false)"></v-radio>
+                    </v-radio-group>
                   </td>
                 </tr>
               </tbody>
@@ -53,6 +54,7 @@ export default {
     return {
       data: [],
       error: null,
+      switch1: true,
       currentProfileImageUrl: 'https://static.vecteezy.com/system/resources/previews/020/911/739/non_2x/user-profile-icon-profile-avatar-user-icon-male-icon-face-icon-profile-icon-free-png.png',
     };
   },
@@ -73,18 +75,12 @@ export default {
     },
   },
   methods: {
-    confirmUpdateUserCreatorStatus(user) {
-      // Confirm the alteration with a dialog
-      if (window.confirm(`Do you want to set this user as a ${user.creator ? 'Non-Creator' : 'Creator'}?`)) {
-        this.updateUserCreatorStatus(user);
-      } else {
-        // Restore the switch state if canceled
-        user.creator = !user.creator;
-      }
-    },
-    updateUserCreatorStatus(user) {
-      // Send a PUT request to update the 'creator' status
-      axios.put(`/User/admin-users?id=${user.id}`, { creator: !user.creator })
+    updateUserCreatorStatus(user, newValue) {
+      axios.put(`/User/admin-users?id=${user.id}`, newValue, {
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      })
         .then(response => {
           // Handle the successful response here
           console.log('Data sent successfully:', response.data);
@@ -100,10 +96,10 @@ export default {
   },
 };
 </script>
-
+ 
 <style scoped>
 .background {
-  background-color: #132b46;
+  background-color: #153151;
   height: 300%;
 }
 </style>

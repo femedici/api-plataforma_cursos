@@ -85,8 +85,7 @@
 
         <div class="mt-6 mb-4 flex items-center justify-end gap-x-6">
           <button type="submit"
-            class="rounded-md bg-teal-400 px-3 py-2 text-m font-semibold text-white shadow-m hover:bg-cyan-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Criar
-            os Tópicos</button>
+            class="rounded-md bg-teal-400 px-3 py-2 text-m font-semibold text-white shadow-m hover:bg-cyan-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Próximo Passo</button>
         </div>
       </form>
 
