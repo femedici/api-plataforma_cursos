@@ -12,7 +12,7 @@
     <div class="ml-20 mr-20 mt-5 mb-8 bg-slate-300 border-solid border-2 rounded-md">
         <div class="ml-20 mr-20 mt-5">
             <h2 class="text-2xl font-bold tracking-tight text-gray-800 m:text-2xl text-center">
-                Agora crie os tópicos do seu curso:
+                Crie / Acrescente tópicos para o seu curso
             </h2>
             <br>
             <form @submit="submitTopics">
@@ -83,11 +83,11 @@
                 </div>
                 <!-- Add Topic Button -->
                 <div class="mt-6 mb-4 flex items-center justify-end gap-x-6">
-                    <button @click="addTopic" type="button"  class="text-m font-semibold leading-6 text-white-900">Adicionar
-                        Tópico</button>
+                    <v-btn @click="addTopic" type="button" prepend-icon="mdi-plus-circle"  class="text-m font-semibold leading-6 text-white-900">Adicionar
+                        Tópico</v-btn>
                         <button type="submit"
                             class="rounded-md bg-teal-400 px-3 py-2 text-m font-semibold text-white shadow-m hover:bg-cyan-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">
-                            Publicar Curso
+                            Criar Tópicos
                         </button>
                     </div>
             </form>

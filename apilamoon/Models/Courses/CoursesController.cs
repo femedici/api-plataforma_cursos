@@ -135,6 +135,7 @@ public class CoursesController : ControllerBase
         var update = Builders<Course>.Update
             .Set(c => c.Title, updatedCourse.Title)
             .Set(c => c.Icon, updatedCourse.Icon)
+            .Set(c => c.Banner, updatedCourse.Banner)
             .Set(c => c.MainVideo, updatedCourse.MainVideo)
             .Set(c => c.BodyText, updatedCourse.BodyText)
             .Set(c => c.Description, updatedCourse.Description);
