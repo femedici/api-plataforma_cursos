@@ -13,7 +13,7 @@
         <div class="flex-1 px-2 sm:px-0">
             <div class="mb-10 sm:mb-0 mt-10 grid gap-4 grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3">
                 <div v-for="(item, index) in data" :key="index"
-                    class="relative group bg-gray-900 py-10 sm:py-20 px-4 flex flex-col space-y-2 items-center cursor-pointer rounded-md">
+                    class="relative group bg-slate-950 py-10 sm:py-20 px-4 flex flex-col space-y-2 items-center cursor-pointerrounded-md rounded-lg hover:translate-y-[-0.5rem] hover:shadow-md">
                     <a :href="'/course/' + item.id" class="w-full">
                         <v-row no-gutters>
                             <!-- Left half for the icon -->

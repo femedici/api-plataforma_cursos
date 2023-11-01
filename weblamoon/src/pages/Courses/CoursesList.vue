@@ -27,16 +27,16 @@
             <img class="rounded-t-lg object-cover h-full w-full" :src="item.banner" alt="Course" />
           </div>
           <div class="p-6">
-            <h5 class="mb-2 text-xl font-medium leading-tight text-neutral-100">
+            <h4 class="mb-2 text-xl font-medium leading-tight text-emerald-300">
               {{ item.title }}
-            </h5>
+            </h4>
             <p class="mb-4 text-base text-neutral-100">
               {{ item.description }}
             </p>
           </div>
           <div
             class="mt-auto border-t-2 border-neutral-100 px-6 py-3 text-center dark:border-neutral-100 text-neutral-100">
-            <small>Criado por {{ item.creator }}</small>
+            <p>Criado por <a class="text-emerald-300"> {{ item.creator }}</a></p>
           </div>
         </a>
       </div>
