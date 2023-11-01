@@ -118,7 +118,7 @@ export default {
     computed: {
         reversedTopics() {
             // Reverse the topics array
-            return this.topics.slice().reverse();
+            return this.topics;
         },
     },
     created() {
