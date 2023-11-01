@@ -11,20 +11,35 @@
 
     <v-container fluid>
         <div class="flex-1 px-2 sm:px-0">
-            <div class="mb-10 sm:mb-0 mt-10 grid gap-4 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
+            <div class="mb-10 sm:mb-0 mt-10 grid gap-4 grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3">
                 <div v-for="(item, index) in data" :key="index"
-                    class="relative group bg-gray-900 py-10 sm:py-20 px-4 flex flex-col space-y-2 items-center cursor-pointer rounded-md ">
-                    <a :href="'/course/' + item.id">
-                        <img class="w-20 h-20 object-cover object-center rounded-full" :src="item.icon" alt="icon" />
-                        <h4
-                            class="text-white text-2xl font-bold capitalize text-center rounded-full py-2 px-4 hover:bg-cyan-900 focus:ring-4 focus:ring-gray-100">
-                            {{ item.title }}</h4>
+                    class="relative group bg-gray-900 py-10 sm:py-20 px-4 flex flex-col space-y-2 items-center cursor-pointer rounded-md">
+                    <a :href="'/course/' + item.id" class="w-full">
+                        <v-row no-gutters>
+                            <!-- Left half for the icon -->
+                            <v-col cols="6">
+                                <img class="w-full h-38 object-cover rounded-tl-md rounded-bl-md" :src="item.icon"
+                                    alt="icon" />
+                            </v-col>
+
+                            <!-- Right half for the title and edit button -->
+                            <v-col cols="6" class="relative">
+                                <!-- Edit button at the top right -->
+                                <v-btn class="absolute top-2 right-2" fab dark large color="cyan"
+                                    :href="'/edit-course/' + item.id">
+                                    <v-icon dark>
+                                        mdi-pencil
+                                    </v-icon>
+                                </v-btn>
+
+                                <!-- Title in the right half -->
+                                <h4
+                                    class="text-white mt-12 text-2xl font-bold capitalize text-center rounded-tr-md rounded-br-md py-2 px-4">
+                                    {{ item.title }}
+                                </h4>
+                            </v-col>
+                        </v-row>
                     </a>
-                    <v-btn class="mx-2" fab dark large color="cyan" :href="'/edit-course/' + item.id">
-                        <v-icon dark>
-                            mdi-pencil
-                        </v-icon>
-                    </v-btn>
                 </div>
             </div>
         </div>
