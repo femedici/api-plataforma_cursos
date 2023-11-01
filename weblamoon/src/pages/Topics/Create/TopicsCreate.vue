@@ -15,7 +15,7 @@
                 Crie / Acrescente tópicos para o seu curso
             </h2>
             <br>
-            <form @submit="submitTopics">
+            <form @submit.prevent="submitTopics">
                 <!-- Use v-for to render forms for each topic -->
                 <div v-for="(topic, index) in formData.topics" :key="index">
                     <h2 class="text-2xl mt-3 font-bold tracking-tight text-gray-800 m:text-2xl">
@@ -83,13 +83,17 @@
                 </div>
                 <!-- Add Topic Button -->
                 <div class="mt-6 mb-4 flex items-center justify-end gap-x-6">
-                    <v-btn @click="addTopic" type="button" prepend-icon="mdi-plus-circle"  class="text-m font-semibold leading-6 text-white-900">Adicionar
+                    <v-alert  v-if="created" closable icon="mdi-check-all" class=" text-center"
+                        text="Tópicos criados/adicionados ao curso com sucesso! Apenas navegar para 'Curso Publicados'."
+                        type="success"></v-alert>
+                    <v-btn @click="addTopic" type="button" prepend-icon="mdi-plus-circle"
+                        class="text-m font-semibold leading-6 text-white-900">Adicionar
                         Tópico</v-btn>
-                        <button type="submit"
-                            class="rounded-md bg-teal-400 px-3 py-2 text-m font-semibold text-white shadow-m hover:bg-cyan-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">
-                            Criar Tópicos
-                        </button>
-                    </div>
+                    <button type="submit"
+                        class="rounded-md bg-teal-400 px-3 py-2 text-m font-semibold text-white shadow-m hover:bg-cyan-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">
+                        Criar Tópicos
+                    </button>
+                </div>
             </form>
         </div>
     </div>
@@ -102,6 +106,7 @@ export default {
     data() {
         const courseId = this.$route.params.id;
         return {
+            created: false,
             formData: {
                 topics: [ // Initialize with one topic object
                     {
@@ -141,7 +146,7 @@ export default {
                 if (responses.every(response => response.status === 200)) {
                     // All topics were successfully created
                     console.log('All topics were created successfully.');
-                    window.alert('All topics were created successfully.');
+                    this.created = true;
 
                     // Clear the form after successful submission
                     this.formData.topics = topicData.map(topic => ({
