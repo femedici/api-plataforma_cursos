@@ -93,19 +93,23 @@
             </div>
         </div>
     </div>
+    <pop-payment v-if="showPayment" @close="closePayment"></pop-payment>
 </template>
 
 <script>
 import axios from '@/../src/axios';
 import { mapGetters } from 'vuex';
 import VideoPlayer from '@/components/VideoPlayer.vue';
+import PopPayment from '@/pages/PopPayment.vue';
 
 export default {
     components: {
+        'pop-payment': PopPayment,
         VideoPlayer, // Adicione o componente à seção de componentes
     },
     data() {
         return {
+            showPayment: false,
             course: {
                 id: null,
             },
@@ -185,7 +189,14 @@ export default {
         },
     },
     methods: {
+        closePayment() {
+            this.showPayment = false;
+        },
+        openPayment() {
+            this.showPayment = true;
+        },
         subscribeCourse() {
+            this.openPayment();
             this.subData.idUser = this.getUserID;
 
             axios.post('/Subscription', this.subData, {

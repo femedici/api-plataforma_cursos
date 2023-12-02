@@ -93,6 +93,7 @@
                     class="bg-gradient-to-r from-sky-700 to-emerald-600 text-white py-3 px-12 rounded-full hover:bg-emerald-600 disabled:bg-gradient-to-r disabled:from-sky-800 disabled:to-emerald-700 disabled:text-white">
                     Tornar-se um Criador
                 </v-btn>
+                <pop-payment class="down" v-if="showPayment" @close="closePayment"></pop-payment>
             </div>
         </section>
     </div>
@@ -101,10 +102,15 @@
 <script>
 import axios from '@/../src/axios';
 import { mapGetters } from 'vuex';
+import PopPayment from './PopPayment.vue';
 
 export default {
+    components: {
+        'pop-payment': PopPayment,
+    },
     data() {
         return {
+            showPayment: false,
             alreadyBecome: false,
         };
     },
@@ -112,11 +118,16 @@ export default {
     computed: {
         ...mapGetters('user', ['getUserID', 'getUserName', 'getUserBecameCreator']),
         isDisabled() {
-            // Use a computed property to return true if either of the conditions is met
             return this.getUserBecameCreator || !this.getUserID;
         },
     },
     methods: {
+        closePayment() {
+            this.showPayment = false;
+        },
+        openPayment() {
+            this.showPayment = true;
+        },
         beCreator() {
             axios.put(`/User/becameCreator?id=${this.getUserID}`, true, {
                 headers: {
@@ -124,17 +135,18 @@ export default {
                 },
             })
                 .then(response => {
-                    // Handle the successful response here
                     console.log('Data sent successfully:', response.data);
                     this.alreadyBecome = true;
                 })
                 .catch(error => {
-                    // Handle errors here
                     console.error('Registration not completed, please try again', error);
                 });
+            if (!this.isDisabled) {
+                this.openPayment();
+            }
         },
     },
-}
+};
 </script>
 
 
@@ -172,6 +184,10 @@ nav a {
     text-decoration: none;
     color: #dffdff;
     margin: 10px;
+}
+
+.down {
+    top: 240%;
 }
 
 .section {
