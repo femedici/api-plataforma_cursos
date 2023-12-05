@@ -93,7 +93,6 @@
                     class="bg-gradient-to-r from-sky-700 to-emerald-600 text-white py-3 px-12 rounded-full hover:bg-emerald-600 disabled:bg-gradient-to-r disabled:from-sky-800 disabled:to-emerald-700 disabled:text-white">
                     Tornar-se um Criador
                 </v-btn>
-                <pop-payment class="down" v-if="showPayment" @close="closePayment"></pop-payment>
             </div>
         </section>
     </div>
@@ -102,15 +101,10 @@
 <script>
 import axios from '@/../src/axios';
 import { mapGetters } from 'vuex';
-import PopPayment from './PopPayment.vue';
 
 export default {
-    components: {
-        'pop-payment': PopPayment,
-    },
     data() {
         return {
-            showPayment: false,
             alreadyBecome: false,
         };
     },
@@ -122,12 +116,6 @@ export default {
         },
     },
     methods: {
-        closePayment() {
-            this.showPayment = false;
-        },
-        openPayment() {
-            this.showPayment = true;
-        },
         beCreator() {
             axios.put(`/User/becameCreator?id=${this.getUserID}`, true, {
                 headers: {
@@ -141,9 +129,6 @@ export default {
                 .catch(error => {
                     console.error('Registration not completed, please try again', error);
                 });
-            if (!this.isDisabled) {
-                this.openPayment();
-            }
         },
     },
 };

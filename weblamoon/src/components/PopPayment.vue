@@ -143,7 +143,7 @@
                 </svg>
               </div>
               <div class="flex-grow pl-4">
-                <h2 class="title-font mb-1 text-sm font-medium tracking-wider text-white">STEP 1</h2>
+                <h2 class="title-font mb-1 text-sm font-medium tracking-wider text-white">PASSO 1</h2>
                 <p class="font-laonoto leading-relaxed">
                   Escaneie o QR Code com o seu celular. <br />
                   Pode ser feito com sua camêra.
@@ -162,7 +162,7 @@
                 </svg>
               </div>
               <div class="flex-grow pl-4">
-                <h2 class="title-font mb-1 text-sm font-medium tracking-wider text-white">STEP 2</h2>
+                <h2 class="title-font mb-1 text-sm font-medium tracking-wider text-white">PASSO 2</h2>
                 <p class="font-laonoto leading-relaxed">Realize o Pagamento
                 </p>
               </div>
@@ -177,7 +177,7 @@
                 </svg>
               </div>
               <div class="flex-grow pl-4">
-                <h2 class="title-font mb-1 text-sm font-medium tracking-wider text-white">STEP 3</h2>
+                <h2 class="title-font mb-1 text-sm font-medium tracking-wider text-white">PASSO 3</h2>
                 <p class="font-laonoto leading-relaxed">
                   Após alguns instantes, clique em <b>finalizar pagamento</b>.
                 </p>
@@ -187,8 +187,9 @@
         </div>
       </section>
     </div>
-    <button @click="finishPayment">Finalizar Pagamento</button>
-    <button @click="closePopup">Fechar</button>
+    <br>
+    <button @click="finishPayment" class="bg-gradient-to-r from-sky-700 to-emerald-600 text-neutral-50">Finalizar Pagamento</button>
+    <button @click="closePopup" class="bg-gradient-to-r from-sky-700 to-emerald-600 text-neutral-50">Fechar</button>
   </div>
 </template>
 
@@ -201,7 +202,7 @@ export default {
   },
   methods: {
     finishPayment() {
-      // Script pra pagamento
+      this.$emit('finish');
     },
     closePopup() {
       this.$emit('close');
@@ -212,12 +213,12 @@ export default {
 
 <style scoped>
 .payment-popup {
-  background-color: #1d1d1d;
+  background-color: rgb(8, 66, 77);
   border: 1px solid #ccc;
-  border-radius: 5px;
+  border-radius: 10px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   padding: 20px;
-  width: 900px;
+  width: 1000px;
   position: absolute;
   top: 100%;
   left: 57%;
