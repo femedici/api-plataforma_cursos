@@ -9,19 +9,32 @@
         <v-divider></v-divider>
     </v-container>
 
+
     <div class="ml-20 mr-20 mt-5 mb-8 bg-slate-300 border-solid border-2 rounded-md">
         <div class="ml-20 mr-20 mt-5">
-            <div class="mt-6 mb-4 flex items-center justify-end gap-x-6">
-                <a :href="'/edit-topics/' + this.$route.params.id">
-                    <v-btn prepend-icon="mdi-pencil"
-                        class="rounded-md bg-cyan-800 px-3 py-2 text-m font-semibold text-white shadow-m hover:bg-cyan-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Ver
-                        Tópicos Existentes</v-btn>
-                </a>
-                <a :href="'/create-topic/' + this.$route.params.id">
-                    <v-btn prepend-icon="mdi-plus-circle"
-                        class="rounded-md bg-cyan-800 px-3 py-2 text-m font-semibold text-white shadow-m hover:bg-cyan-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Adicionar
-                        Tópicos</v-btn>
-                </a>
+            <div class="mt-6 mb-4 flex items-center justify-between">
+                <div>
+                    <h2 class="text-2xl font-bold tracking-tight text-gray-800 text-left m:text-3xl">
+                        - Inscrições: <a class="underline decoration-emerald-500">{{this.qtdUsers}}</a>
+                    </h2>
+                    <h2 class="text-2xl font-bold tracking-tight text-gray-800 text-center m:text-3xl">
+                        - Total arrecadado em vendas: <a class="underline decoration-emerald-500">R$ {{ totalAmount }}</a>
+                    </h2>
+                </div>
+                <div class="flex items-center gap-x-6">
+                    <a :href="'/edit-topics/' + this.$route.params.id">
+                        <v-btn prepend-icon="mdi-pencil"
+                            class="rounded-md bg-cyan-800 px-3 py-2 text-m font-semibold text-white shadow-m hover:bg-cyan-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Ver
+                            Tópicos
+                            Existentes</v-btn>
+                    </a>
+                    <a :href="'/create-topic/' + this.$route.params.id">
+                        <v-btn prepend-icon="mdi-plus-circle"
+                            class="rounded-md bg-cyan-800 px-3 py-2 text-m font-semibold text-white shadow-m hover:bg-cyan-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Adicionar
+                            Tópicos
+                        </v-btn>
+                    </a>
+                </div>
             </div>
             <h2 class="text-2xl font-bold tracking-tight text-gray-800 text-center m:text-3xl">Altere as informações
                 principais do seu curso
@@ -129,12 +142,19 @@ export default {
                 banner: '',
                 creator: '',
                 creatorID: '',
+                price: 0,
             },
             error: null,
+            totalValue: 0,
+            qtdUsers: null,
         };
     },
     computed: {
         ...mapGetters('user', ['getUserID', 'getUserName']), // Mapeando os getters do módulo 'user'
+        totalAmount() {
+            // Assuming formData.price is already a number
+            return this.formData.price * this.qtdUsers;
+        },
     },
     created() {
         const courseId = this.$route.params.id;
@@ -150,7 +170,22 @@ export default {
                 this.formData.icon = response.data.icon;
                 this.formData.banner = response.data.banner;
 
+                // Convert the price to an integer using parseInt
+                this.formData.price = parseInt(response.data.price, 10);
+
                 this.course = response.data;
+            })
+            .catch(error => {
+                console.error("Erro ao buscar detalhes do curso:", error);
+            });
+
+        axios.get(`/Subscription/CountUsers`, {
+            params: {
+                idCourse: this.formData.id
+            }
+        })
+            .then(response => {
+                this.qtdUsers = response.data;
             })
             .catch(error => {
                 console.error("Erro ao buscar detalhes do curso:", error);

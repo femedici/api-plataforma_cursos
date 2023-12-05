@@ -41,7 +41,7 @@
                   </div>
                 </div>
               </div>
-
+              
               <div class="col-span-full">
                 <label for="about" class="block text-m font-medium leading-6 text-white-900">Sobre o curso</label>
                 <p class="mt-3 text-sm leading-6 text-white-600">Descreva um pouco sobre oque vai ser trabalhado no
@@ -49,6 +49,17 @@
                 <div class="mt-2">
                   <textarea id="about" name="about" rows="3" v-model="formData.bodyText"
                     class="block w-full rounded-md border-0 py-1.5 text-white-900 shadow-sm ring-1 ring-inset ring-white-300 placeholder:text-white-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 m:text-sm m:leading-6"></textarea>
+                </div>
+              </div>
+
+              <div class="m:col-span-4">
+                <label for="price" class="block text-m font-medium leading-6 text-white-900">Valor (0 para curso ser disponibilizado de graça)</label>
+                <div class="mt-2">
+                  <div
+                    class="flex rounded-md shadow-m ring-1 ring-inset ring-white-300 focus-within:ring-2 focus-within:ring-inset focus-within:ring-indigo-600 m:max-w-md">
+                    <input type="number" v-model="formData.price" id="number"
+                      class="block flex-1 border-0 bg-transparent py-1.5 pl-1 text-white-900 placeholder:text-white-400 focus:ring-0 m:text-m m:leading-6">
+                  </div>
                 </div>
               </div>
             </div>
@@ -110,6 +121,7 @@ export default {
         banner: '',
         creator: '',
         creatorID: '',
+        price: 0,
       },
       error: null,
     };

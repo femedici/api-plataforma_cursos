@@ -46,7 +46,14 @@
                         <p>Sem video de apresentação</p>
                     </div>
                     <br><br><br><br><br><br><br><br><br>
-                    <v-btn @click="openPayment" size="large" prepend-icon="mdi-check-decagram"
+                    <h1 v-if="course.price === 0" class="mt-2 text-2xl font-bold tracking-tight text-emerald-900 sm:text-3xl">
+                        <span
+                            class="text-5xl bg-clip-text text-transparent bg-gradient-to-r from-sky-900 to-emerald-600">*</span>
+                        Curso gratuito!
+                    </h1>
+                    <br>
+                    <v-btn @click="course.price === 0 ? subscribeCourse() : openPayment()" size="large"
+                        prepend-icon="mdi-check-decagram"
                         class="bg-gradient-to-r from-sky-700 to-emerald-600 text-neutral-50" :disabled="isDisabled">
                         Inscrever-se
                     </v-btn>
