@@ -112,7 +112,6 @@ export default {
     computed: {
         ...mapGetters('user', ['getUserID', 'getUserName', 'getUserBecameCreator']),
         isDisabled() {
-            // Use a computed property to return true if either of the conditions is met
             return this.getUserBecameCreator || !this.getUserID;
         },
     },
@@ -124,17 +123,15 @@ export default {
                 },
             })
                 .then(response => {
-                    // Handle the successful response here
                     console.log('Data sent successfully:', response.data);
                     this.alreadyBecome = true;
                 })
                 .catch(error => {
-                    // Handle errors here
                     console.error('Registration not completed, please try again', error);
                 });
         },
     },
-}
+};
 </script>
 
 
@@ -172,6 +169,10 @@ nav a {
     text-decoration: none;
     color: #dffdff;
     margin: 10px;
+}
+
+.down {
+    top: 240%;
 }
 
 .section {
