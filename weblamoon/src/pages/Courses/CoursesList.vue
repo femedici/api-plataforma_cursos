@@ -18,10 +18,17 @@
   <v-divider></v-divider>
 
   <v-container fluid>
+    <v-row class="mb-4">
+      <v-col cols="12">
+        <v-text-field v-model="searchTerm" label="Pesquise cursos" outlined class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"></v-text-field>
+      </v-col>
+    </v-row>
+
+    <!-- Display filtered courses -->
     <div class="grid-cols-1 sm:grid md:grid-cols-3">
-      <div v-for="(item, index) in data" :key="index"
+      <div v-for="(item, index) in filteredCourses" :key="index"
         class="mx-3 mt-6 flex shadow-2xl flex-col rounded-lg bg-transparent transform translate-y-0 transition-transform hover:translate-y-[-1rem] hover:shadow-md"
-        style="height: 400px; /* Set a fixed height for the container */">
+        style="height: 400px;">
         <a :href="'/view-course/' + item.id">
           <div style="height: 200px; /* Set a fixed height for the image container */">
             <img class="rounded-t-lg object-cover h-full w-full" :src="item.banner" alt="Course" />
@@ -52,7 +59,16 @@ export default {
     return {
       data: [],
       error: null,
+      searchTerm: '',
     };
+  },
+  computed: {
+    // Compute filtered courses based on the search term
+    filteredCourses() {
+      return this.data.filter(course =>
+        course.title.toLowerCase().includes(this.searchTerm.toLowerCase())
+      );
+    },
   },
   created() {
     axios.get('/Courses')
