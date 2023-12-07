@@ -35,6 +35,8 @@ public class SubscriptionController : ControllerBase
         }
         return Ok(subscriptions);
     }
+
+    //Conta quantos Usuários tem inscritos naquele curso
     [HttpGet("CountUsers")]
     public IActionResult GetCountSubscriptionByID(int idCourse)
     {
@@ -44,6 +46,20 @@ public class SubscriptionController : ControllerBase
             return NotFound();
         }
         return Ok(subscriptions.Count());
+    }
+
+    //Faz a consulta de uma Inscrição em especifico
+    [HttpGet("user/{idUser}/course/{idCourse}")]
+    public ActionResult<Topic> GetByUserAndCourse(int idUser, int idCourse)
+    {
+        var subscriptions = _subscriptions.Find(subscription => subscription.IdUser == idUser && subscription.IdCourse == idCourse).ToList();
+
+        if (subscriptions == null || subscriptions.Count == 0)
+        {
+            return NotFound();
+        }
+
+        return Ok(subscriptions);
     }
 
     //Faz a consulta de todas as inscrições do curso
