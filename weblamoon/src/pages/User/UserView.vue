@@ -38,7 +38,7 @@
 import EditProfilePopup from './UserPic.vue';
 import ChangePasswordPopup from './UserPass.vue';
 import axios from '@/../src/axios';
-import router from '@/routes';
+import router from '@/router';
 import { mapGetters } from 'vuex';
 
 export default {
