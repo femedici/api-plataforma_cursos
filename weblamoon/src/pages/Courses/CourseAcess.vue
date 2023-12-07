@@ -15,6 +15,7 @@
                 <rect width="100%" height="100%" stroke-width="0" fill="url(#e813992c-7d03-4cc4-a2bd-151760b470a0)" />
             </svg>
         </div>
+        <v-progress-linear color="green" :model-value="calculateCompletionPercentage()" :height="8"></v-progress-linear>
         <div
             class="mx-auto grid max-w-2xl grid-cols-1 gap-x-8 gap-y-16 lg:mx-0 lg:max-w-none lg:grid-cols-2 lg:items-start lg:gap-y-10">
             <div
@@ -34,6 +35,9 @@
                 class="lg:col-span-2 lg:col-start-1 lg:row-start-2 lg:mx-auto lg:grid lg:w-full lg:max-w-7xl lg:grid-cols-2 lg:gap-x-8 lg:px-8">
                 <div class="lg:pr-4">
                     <div class="max-w-xl text-base leading-7 text-gray-700 lg:max-w-lg">
+                        <div class="text-3xl font-extrabold items-center justify-center">
+                            <h1 v-if="checkConclusion()" class="bg-clip-text text-emerald-400"><a class="underline decoration-emerald-500">Curso concluido com sucesso!</a></h1>
+                        </div>
                         <h1 class="mt-2 text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
                             <span
                                 class="text-7xl bg-clip-text text-transparent bg-gradient-to-r from-sky-900 to-emerald-600">_</span>
@@ -52,7 +56,8 @@
         </div>
         <div class="flex flex-wrap lg:w-4/5 sm:mx-auto sm:mb-2 -mx-2 p-4">
             <v-expansion-panels class="mb-6">
-                <v-expansion-panel v-for="(item, index) in reversedTopics" :key="index" class="rounded-lg mb-4 border-inherit ">
+                <v-expansion-panel v-for="(item, index) in reversedTopics" :key="index"
+                    class="rounded-lg mb-4 border-inherit">
                     <v-expansion-panel-title expand-icon="mdi-menu-down">
                         <div class="text-2xl mt-2 font-bold tracking-tight">
                             <span class="bg-clip-text text-transparent bg-gradient-to-r from-sky-900 to-emerald-600">
@@ -68,20 +73,21 @@
                                         class="text-5xl bg-clip-text text-transparent bg-gradient-to-r from-sky-900 to-emerald-600">_</span>
                                     Neste video:
                                 </h1>
-                                <v-sheet class="pa-2 ma-2 break-all" v-html="item.description">
-                                </v-sheet>
+                                <v-sheet class="pa-2 ma-2 break-all" v-html="item.description"></v-sheet>
                             </v-col>
                             <v-col cols="8">
                                 <v-sheet class="pa-2 ma-2">
-                                    <VideoPlayer :videoSource="item.video" />
+                                    <!-- Pass the progressData as a prop to the VideoPlayer component -->
+                                    <VideoPlayer :videoSource="item.video" :progressData="getProgressData(item.id)" />
                                     <span
                                         class="text-5xl bg-clip-text text-transparent bg-gradient-to-r from-sky-900 to-emerald-600">____________________________</span>
                                 </v-sheet>
                             </v-col>
                         </v-row>
                         <div class="ml-3">
-                            <v-switch color="success" :model-value="false" label="Concluído"
-                                class="mt-2 font-bold tracking-tight text-gray-900 sm:text-xl"></v-switch>
+                            <v-switch color="success" :model-value="getProgressData(item.id).progress" label="Concluído"
+                                :key="`switch-${item.id}`"
+                                @change="handleSwitchChange(getProgressData(item.id))"></v-switch>
                         </div>
                     </v-expansion-panel-text>
                 </v-expansion-panel>
@@ -94,6 +100,7 @@
 <script>
 import axios from '@/../src/axios';
 import VideoPlayer from '@/components/VideoPlayer.vue';
+import { mapGetters } from 'vuex';
 
 export default {
     components: {
@@ -110,15 +117,35 @@ export default {
                 progression: 0,
             },
             imageCourse: "",
+            progressData: [],
+            subscription: "",
             topics: [],
             error: null,
             userSubs: [],
+            progressionValue: "",
         };
     },
     computed: {
+        ...mapGetters('user', ['getUserID', 'getUserName']), // Mapeando os getters do módulo 'user'
         reversedTopics() {
             // Reverse the topics array
             return this.topics;
+        },
+        progressDataMap() {
+            const map = {};
+            this.progressData.forEach(data => {
+                map[data.idTopic] = data;
+            });
+            return map;
+        },
+    },
+    watch: {
+        progressData: {
+            handler() {
+                // Check conclusion whenever progressData changes
+                this.checkConclusion();
+            },
+            deep: true,
         },
     },
     created() {
@@ -148,6 +175,77 @@ export default {
                 this.error = error.message;
                 console.error("Erro ao buscar tópicos:", error);
             });
+
+        axios.get(`/Subscription/user/${this.getUserID}/course/${courseId}`)
+            .then(response => {
+                this.subscription = response.data;
+                console.log("Subscription:", response.data[0].id);
+
+                // Make the second request only after the first request is completed
+                return axios.get(`/Progression/idSubscription/${this.subscription[0].id}`);
+            })
+            .then(response => {
+                this.progressData = response.data;
+                console.log("Progressions:", response.data);
+                this.error = null;
+            })
+            .catch(error => {
+                this.subscription = [];
+                this.progressData = [];
+                this.error = error.message;
+                console.error("Error:", error);
+            });
+    },
+    methods: {
+        // Get progress data for a specific topic id
+        getProgressData(topicId) {
+            return this.progressData.find(data => data.idTopic === topicId) || { idSubscription: '', idTopic: topicId, progress: false, id: null };
+        },
+        checkConclusion() {
+            return this.progressData.every(data => data.progress);
+        },
+        handleSwitchChange(progressData) {
+            if (progressData.progress !== undefined) {
+                const progressId = progressData.id;
+                const newProgressValue = !progressData.progress;
+
+                axios.put(`/Progression/${progressId}/ChangeProgress`, newProgressValue, {
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                })
+                    .then(response => {
+                        console.log('Progression updated successfully', response.data);
+
+                        // Update progressData without directly modifying it
+                        const updatedProgressData = this.progressData.map(data => {
+                            if (data.id === progressId) {
+                                return { ...data, progress: newProgressValue };
+                            }
+                            return data;
+                        });
+
+                        // Assign the updated array to trigger reactivity
+                        this.progressData = updatedProgressData;
+                    })
+                    .catch(error => {
+                        console.error('Error updating progression', error);
+                        // Handle the error appropriately
+                    });
+            } else {
+                console.error('Invalid progressData:', progressData);
+            }
+        },
+        calculateCompletionPercentage() {
+            // Calculate the percentage of completion based on the progressData
+            const totalTopics = this.progressData.length;
+            const completedTopics = this.progressData.filter(data => data.progress).length;
+
+            // Ensure totalTopics is not zero to avoid division by zero
+            const completionPercentage = totalTopics > 0 ? (completedTopics / totalTopics) * 100 : 0;
+
+            return completionPercentage;
+        },
     },
 };
 </script>

@@ -46,7 +46,8 @@
                         <p>Sem video de apresentação</p>
                     </div>
                     <br><br><br><br><br><br><br><br><br>
-                    <h1 v-if="course.price === 0" class="mt-2 text-2xl font-bold tracking-tight text-emerald-900 sm:text-3xl">
+                    <h1 v-if="course.price === 0"
+                        class="mt-2 text-2xl font-bold tracking-tight text-emerald-900 sm:text-3xl">
                         <span
                             class="text-5xl bg-clip-text text-transparent bg-gradient-to-r from-sky-900 to-emerald-600">*</span>
                         Curso gratuito!
@@ -127,6 +128,7 @@ export default {
                 idUser: '',
                 progression: 0,
             },
+            progressDataArray: [],
             imageCourse: "",
             topics: [],
             error: null,
@@ -198,6 +200,26 @@ export default {
         },
     },
     methods: {
+        async populateProgressDataArray() {
+            for (const topic of this.topics) {
+                const progressData = {
+                    idSubscription: this.subData.id,
+                    idTopic: topic.id,
+                    progress: false,
+                };
+
+                this.progressDataArray.push(progressData);
+
+                try {
+                    // Make a POST request for each topic
+                    const response = await axios.post('/Progression', progressData);
+                    console.log(`POST request successful for topic ${topic.id}`, response.data);
+
+                } catch (error) {
+                    console.error(`Error making POST request for topic ${topic.id}`, error);
+                }
+            }
+        },
         subscribeCourse() {
             this.subData.idUser = this.getUserID;
 
@@ -208,6 +230,10 @@ export default {
             })
                 .then(response => {
                     console.log('Data sent successfully:', response.data);
+
+                    this.subData = response.data;
+
+                    this.populateProgressDataArray();
 
                     console.log('Inscrito com sucesso!' + this.getUserName);
                     this.subNow = true;
