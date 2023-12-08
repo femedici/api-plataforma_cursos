@@ -46,8 +46,11 @@
                         <p>Sem video de apresentação</p>
                     </div>
                     <br><br><br><br><br><br><br><br><br>
-                    <h1 v-if="course.price === 0"
+                    <h1 v-if="course.price !== 0"
                         class="mt-2 text-2xl font-bold tracking-tight text-emerald-900 sm:text-3xl">
+                        Preço de Inscrição: R$ {{ course.price }}
+                    </h1>
+                    <h1 v-else class="mt-2 text-2xl font-bold tracking-tight text-emerald-900 sm:text-3xl">
                         <span
                             class="text-5xl bg-clip-text text-transparent bg-gradient-to-r from-sky-900 to-emerald-600">*</span>
                         Curso gratuito!
