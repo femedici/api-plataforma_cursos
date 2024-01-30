@@ -30,7 +30,7 @@
     </div>
   </section>
   <section class="pt-20 lg:pt-[120px] pb-10 lg:pb-20 bg-slate-200">
-    <div class="container">
+    <div class="container mx-auto">
       <div class="flex flex-wrap justify-center -mx-4">
         <div class="w-full px-4">
           <div class="text-center mx-auto mb-[60px] lg:mb-20 max-w-[610px]">
@@ -40,7 +40,7 @@
               </span>
             </div>
             <br>
-            <p class=" text-cyan-900 text-xl text-body-color">
+            <p class="text-cyan-900 text-xl text-body-color">
               Existem inúmeras formas de interagir com a La Moon. Veja alguns exemplos
             </p>
             <br>
@@ -59,14 +59,14 @@
                 </div>
                 <div>
                   <h3 class="font-semibold
-                    text-xl
-                    sm:text-2xl
-                    lg:text-xl
-                    xl:text-2xl
-                    mb-4
-                    inline-block
-                    text-dark
-                    hover:text-primary">
+                                    text-xl
+                                    sm:text-2xl
+                                    lg:text-xl
+                                    xl:text-2xl
+                                    mb-4
+                                    inline-block
+                                    text-dark
+                                    hover:text-primary">
                     {{ item.title }}
                   </h3>
                   <p class="text-base text-body-color">
@@ -79,53 +79,6 @@
         </div>
       </div>
       <br><br>
-    </div>
-  </section>
-  <section class="bg-cover bg-center py-32 w-full">
-    <div class="container mx-auto text-white">
-      <div class="flex items-center">
-        <!-- Text content -->
-        <div class="w-2/3 mr-8" data-aos="fade-down">
-          <h1 class="text-5xl font-medium mb-6 text-neutral-50 ml-4 pl-4">Sobre Nós</h1>
-          <p class="text-xl mb-12 text-white break-all ml-4 pl-4">
-            Nossa plataforma tem um objetivo claro: simplificar a vida daqueles que desejam aprender algo novo e também
-            daqueles que desejam compartilhar seu conhecimento.
-            No La Moon, quer você seja um indivíduo buscando aprender ou uma empresa que deseja oferecer cursos e
-            especializações,
-            fornecemos um espaço unificado para acomodar todas as suas necessidades de aprendizado.
-            Aqui, a diversidade de cursos e especializações está ao alcance de um clique, independentemente de você ser
-            uma pessoa física com um interesse pessoal
-            ou uma organização com experiência a compartilhar. Unimos todos esses recursos em um só lugar, tornando a
-            jornada de ensino e
-            aprendizado mais acessível e conveniente para todos os envolvidos. É a combinação perfeita de conhecimento e
-            oportunidade, ao alcance de todos..
-          </p>
-          <p class="text-xl mb-12 text-white break-all text-left ml-4 pl-4">
-            Na La Moon, garantimos a qualidade e confiabilidade de
-            nossos cursos através de uma equipe dedicada que aprova apenas criadores qualificados.
-            Para usuários que desejam compartilhar seu conhecimento, o processo é descomplicado: basta fazer uma
-            solicitação e escolher um plano de assinatura adequado,
-            seja para um único curso ou múltiplos, adaptando-se às suas necessidades. Além disso, para empresas,
-            oferecemos contratos de serviço personalizados,
-            para atender às demandas corporativas. Dessa forma, garantimos que o aprendizado seja acessível, seguro e
-            adaptado às diferentes necessidades de nossos usuários,
-            tornando a La Moon uma plataforma versátil e confiável para aprimoramento pessoal e profissional.
-          </p>
-          <p class="text-xl mb-12 text-white break-all ml-4 pl-4">
-            Para você, usuário, a La Moon oferece opções flexíveis. Você pode explorar nossa ampla variedade de cursos
-            gratuitos, obtendo conhecimento valioso sem custo algum.
-            Além disso, se desejar aprofundar seus estudos em áreas mais especializadas, temos cursos disponíveis a
-            preços acessíveis. Dessa forma, garantimos que a aprendizagem
-            esteja ao alcance de todos, independentemente do seu orçamento. Na La Moon, a sua busca por conhecimento é
-            sempre flexível e adaptada às suas preferências e necessidades.
-          </p>
-        </div>
-        <div class="w-1/3">
-          <img
-            src="https://images.unsplash.com/photo-1599837565318-67429bde7162?auto=format&fit=crop&q=80&w=1974&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-            alt="Image Alt Text" class="w-auto h-auto rounded-lg content-end" />
-        </div>
-      </div>
     </div>
   </section>
   <v-divider></v-divider>
@@ -190,7 +143,7 @@ export default {
           title: "Seu espaço de aprendizagem",
           description: "Todos seus cursos inscritos e seu progresso particular em cada um deles em um só espaço.",
           image: "https://images.pexels.com/photos/3747156/pexels-photo-3747156.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
-          link: "/coursesSub" 
+          link: "/coursesSub"
         }
       ]
     };
