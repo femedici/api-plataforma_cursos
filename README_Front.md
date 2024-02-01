@@ -1,19 +1,76 @@
 # Front - weblamoon
-> Especificações de inicialização do ambiente do front da aplicação LaMoon, e descrição da estruturação do projeto.
+> Descrição da estruturação do projeto e documentação de objetos.
 
-## Inicialização do ambiente
-Os comandos a seguir são necessários para inicialização do ambiente no seu computador:
-PS: estar dentro do diretório: ***../api-plataforma_cursos/weblamoon***
+## Documentação de Objetos - json's
 
-> **1° VEZ (Instalando bibliotecas npm no seu ambiente)**
-npm i
-npm install -g @vue/cli
-npm install --save-dev @vue/cli-service --legacy-peer-deps
+#### Cursos
 
-> **iniciando o projeto**
-Set-ExecutionPolicy -Scope Process -ExecutionPolicy RemoteSigned (caso não execute, ou acuse erro)
-npm run serve
+```
+  {
+  "id": 0,
+  "title": "string",
+  "description": "string",
+  "mainVideo": "string",
+  "bodyText": "string",
+  "password": "string",
+  "icon": "string",
+  "banner": "string",
+  "creator": "string",
+  "creatorID": 0,
+  "creationDate": "string",
+  "price": 0
+  }
+```
 
+#### Tópico
+
+```
+  {
+  "id": 0,
+  "referenceCourse": 0,
+  "title": "string",
+  "description": "string",
+  "video": "string",
+  "progress": true
+  }
+```
+#### Inscrição
+
+```
+  {
+  "id": 0,
+  "idCourse": 0,
+  "idUser": 0,
+  "progression": 0,
+  "subscriptionDate": "string",
+  "conclusionDate": "string"
+  }
+```
+
+#### Progressão
+
+```
+  {
+  "id": 0,
+  "idSubscription": 0,
+  "idTopic": 0,
+  "progress": true
+  }
+```
+#### Usuário
+
+```
+  {
+  "id": 0,
+  "name": "string",
+  "email": "string",
+  "password": "string",
+  "icon": "string",
+  "creationDate": "string",
+  "creator": true,
+  "becameCreator": true
+  }
+```
 
 ## Estruturação
 

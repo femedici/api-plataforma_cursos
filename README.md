@@ -4,10 +4,10 @@
 ## Descrição
 Uma api de cursos online, onde um usuário pode desde se inscrever em um curso, progredir, concluir cursos, até se tornar um criador e publicar cursos que quiser.
 
-Courses List Page:
+> Courses List Page:
 ![Databrick projecct with Snowflake](imgs/courses.png)
 
-Main Course Page:
+> Main Course Page:
 ![Databrick projecct with Snowflake](imgs/first-page.png)
 
 ## Funcionalidades
@@ -26,7 +26,7 @@ A pasta *'\apilamoon'* representa o back-end, desenvolvido em C#, dotNet 6.0 e N
 
 A pasta *'\weblamoon'* representa o front-end, desenvolvido em vue.js, javascript, tailwind ;
 
-Utilização do swagger para ambiente de teste de requisições e estrutura de objetos:
+> Utilização do swagger para ambiente de teste de requisições e estrutura de objetos:
 ![Databrick projecct with Snowflake](imgs/swagger.png)
 
 ## Linguagens e Tecnologias
