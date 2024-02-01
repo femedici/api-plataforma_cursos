@@ -31,3 +31,7 @@ A pasta '\weblamoon' representa o front-end, desenvolvido em vue.js, html, css, 
 
 **Back-end:** 
 [![My Skills](https://skillicons.dev/icons?i=cs,dotnet,mongodb)](https://skillicons.dev)
+
+![Databrick projecct with Snowflake](imgs/courses.png)
+![Databrick projecct with Snowflake](imgs/first-page.png)
+![Databrick projecct with Snowflake](imgs/swagger.png)
