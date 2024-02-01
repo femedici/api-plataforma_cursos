@@ -1,33 +1,86 @@
-# API - laMoon
+# API - LaMoon
 > Aplicação desenvolvida para a matéria de Projeto Integrador - BCC 2023
 
 ## Descrição
-Uma aplicação de cursos online, onde disponibiliza páginas de cursos customizaveis, anotações no decorrer das aulas/tópicos e no curso como um todo, junto com acompanhamento de dados do curso em questão. 
+Uma api de cursos online, onde um usuário pode desde se inscrever em um curso, progredir, concluir cursos, até se tornar um criador e publicar cursos que quiser.
 
+> Courses List Page:
+![Databrick projecct with Snowflake](imgs/courses.png)
 
-**Detalhamento:**
+> Main Course Page:
+![Databrick projecct with Snowflake](imgs/first-page.png)
 
-- Um usuário criador pode estabelecer páginas de cursos onde pode customizar com imagens, capa e os tópicos se assim desejar. Em cada tópico (uma nova pagina) ele pode fazer inserção de video, pdf's, texto e imagens. Junto com isso consegue acompanhar o progresso do seu curso com os dados de quantos usuários se inscreveram nele, quais tópicos estão sendo concluidos e quais partes são mais acessadas.
+## Funcionalidades
 
-- O usuário base consegue acessar os cursos que se cadastrar (chave de acesso), ganhando acesso a pagina do curso. Na página principal do curso, o usuário consegue acompanhar seu progresso no curso e anotações gerais, em cada tópico ele pode fazer anotações especificas. 
+- Sessão de login com tipos de usuário (Normal,Criador,Administrador)
+- Requisições de progressão de curso automatizada
+- Aprovação de criador com requisição integrada ao front
+- Customização de curso na publicação e alteração
 
-## Estrutura
+## Documentação e Estrutura
+Documentação de requisições, estruturação json e integração, estão presentes respectivamente em *README_Back.md* e *README_Front.md* 
+
 A aplicação está estrutura em front-end e back-end, sendo as duas aplicações presentes nesse repositório.
 
-A pasta '\apilamoon' representa o back-end, desenvolvido em dotNet 6.0, C# e NOSQL(MongoDB);
-A pasta '\weblamoon' representa o front-end, desenvolvido em vue.js, html, css, javascript;
+A pasta *'\apilamoon'* representa o back-end, desenvolvido em C#, dotNet 6.0 e NoSQL(MongoDB);
 
-## Integrantes
+A pasta *'\weblamoon'* representa o front-end, desenvolvido em vue.js, javascript, tailwind ;
 
-<p>Felipe Augusto Medici   - RA: 2458772           - git: femedici -FullStack</p>
-<p>Felipe Roskosz Moran    - RA: 2482100           - git: feliperm17 -BackEnd</p>
-<p>Felipe Martins Sanches  - RA: 2390809           - git: mattokgit44 -FrontEnd</p>
-<p>Caio Ducati Castilho    - RA: 2482061           - git: Cast43 -BackEnd</p> 
+> Utilização do swagger para ambiente de teste de requisições e estrutura de objetos:
+![Databrick projecct with Snowflake](imgs/swagger.png)
 
+## Linguagens e Tecnologias
+**Back-end:** 
+[![My Skills](https://skillicons.dev/icons?i=cs,dotnet,mongodb)](https://skillicons.dev)
 
-### Linguagens e Tecnologias
 **Front-end:** 
 [![My Skills](https://skillicons.dev/icons?i=vue,tailwind,js)](https://skillicons.dev)
 
-**Back-end:** 
-[![My Skills](https://skillicons.dev/icons?i=cs,dotnet,mongodb)](https://skillicons.dev)
+## Rodando localmente
+
+Clone o projeto
+
+```bash
+  git clone https://github.com/femedici/api-plataforma_cursos.git
+```
+
+Entre no diretório 'apilamoon' - back do projeto
+
+```bash
+  cd /apilamoon
+```
+
+Inicie o servidor
+
+```bash
+  dotnet run
+```
+
+Entre no diretório 'weblamoon' - front do projeto
+
+```bash
+  cd /weblamoon
+```
+
+Instale as dependências
+
+```bash
+  npm i
+```
+Inicie o servidor
+
+```bash
+  npm run serve
+```
+
+Acesse a porta de navegador: http://localhost:8080/
+
+## Autor
+
+- [@femedici](https://github.com/femedici) 
+
+### Contribuidores
+
+- [@femattok](https://github.com/mattokgit44)
+- [@femoran](https://github.com/feliperm17)
+- [@caioducati](https://github.com/Cast43) 
