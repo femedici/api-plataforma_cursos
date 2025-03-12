@@ -1,86 +1,90 @@
-# API - LaMoon
-> Aplicação desenvolvida para a matéria de Projeto Integrador - BCC 2023
+# API - LaMoon  
+> Application developed for the Integrative Project course - BCC 2023  
 
-## Descrição
-Uma api de cursos online, onde um usuário pode desde se inscrever em um curso, progredir, concluir cursos, até se tornar um criador e publicar cursos que quiser.
+Portuguese Readme:
+[README_PT](README_PT.md)
 
-> Courses List Page:
-![Databrick projecct with Snowflake](imgs/courses.png)
+## Description  
+An online courses API where a user can enroll in a course, track progress, complete courses, and even become a creator to publish their own courses.  
 
-> Main Course Page:
-![Databrick projecct with Snowflake](imgs/first-page.png)
+> Courses List Page:  
+![Databrick project with Snowflake](imgs/courses.png)  
 
-## Funcionalidades
+> Main Course Page:  
+![Databrick project with Snowflake](imgs/first-page.png)  
 
-- Sessão de login com tipos de usuário (Normal,Criador,Administrador)
-- Requisições de progressão de curso automatizada
-- Aprovação de criador com requisição integrada ao front
-- Customização de curso na publicação e alteração
+## Features  
 
-## Documentação e Estrutura
-Documentação de requisições, estruturação json e integração, estão presentes respectivamente em *README_Back.md* e *README_Front.md* 
+- Login session with different user types (Regular, Creator, Administrator)  
+- Automated course progression requests  
+- Creator approval with integrated front-end request  
+- Course customization upon publication and editing  
 
-A aplicação está estrutura em front-end e back-end, sendo as duas aplicações presentes nesse repositório.
+## Documentation and Structure  
+API request documentation, JSON structure, and integration details can be found in *README_Back.md* and *README_Front.md*, respectively.  
 
-A pasta *'\apilamoon'* representa o back-end, desenvolvido em C#, dotNet 6.0 e NoSQL(MongoDB);
+The application is structured into front-end and back-end, both included in this repository.  
 
-A pasta *'\weblamoon'* representa o front-end, desenvolvido em vue.js, javascript, tailwind ;
+- The *'\apilamoon'* folder represents the back-end, developed in C#, .NET 6.0, and NoSQL (MongoDB).  
+- The *'\weblamoon'* folder represents the front-end, developed in Vue.js, JavaScript, and TailwindCSS.  
 
-> Utilização do swagger para ambiente de teste de requisições e estrutura de objetos:
-![Databrick projecct with Snowflake](imgs/swagger.png)
+> Using Swagger for request testing and object structure:  
+![Databrick project with Snowflake](imgs/swagger.png)  
 
-## Linguagens e Tecnologias
-**Back-end:** 
-[![My Skills](https://skillicons.dev/icons?i=cs,dotnet,mongodb)](https://skillicons.dev)
+## Languages and Technologies  
 
-**Front-end:** 
-[![My Skills](https://skillicons.dev/icons?i=vue,tailwind,js)](https://skillicons.dev)
+**Back-end:**  
+[![My Skills](https://skillicons.dev/icons?i=cs,dotnet,mongodb)](https://skillicons.dev)  
 
-## Rodando localmente
+**Front-end:**  
+[![My Skills](https://skillicons.dev/icons?i=vue,tailwind,js)](https://skillicons.dev)  
 
-Clone o projeto
+## Running Locally  
+
+Clone the project:  
 
 ```bash
   git clone https://github.com/femedici/api-plataforma_cursos.git
-```
+```  
 
-Entre no diretório 'apilamoon' - back do projeto
+Navigate to the 'apilamoon' directory (back-end):  
 
 ```bash
   cd /apilamoon
-```
+```  
 
-Inicie o servidor
+Start the server:  
 
 ```bash
   dotnet run
-```
+```  
 
-Entre no diretório 'weblamoon' - front do projeto
+Navigate to the 'weblamoon' directory (front-end):  
 
 ```bash
   cd /weblamoon
-```
+```  
 
-Instale as dependências
+Install dependencies:  
 
 ```bash
   npm i
-```
-Inicie o servidor
+```  
+
+Start the server:  
 
 ```bash
   npm run serve
-```
+```  
 
-Acesse a porta de navegador: http://localhost:8080/
+Access the application at: http://localhost:8080/  
 
-## Autor
+## Author  
 
-- [@femedici](https://github.com/femedici) 
+- [@femedici](https://github.com/femedici)  
 
-### Contribuidores
+### Contributors  
 
-- [@femattok](https://github.com/mattokgit44)
-- [@femoran](https://github.com/feliperm17)
-- [@caioducati](https://github.com/Cast43) 
+- [@femattok](https://github.com/mattokgit44)  
+- [@femoran](https://github.com/feliperm17)  
+- [@caioducati](https://github.com/Cast43)  
